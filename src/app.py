@@ -10,6 +10,8 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_jwt_extended import JWTManager
+from datetime import timedelta
 
 # from models import Person
 
@@ -18,7 +20,11 @@ static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+app.config['JWT_SECRET_KEY']='23e48d2e-174a-4ba2-af63-c2b94e903e22'
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=8)
 
+
+jwt = JWTManager(app)
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
@@ -28,8 +34,12 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'your_secret_key'
+
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
+
+
 
 # add the admin
 setup_admin(app)
