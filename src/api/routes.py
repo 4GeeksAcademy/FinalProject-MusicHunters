@@ -23,6 +23,8 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
+######################## USERS ########################
+#-------------------- RUTA DE REGISTRO --------------------
 
 @api.route('/register', methods=['POST'])
 def register():
@@ -58,12 +60,13 @@ def register():
 
     return jsonify({"msg": "User created", "user": user.serialize()}), 201
 
+
+#-------------------- RUTA DE LOGIN --------------------
+
 @api.route('/login', methods=['POST'])
 def login():
     request_body = request.json
     user= User.query.filter_by(email=request_body["email"]).first()
-    if user is None:
-        return jsonify({"msg": "Invalid email"}), 401
     
     if user and user.verify_password(request_body["password"]) is True:
         access_token = create_access_token(identity=user.serialize())
