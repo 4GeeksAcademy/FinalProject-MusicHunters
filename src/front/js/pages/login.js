@@ -8,7 +8,7 @@ export const Login = () => {
 
   return (
     <>
-      <h1 className="text-center">Login</h1>
+      <h1 className="text-center login-header mb-3">Login</h1>
       <form className="mx-auto">
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
@@ -47,19 +47,24 @@ export const Login = () => {
           <span className="left"></span>
         </div>
 
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Remember me
-          </label>
+        <div className="mb-3 form-check d-flex justify-content-between align-items-center">
+          <div className="d-flex align-items-center">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="exampleCheck1"
+            />
+            <span className="bottom"></span>
+            <span className="right"></span>
+            <span className="top"></span>
+            <span className="left"></span>
+            <label className="form-check-label" htmlFor="exampleCheck1">
+              Remember me
+            </label>
+          </div>
+          <Link to="forgotpassword" className="forgot-password">
+            Forgot my password
+          </Link>
         </div>
         <div className="form-buttons d-flex justify-content-between">
           <button type="submit" className="btn btn-warning">

@@ -4,11 +4,11 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	return (
-		<div className="text-center mt-5">
-			{/* <h1>Hello Rigo!!</h1>
+  return (
+    <div className="text-center mt-5">
+      {/* <h1>Hello Rigo!!</h1>
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
@@ -21,7 +21,11 @@ export const Home = () => {
 					Read documentation
 				</a>
 			</p> */}
-			<h1 className="title-music-hunters">Music Hunters Home</h1>
-		</div>
-	);
+      <h1 className="title-music-hunters">Music Hunters Home</h1>
+      <h3 className="subtitle">
+        Your website to find tickets to the best musical events at the best
+        price!
+      </h3>
+    </div>
+  );
 };

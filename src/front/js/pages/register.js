@@ -22,7 +22,7 @@ export const Register = (props) => {
 
   return (
     <>
-      <h1 className="text-center">Register</h1>
+      <h1 className="text-center register-header mb-3">Register</h1>
       <form className="mx-auto">
         <div className="mb-3">
           <label htmlFor="userName" className="form-label">
@@ -102,7 +102,7 @@ export const Register = (props) => {
           <span className="right"></span>
           <span className="top"></span>
           <span className="left"></span>
-          <label className="form-check-label" htmlFor="exampleCheck1">
+          <label className="form-check-label mr-1" htmlFor="exampleCheck1">
             Remember me
           </label>
         </div>

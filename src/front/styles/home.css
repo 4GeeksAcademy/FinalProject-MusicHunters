@@ -5,16 +5,30 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+/* @font-face {
+  font-family: "ClassicStroke";
+  src: url(/src/front/fonts/classic-stroke/ClassicStroke-Texture.ttf);
+} */
 
 body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
-  font-family: "Montserrat", sans-serif;
+  font-family: "Corben", serif;
 }
 
 h1 {
+  font-family: "Corben", serif;
   color: white;
+  font-weight: 700;
   text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
 }
+
+.register-header,
+.login-header,
+.reset-password-header {
+  margin-bottom: 40px !important;
+  color: #d34d7a;
+}
+
 .text-center {
   text-align: center;
 }
@@ -30,6 +44,7 @@ nav {
 .top-nav {
   margin-bottom: 30px;
 }
+
 .navbar-light .navbar-brand {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
@@ -40,7 +55,7 @@ nav {
 }
 
 .navbar-light .navbar-brand:hover {
-  color: #f4a261;
+  color: #d34d7a;
 }
 
 .navbar-light a {
@@ -49,8 +64,26 @@ nav {
 
 .title-music-hunters {
   color: white;
-  font-size: 70px;
+  font-size: 100px;
   font-weight: bold;
+}
+
+.subtitle {
+  color: whitesmoke;
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
+  text-align: center;
+}
+
+.forgot-password,
+.forgot-password:hover {
+  text-decoration: none;
+  color: #d34d7a;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.passwordHelp {
+  color: #d34d7a !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1) !important;
 }
 
 /* botones */
@@ -58,6 +91,12 @@ nav {
 .btn-dark:hover {
   box-shadow: 1px 1px 1px #f4a261;
   border-color: #f4a261;
+  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
+}
+
+.btn-dark {
+  background-color: #264653;
+  border-color: #000000;
 }
 
 .btn-warning {
@@ -69,6 +108,7 @@ nav {
   box-shadow: 1px 1px 3px rgb(0, 0, 0);
   border-color: rgb(0, 0, 0);
   background-color: #f4a261;
+  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
 }
 
 .btn-warning:focus {
@@ -84,7 +124,7 @@ a,
 
 a,
 .footer-color:hover {
-  color: #f4a261;
+  color: #d34d7a;
 }
 
 form {
@@ -94,6 +134,11 @@ form {
 .form-text {
   margin-top: none;
   color: rgb(179, 174, 174);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.form-label {
+  text-shadow: 2px -1px 2px rgba(0, 0, 0, 1);
 }
 
 .form-buttons {
@@ -112,6 +157,10 @@ form {
 
 .form-check-input:focus {
   box-shadow: 0 0 0 0.25rem #2a9d908c;
+}
+
+.form-check-label {
+  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
 }
 /* efecto para los inputs */
 input {
