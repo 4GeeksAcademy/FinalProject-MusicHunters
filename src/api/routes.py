@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
-from api.utils import generate_sitemap, APIException
+from api.utils import generate_sitemap, APIException, validate_password
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
@@ -11,16 +11,6 @@ api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
-
-
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
 
 
 ######################## USERS ########################
@@ -44,7 +34,11 @@ def register():
         return jsonify({"msg": "Email already exists"}), 409
     if User.query.filter_by(username=request_body["username"]).first():
         return jsonify({"msg": "Username already exists"}), 409
-
+    
+    is_valid, message = validate_password(request_body["password"])
+    if not is_valid:
+        return jsonify({"msg": message}), 400
+    
     # Crear el usuario
     user = User()
     user.create_new_user(
@@ -73,4 +67,4 @@ def login():
 
         return jsonify({"msg": "User logged in", "user": user.serialize(), "access_token": access_token}), 200
     else:
-        return jsonify({"msg": "Invalid credential"}), 401
+        return jsonify({"msg": "Incorrect email or password"}), 401

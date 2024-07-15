@@ -26,6 +26,7 @@ module.exports = merge(common, {
         hot: true,
         allowedHosts: "all",
         historyApiFallback: true,
+        watchFiles:['src/**/*.js','src/**/*.jsx'],
         static: {
           directory: path.resolve(__dirname, "dist"),
         },
