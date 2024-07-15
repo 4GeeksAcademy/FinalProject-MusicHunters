@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
+import { Navbar } from "../component/navbar";
 // import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 
@@ -10,18 +11,28 @@ export const Register = (props) => {
 
   //const [dataContact, setDataContact] = useState;
 
-  //   const handleAddContact = (event) => {
-  //     event.preventDefault();
-  //     actions.nombreDeFuncionDeRegistro(dataContact);
-  //     setDataContact({
-  //       userName: "",
-  //       emailAdress: "",
-  //       password: "",
-  //       confirmPassword: "",
-  //     });
+  // const handleAddContact = (event) => {
+  //   event.preventDefault();
+  //   actions.nombreDeFuncionDeRegistro(dataContact);
+  //   setDataContact({
+  //     userName: "",
+  //     emailAdress: "",
+  //     password: "",
+  //     confirmPassword: "",
+  //   });
+  // };
+
+  // const inputValue = (e) => {
+  //   const { name, value } = e.target;
+  //   setDataContact((prevDataContact) => ({
+  //     ...prevDataContact,
+  //     [name]: value,
+  //   }));
+  // };
 
   return (
     <>
+      <Navbar />
       <h1 className="text-center register-header mb-3">Register</h1>
       <form className="mx-auto">
         <div className="mb-3">
@@ -35,6 +46,7 @@ export const Register = (props) => {
             id="userName"
             aria-describedby="userName"
             placeholder="User Name"
+            //value={dataContact.userName}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -51,6 +63,7 @@ export const Register = (props) => {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="example@email.com"
+            //value={dataContact.email}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -70,6 +83,7 @@ export const Register = (props) => {
             className="form-control"
             id="exampleInputPassword1"
             placeholder="**********"
+            //value={que hago con el hush?}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -107,7 +121,11 @@ export const Register = (props) => {
           </label>
         </div>
         <div className="form-buttons d-flex justify-content-between">
-          <button type="submit" className="btn btn-warning">
+          <button
+            type="submit"
+            className="btn btn-warning"
+            //onClick={() => actions.nombreDeFuncionDelFlux(dataContact)}
+          >
             Submit
           </button>
 

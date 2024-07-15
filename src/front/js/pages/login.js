@@ -1,15 +1,38 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
 
+  // const inputValue = (e) => {
+  //   const { name, value } = e.target;
+  //   setDataContact((prevDataContact) => ({
+  //     ...prevDataContact,
+  //     [name]: value,
+  //   }));
+  // };
+
+  // const handleAddContact = (event) => {
+  //   event.preventDefault();
+  //   actions.nombreDeFuncionDeRegistro(dataContact);
+  //   setDataContact({
+  //     userName: "",
+  //     emailAdress: "",
+  //     password: "",
+  //     confirmPassword: "",
+  //   });
+  // };
+
   return (
     <>
+      <Navbar />
       <h1 className="text-center login-header mb-3">Login</h1>
-      <form className="mx-auto">
+      <form
+        className="mx-auto"
+        //onSubmit={handleAddContact}
+      >
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -21,6 +44,7 @@ export const Login = () => {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="example@email.com"
+            //value={dataContact.email}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -40,6 +64,7 @@ export const Login = () => {
             className="form-control"
             id="exampleInputPassword1"
             placeholder="**********"
+            //value={dataContact.password} que hago con el hush?
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -51,7 +76,7 @@ export const Login = () => {
           <div className="d-flex align-items-center">
             <input
               type="checkbox"
-              className="form-check-input"
+              className="form-check-input me-2"
               id="exampleCheck1"
             />
             <span className="bottom"></span>
@@ -67,10 +92,15 @@ export const Login = () => {
           </Link>
         </div>
         <div className="form-buttons d-flex justify-content-between">
-          <button type="submit" className="btn btn-warning">
-            Login
-          </button>
-
+          <Link to="/:id">
+            <button
+              type="submit"
+              className="btn btn-warning"
+              //onClick={() => actions.nombreDeFuncionDelFlux(dataContact)}
+            >
+              Login
+            </button>
+          </Link>
           <Link to="/">
             <button type="button" className="btn btn-dark">
               Back home

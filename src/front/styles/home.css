@@ -37,8 +37,19 @@ label {
   color: white;
 }
 
+.card {
+  background-color: #f4a3615b;
+}
+
 nav {
   margin-bottom: 0;
+}
+
+li {
+  box-shadow: 10px 10px 20px #000000;
+  border-radius: 0.25rem;
+  margin-left: 25px;
+  margin-right: 50px;
 }
 
 .top-nav {
@@ -78,10 +89,11 @@ nav {
 .forgot-password:hover {
   text-decoration: none;
   color: #d34d7a;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  text-shadow: 2px 0px 1px rgba(0, 0, 0, 1);
 }
 
-.passwordHelp {
+.passwordHelp,
+.searchHelp {
   color: #d34d7a !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1) !important;
 }
@@ -89,8 +101,8 @@ nav {
 /* botones */
 
 .btn-dark:hover {
-  box-shadow: 1px 1px 1px #f4a261;
-  border-color: #f4a261;
+  box-shadow: 1px 1px 1px #d34d7a;
+  border-color: #d34d7a;
   text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
 }
 
