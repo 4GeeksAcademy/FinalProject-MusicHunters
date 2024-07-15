@@ -25,6 +25,7 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=8)
 
 
 jwt = JWTManager(app)
+
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
@@ -38,8 +39,6 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
-
-
 
 # add the admin
 setup_admin(app)

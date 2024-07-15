@@ -5,3 +5,243 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+/* @font-face {
+  font-family: "ClassicStroke";
+  src: url(/src/front/fonts/classic-stroke/ClassicStroke-Texture.ttf);
+} */
+
+body {
+  background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
+  font-family: "Corben", serif;
+}
+
+h1 {
+  font-family: "Corben", serif;
+  color: white;
+  font-weight: 700;
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
+}
+
+.register-header,
+.login-header,
+.reset-password-header {
+  margin-bottom: 40px !important;
+  color: #d34d7a;
+}
+
+.text-center {
+  text-align: center;
+}
+
+label {
+  color: white;
+}
+
+.card {
+  background-color: #f4a3615b;
+}
+
+nav {
+  margin-bottom: 0;
+}
+
+li {
+  box-shadow: 10px 10px 20px #000000;
+  border-radius: 0.25rem;
+  margin-left: 25px;
+  margin-right: 50px;
+}
+
+.top-nav {
+  margin-bottom: 30px;
+}
+
+.navbar-light .navbar-brand {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+.navbar-light .navbar-brand:hover {
+  color: white;
+}
+
+.navbar-light .navbar-brand:hover {
+  color: #d34d7a;
+}
+
+.navbar-light a {
+  text-decoration: none;
+}
+
+.title-music-hunters {
+  color: white;
+  font-size: 100px;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: whitesmoke;
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
+  text-align: center;
+}
+
+.forgot-password,
+.forgot-password:hover {
+  text-decoration: none;
+  color: #d34d7a;
+  text-shadow: 2px 0px 1px rgba(0, 0, 0, 1);
+}
+
+.passwordHelp,
+.searchHelp {
+  color: #d34d7a !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1) !important;
+}
+
+/* botones */
+
+.btn-dark:hover {
+  box-shadow: 1px 1px 1px #d34d7a;
+  border-color: #d34d7a;
+  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
+}
+
+.btn-dark {
+  background-color: #264653;
+  border-color: #000000;
+}
+
+.btn-warning {
+  background-color: #2a9d8f;
+  border-color: rgb(0, 0, 0);
+}
+
+.btn-warning:hover {
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
+  border-color: rgb(0, 0, 0);
+  background-color: #f4a261;
+  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
+}
+
+.btn-warning:focus {
+  border-color: #f4a261;
+  background-color: #f4a261;
+  box-shadow: 0 0 0 0.25rem #f4a3618c;
+}
+
+a,
+.footer-color {
+  color: white;
+}
+
+a,
+.footer-color:hover {
+  color: #d34d7a;
+}
+
+form {
+  width: 30%;
+}
+
+.form-text {
+  margin-top: none;
+  color: rgb(179, 174, 174);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.form-label {
+  text-shadow: 2px -1px 2px rgba(0, 0, 0, 1);
+}
+
+.form-buttons {
+  justify-content: space-between !important;
+}
+
+.form-control:focus {
+  border-color: #2a9d8f;
+  box-shadow: 0 0 0 0.25rem #2a9d908f;
+}
+
+.form-check-input:checked {
+  background-color: #2a9d8f;
+  border-color: #2a9d8f;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem #2a9d908c;
+}
+
+.form-check-label {
+  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
+}
+/* efecto para los inputs */
+input {
+  width: 6.5em;
+  color: white;
+  font-size: inherit;
+  font-family: inherit;
+  background-color: hsl(236, 32%, 26%);
+  padding: 0.35em 0.45em;
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 5);
+}
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  color: hsla(0, 3%, 32%, 0.6);
+}
+
+span {
+  position: absolute;
+  background-color: #2a9d8f;
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+.bottom,
+.top {
+  height: 1px;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+}
+
+.left,
+.right {
+  width: 1px;
+  top: 0;
+  bottom: 0;
+  transform: scaleY(0);
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+input:focus ~ .top,
+input:focus ~ .bottom {
+  transform: scaleX(1);
+}
+
+input:focus ~ .left,
+input:focus ~ .right {
+  transform: scaleY(1);
+}
+
+/* fin de efecto para los inputs */

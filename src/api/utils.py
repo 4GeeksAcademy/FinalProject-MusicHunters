@@ -51,3 +51,4 @@ def validate_password(password):
     if not re.search("[0-9]", password):
         return False, "Password must contain at least one number"
     return True, ""
+

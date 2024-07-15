@@ -49,3 +49,4 @@ class User(db.Model):
             "profile_picture": self.profile_picture
             # No se serializa la contraseña por razones de seguridad
         }
+

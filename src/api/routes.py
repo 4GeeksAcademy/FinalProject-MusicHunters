@@ -68,3 +68,4 @@ def login():
         return jsonify({"msg": "User logged in", "user": user.serialize(), "access_token": access_token}), 200
     else:
         return jsonify({"msg": "Incorrect email or password"}), 401
+

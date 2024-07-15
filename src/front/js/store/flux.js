@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+
 			user: null, 
 			isAuthenticated: false 
 		},
@@ -73,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						sessionStorage.setItem("token", data.token);
 
-						
+					
 						setStore({
 							user: data.user, 
 							isAuthenticated: true
@@ -95,4 +96,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-
