@@ -5,25 +5,25 @@ import { Context } from "../store/appContext";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
+  const [dataContact, setDataContact] = useState({})
 
-  // const inputValue = (e) => {
-  //   const { name, value } = e.target;
-  //   setDataContact((prevDataContact) => ({
-  //     ...prevDataContact,
-  //     [name]: value,
-  //   }));
-  // };
+  const inputValue = (e) => {
+    const { name, value } = e.target;
+    setDataContact((prevDataContact) => ({
+      ...prevDataContact,
+      [name]: value,
+    }));
+  };
 
-  // const handleAddContact = (event) => {
-  //   event.preventDefault();
-  //   actions.nombreDeFuncionDeRegistro(dataContact);
-  //   setDataContact({
-  //     userName: "",
-  //     emailAdress: "",
-  //     password: "",
-  //     confirmPassword: "",
-  //   });
-  // };
+  const handleAddContact = (event) => {
+    event.preventDefault();
+    actions.login(dataContact.emailAdress, dataContact.password);
+    setDataContact({
+      emailAdress: "",
+      password: "",
+    });
+    
+  };
 
   return (
     <>
@@ -31,20 +31,21 @@ export const Login = () => {
       <h1 className="text-center login-header mb-3">Login</h1>
       <form
         className="mx-auto"
-        //onSubmit={handleAddContact}
+        onSubmit={handleAddContact}
       >
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
-            // onChange={inputValue}
+            onChange={inputValue}
             type="email"
             className="form-control"
             id="exampleInputEmail1"
+            name="emailAdress"
             aria-describedby="emailHelp"
             placeholder="example@email.com"
-            //value={dataContact.email}
+            value={dataContact.emailAdress}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -59,12 +60,13 @@ export const Login = () => {
             Password
           </label>
           <input
-            // onChange={inputValue}
+            onChange={inputValue}
             type="password"
             className="form-control"
             id="exampleInputPassword1"
+            name="password"
             placeholder="**********"
-            //value={dataContact.password} que hago con el hush?
+            value={dataContact.password}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -92,7 +94,7 @@ export const Login = () => {
           </Link>
         </div>
         <div className="form-buttons d-flex justify-content-between">
-          <Link to="/:id">
+          {/* <Link to="/:id"> */}
             <button
               type="submit"
               className="btn btn-warning"
@@ -100,7 +102,7 @@ export const Login = () => {
             >
               Login
             </button>
-          </Link>
+          {/* </Link> */}
           <Link to="/">
             <button type="button" className="btn btn-dark">
               Back home

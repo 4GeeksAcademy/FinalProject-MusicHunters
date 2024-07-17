@@ -2,51 +2,52 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../component/navbar";
-// import { Context } from "../store/appContext";
+import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 
 export const Register = (props) => {
-  // const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const params = useParams();
 
-  //const [dataContact, setDataContact] = useState;
+  const [dataContact, setDataContact] = useState({});
 
-  // const handleAddContact = (event) => {
-  //   event.preventDefault();
-  //   actions.nombreDeFuncionDeRegistro(dataContact);
-  //   setDataContact({
-  //     userName: "",
-  //     emailAdress: "",
-  //     password: "",
-  //     confirmPassword: "",
-  //   });
-  // };
+  const handleAddContact = (event) => {
+    event.preventDefault();
+    actions.register(dataContact.userName, dataContact.emailAdress, dataContact.password, dataContact.confirmPassword);
+    setDataContact({
+      userName: "",
+      emailAdress: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
 
-  // const inputValue = (e) => {
-  //   const { name, value } = e.target;
-  //   setDataContact((prevDataContact) => ({
-  //     ...prevDataContact,
-  //     [name]: value,
-  //   }));
-  // };
+  const inputValue = (e) => {
+    const { name, value } = e.target;
+    setDataContact((prevDataContact) => ({
+      ...prevDataContact,
+      [name]: value,
+    }));
+  };
 
   return (
     <>
       <Navbar />
       <h1 className="text-center register-header mb-3">Register</h1>
-      <form className="mx-auto">
+      <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="mb-3">
           <label htmlFor="userName" className="form-label">
             User Name
           </label>
           <input
-            // onChange={inputValue}
+            onChange={inputValue}
             type="text"
             className="form-control mb-3"
             id="userName"
+            name="userName"
             aria-describedby="userName"
             placeholder="User Name"
-            //value={dataContact.userName}
+            value={dataContact.userName}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -57,13 +58,14 @@ export const Register = (props) => {
             Email address
           </label>
           <input
-            // onChange={inputValue}
+            onChange={inputValue}
             type="email"
             className="form-control"
             id="exampleInputEmail1"
+            name="emailAdress"
             aria-describedby="emailHelp"
             placeholder="example@email.com"
-            //value={dataContact.email}
+            value={dataContact.emailAdress}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -78,12 +80,13 @@ export const Register = (props) => {
             Password
           </label>
           <input
-            // onChange={inputValue}
+            onChange={inputValue}
             type="password"
             className="form-control"
             id="exampleInputPassword1"
+            name="password"
             placeholder="**********"
-            //value={que hago con el hush?}
+            value={dataContact.password}
           />
           <span className="bottom"></span>
           <span className="right"></span>
@@ -95,11 +98,13 @@ export const Register = (props) => {
             Confirm Password
           </label>
           <input
-            // onChange={inputValue}
+            onChange={inputValue}
             type="password"
             className="form-control"
             id="exampleInputPassword2"
+            name="confirmPassword"
             placeholder="**********"
+            value={dataContact.confirmPassword}
           />
           <span className="bottom"></span>
           <span className="right"></span>
