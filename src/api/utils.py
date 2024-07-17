@@ -1,4 +1,5 @@
 from flask import jsonify, url_for
+import re 
 
 class APIException(Exception):
     status_code = 400
@@ -39,3 +40,15 @@ def generate_sitemap(app):
         <p>Start working on your project by following the <a href="https://start.4geeksacademy.com/starters/full-stack" target="_blank">Quick Start</a></p>
         <p>Remember to specify a real endpoint path like: </p>
         <ul style="text-align: left;">"""+links_html+"</ul></div>"
+
+def validate_password(password):
+    if len(password) < 8:
+        return False, "Password must be at least 8 characters long"
+    if not re.search("[a-z]", password):
+        return False, "Password must contain at least one lowercase letter"
+    if not re.search("[A-Z]", password):
+        return False, "Password must contain at least one uppercase letter"
+    if not re.search("[0-9]", password):
+        return False, "Password must contain at least one number"
+    return True, ""
+

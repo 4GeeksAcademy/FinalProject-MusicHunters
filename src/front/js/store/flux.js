@@ -1,63 +1,100 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 
-
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			user: null, 
+			isAuthenticated: false 
 		},
-
 		actions: {
+			register: async (username, email, password1, password2) => {
+	
+				if (!username || !email || !password1 || !password2) {
+					console.log("Faltan campos");
+					return false;
+				}	
+			
+				if (password1 !== password2) {
+					console.log("Las contraseñas no coinciden");
+					return false;
+				}
+
+				try {
+					const resp = await fetch(`${process.env.BACKEND_URL}/api/register`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							username: username,
+							email: email,
+							password: password1
+						})
+					});
 
 		
+					if (resp.ok) {
+						const data = await resp.json();
+						console.log("Usuario registrado exitosamente", data);
+						return true;
+					} else {
+						const errorData = await resp.json();
+						console.log("Error al registrar usuario:", errorData.message);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error al registrar usuario:", error);
+					return false;
+				}
+			},
 
-		}
+		
+			login: async (email, password) => {
+				
+				if (!email || !password) {
+					console.log("Faltan campos");
+					return false;
+				}
+
+				try {
+					const resp = await fetch(`${process.env.BACKEND_URL}/api/login`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							email: email,
+							password: password
+						})
+					});
+
+					if (resp.ok) {
+						const data = await resp.json();
+						console.log("Usuario iniciado sesión exitosamente", data);
 
 
-			// // Use getActions to call a function within a fuction
-			// exampleFunction: () => {
-			// 	getActions().changeColor(0, "green");
-			// },
+						sessionStorage.setItem("token", data.token);
 
-			// getMessage: async () => {
-			// 	try{
-			// 		// fetching data from the backend
-			// 		const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-			// 		const data = await resp.json()
-			// 		setStore({ message: data.message })
-			// 		// don't forget to return something, that is how the async resolves
-			// 		return data;
-			// 	}catch(error){
-			// 		console.log("Error loading message from backend", error)
-			// 	}
-			// },
-			// changeColor: (index, color) => {
-			// 	//get the store
-			// 	const store = getStore();
+					
+						setStore({
+							user: data.user, 
+							isAuthenticated: true
+						});
 
-			// 	//we have to loop the entire demo array to look for the respective index
-			// 	//and change its color
-			// 	const demo = store.demo.map((elm, i) => {
-			// 		if (i === index) elm.background = color;
-			// 		return elm;
-			// 	});
-
-			// 	//reset the global store
-			// 	setStore({ demo: demo });
-			// }
+						return true;
+					} else {
+						const errorData = await resp.json();
+						console.log("Error al iniciar sesión:", errorData.message);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error al iniciar sesión:", error);
+					return false;
+				}
+			}
 		}
 	};
 };
 
 export default getState;
+
