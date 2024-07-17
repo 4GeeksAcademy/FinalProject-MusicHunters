@@ -1,18 +1,21 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
+import { HomeUser } from "./pages/homeUser";
 import { Login } from "./pages/login";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Register } from "./pages/register";
 import { Search } from "./pages/search";
-import injectContext from "./store/appContext";
+import { MyProfile } from "./pages/userProfile";
 
+import injectContext, { Context } from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { HomeUser } from "./pages/homeUser";
+import { Favourites } from "./pages/favourites";
+import { NotFound } from "./pages/notFound";
 
 //create your first component
 const Layout = () => {
@@ -27,15 +30,16 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<HomeUser />} path="/:id" />
+            <Route element={<HomeUser />} path="/homeUser/:id" />
             <Route element={<Login />} path="/login" />
             <Route element={<ForgotPassword />} path="login/forgotPassword" />
             <Route element={<Register />} path="/register" />
+            <Route element={<MyProfile />} path="/userProfile/:id" />
             <Route element={<Search />} path="/search/:id" />
-            <Route element={<h1>Not found!</h1>} />
+            <Route element={<Favourites />} path="/favourites/:id" />
+            <Route element={<NotFound />} path="*" />
           </Routes>
           <Footer />
         </ScrollToTop>

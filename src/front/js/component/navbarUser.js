@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
+import userIcon from "../../img/user.png";
 import musicIcon from "../../img/musica.png";
+import favIcon from "../../img/favourites.png";
 import getState from "../store/flux";
 
 export const NavbarUser = () => {
@@ -14,16 +16,18 @@ export const NavbarUser = () => {
         </h1>
       </Link>
       <div className="ml-auto mx-1 p-1">
-        <Link to="/login">
+        <Link to="/userProfile/:id">
           <button
             className="btn btn-warning mx-2"
             // onClick={() => actions.funcion()}
           >
-            My Profile
+            <img className="userIcon" src={userIcon} alt="User Icon" />
           </button>
         </Link>
-        <Link to="/register/">
-          <button className="btn btn-warning">Favourites</button>
+        <Link to="/favourites/:id">
+          <button className="btn btn-warning">
+            <img className="favIcon" src={favIcon} alt="Fav Icon" />
+          </button>
         </Link>
       </div>
     </nav>
