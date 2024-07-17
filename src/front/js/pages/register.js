@@ -5,6 +5,9 @@ import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 import { HomeUser } from "./homeUser";
 
+
+
+
 export const Register = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
@@ -13,12 +16,8 @@ export const Register = (props) => {
 
   const handleAddContact = (event) => {
     event.preventDefault();
-    actions.register(
-      dataContact.userName,
-      dataContact.emailAdress,
-      dataContact.password,
-      dataContact.confirmPassword
-    );
+
+    actions.register(dataContact.userName, dataContact.emailAdress, dataContact.password, dataContact.confirmPassword);
     setDataContact({
       userName: "",
       emailAdress: "",

@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (!username || !email || !password1 || !password2) {
 					console.log("Faltan campos");
 					return false;
-				}
+				}	
 			
 				if (password1 !== password2) {
 					console.log("Las contraseñas no coinciden");
