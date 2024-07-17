@@ -5,7 +5,9 @@ import { Context } from "../store/appContext";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
+
   const [dataContact, setDataContact] = useState({})
+
 
   const inputValue = (e) => {
     const { name, value } = e.target;
@@ -17,22 +19,24 @@ export const Login = () => {
 
   const handleAddContact = (event) => {
     event.preventDefault();
+
     actions.login(dataContact.emailAdress, dataContact.password);
     setDataContact({
       emailAdress: "",
       password: "",
     });
-    
   };
 
   return (
     <>
       <Navbar />
       <h1 className="text-center login-header mb-3">Login</h1>
+
       <form
         className="mx-auto"
         onSubmit={handleAddContact}
       >
+
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -95,6 +99,7 @@ export const Login = () => {
         </div>
         <div className="form-buttons d-flex justify-content-between">
           {/* <Link to="/:id"> */}
+
             <button
               type="submit"
               className="btn btn-warning"
@@ -102,6 +107,7 @@ export const Login = () => {
             >
               Login
             </button>
+
           {/* </Link> */}
           <Link to="/">
             <button type="button" className="btn btn-dark">

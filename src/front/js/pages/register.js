@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import { HomeUser } from "./homeUser";
+
+
+
 
 export const Register = (props) => {
   const { store, actions } = useContext(Context);
@@ -13,6 +16,7 @@ export const Register = (props) => {
 
   const handleAddContact = (event) => {
     event.preventDefault();
+
     actions.register(dataContact.userName, dataContact.emailAdress, dataContact.password, dataContact.confirmPassword);
     setDataContact({
       userName: "",
@@ -126,14 +130,15 @@ export const Register = (props) => {
           </label>
         </div>
         <div className="form-buttons d-flex justify-content-between">
+          {/* <Link to="/homeUser/:id"> */}
           <button
             type="submit"
             className="btn btn-warning"
-            //onClick={() => actions.nombreDeFuncionDelFlux(dataContact)}
+            // onClick={() => actions.register()}
           >
             Submit
           </button>
-
+          {/* </Link> */}
           <Link to="/">
             <button type="button" className="btn btn-dark">
               Back home

@@ -39,17 +39,17 @@ label {
 
 .card {
   background-color: #f4a3615b;
-}
-
-nav {
-  margin-bottom: 0;
+  margin-bottom: 50px;
 }
 
 li {
   box-shadow: 10px 10px 20px #000000;
   border-radius: 0.25rem;
-  margin-left: 25px;
-  margin-right: 50px;
+}
+/*--------------------NAVBAR--------------------*/
+
+nav {
+  margin-bottom: 0;
 }
 
 .top-nav {
@@ -73,14 +73,19 @@ li {
   text-decoration: none;
 }
 
+/*-----------------TÍTULOS/SUBTÍTULOS---------------*/
+
 .title-music-hunters {
   color: white;
-  font-size: 100px;
+  font-size: 4.5rem !important;
+  margin-bottom: 1rem;
   font-weight: bold;
 }
 
 .subtitle {
   color: whitesmoke;
+  font-size: 2.5 rem;
+  margin-bottom: 2rem;
   text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
   text-align: center;
 }
@@ -98,7 +103,7 @@ li {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1) !important;
 }
 
-/* botones */
+/* -----------------BOTONES--------------- */
 
 .btn-dark:hover {
   box-shadow: 1px 1px 1px #d34d7a;
@@ -129,6 +134,7 @@ li {
   box-shadow: 0 0 0 0.25rem #f4a3618c;
 }
 
+/*--------------FOOTER--------------*/
 a,
 .footer-color {
   color: white;
@@ -139,8 +145,9 @@ a,
   color: #d34d7a;
 }
 
+/*------------------FORMS----------------*/
 form {
-  width: 30%;
+  width: 40vw;
 }
 
 .form-text {
@@ -177,71 +184,34 @@ form {
 /* efecto para los inputs */
 input {
   width: 6.5em;
-  color: white;
-  font-size: inherit;
-  font-family: inherit;
-  background-color: hsl(236, 32%, 26%);
   padding: 0.35em 0.45em;
   border: 1px solid transparent;
   transition: background-color 0.3s ease-in-out;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 5);
 }
 
-input:focus {
-  outline: none;
+.card-user-profile {
+  max-width: 80%;
+  height: 40%;
 }
 
-input::placeholder {
-  color: hsla(0, 3%, 32%, 0.6);
+/*------------VISTA 404----------------*/
+.not-found {
+  font-size: 3rem !important;
+  display: flex;
+  justify-content: center;
+  color: #d34d7a;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
 }
 
-span {
-  position: absolute;
-  background-color: #2a9d8f;
-  transform-origin: center;
-  transition: transform 0.5s ease;
+.button-error-view {
+  justify-content: center;
+  text-decoration: none;
 }
 
-.bottom,
-.top {
-  height: 1px;
-  left: 0;
-  right: 0;
-  transform: scaleX(0);
+img.errorIcon {
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
+  border-radius: 0.25rem;
 }
-
-.left,
-.right {
-  width: 1px;
-  top: 0;
-  bottom: 0;
-  transform: scaleY(0);
-}
-
-.top {
-  top: 0;
-}
-
-.bottom {
-  bottom: 0;
-}
-
-.left {
-  left: 0;
-}
-
-.right {
-  right: 0;
-}
-
-input:focus ~ .top,
-input:focus ~ .bottom {
-  transform: scaleX(1);
-}
-
-input:focus ~ .left,
-input:focus ~ .right {
-  transform: scaleY(1);
-}
-
-/* fin de efecto para los inputs */
