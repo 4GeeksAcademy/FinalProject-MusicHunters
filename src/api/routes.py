@@ -42,7 +42,7 @@ def register():
     # Crear el usuario
     user = User()
     user.create_new_user(
-        email=request_body["email"],
+        email=request_body["email"],    
         password=request_body["password"],
         username=request_body["username"],
         name=request_body.get("name"),
