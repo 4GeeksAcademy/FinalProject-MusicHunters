@@ -1,4 +1,3 @@
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -20,7 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}/api/register`, {
+					const resp = await fetch(`${process.env.BACKEND_URL}api/register`, {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"
@@ -57,7 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}/api/login`, {
+					const resp = await fetch(`${process.env.BACKEND_URL}api/login`, {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"
@@ -97,4 +96,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-
