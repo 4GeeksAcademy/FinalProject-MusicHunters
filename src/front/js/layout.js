@@ -16,6 +16,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Favourites } from "./pages/favourites";
 import { NotFound } from "./pages/notFound";
+import { EditProfile } from "./pages/editProfile";
 
 //create your first component
 const Layout = () => {
@@ -37,6 +38,7 @@ const Layout = () => {
             <Route element={<ForgotPassword />} path="login/forgotPassword" />
             <Route element={<Register />} path="/register" />
             <Route element={<MyProfile />} path="/userProfile/:id" />
+            <Route element={<EditProfile />} path="/editProfile/:id" />
             <Route element={<Search />} path="/search/:id" />
             <Route element={<Favourites />} path="/favourites/:id" />
             <Route element={<NotFound />} path="*" />
