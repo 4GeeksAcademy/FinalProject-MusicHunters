@@ -6,13 +6,12 @@
     on that page only (the ones not reused in other pages).
 */
 /* @font-face {
-  font-family: "ClassicStroke";
-  src: url(/src/front/fonts/classic-stroke/ClassicStroke-Texture.ttf);
+  font-family: "Royalacid";
+  src: url("public/fonts/royal_acidbath/Royalacid.ttf") format("truetype");
 } */
 
 body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
-  font-family: "Corben", serif;
 }
 
 h1 {
