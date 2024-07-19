@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
+import Swal from "sweetalert2";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
 
-  const [dataContact, setDataContact] = useState({})
-
+  const [dataContact, setDataContact] = useState({});
 
   const inputValue = (e) => {
     const { name, value } = e.target;
@@ -32,11 +32,7 @@ export const Login = () => {
       <Navbar />
       <h1 className="text-center login-header mb-3">Login</h1>
 
-      <form
-        className="mx-auto"
-        onSubmit={handleAddContact}
-      >
-
+      <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -98,8 +94,7 @@ export const Login = () => {
           </Link>
         </div>
         <div className="form-buttons d-flex justify-content-between">
-          {/* <Link to="/:id"> */}
-
+          <Link to="homeUser/:id">
             <button
               type="submit"
               className="btn btn-warning"
@@ -107,8 +102,7 @@ export const Login = () => {
             >
               Login
             </button>
-
-          {/* </Link> */}
+          </Link>
           <Link to="/">
             <button type="button" className="btn btn-dark">
               Back home
