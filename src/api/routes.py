@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Event, TicketsSource, PrecioTickets, Favoritos
 from api.utils import generate_sitemap, APIException, validate_password
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
@@ -68,4 +68,16 @@ def login():
         return jsonify({"msg": "User logged in", "user": user.serialize(), "access_token": access_token}), 200
     else:
         return jsonify({"msg": "Incorrect email or password"}), 401
+
+
+
+
+######################## EVENTS ########################
+#-------------------- RUTA DE OBTENER EVENTOS --------------------
+@api.route('/events', methods=['GET'])
+def get_events():
+    events = Event.query.all()
+    events = list(map(lambda event: event.serialize(), events))
+    return jsonify(events), 200
+
 
