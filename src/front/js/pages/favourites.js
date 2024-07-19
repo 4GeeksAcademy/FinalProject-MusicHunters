@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 import { NavbarUser } from "../component/navbarUser";
+import Swal from "sweetalert2";
 
 export const Favourites = (props) => {
   const { store, actions } = useContext(Context);
