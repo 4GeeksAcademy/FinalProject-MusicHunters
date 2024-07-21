@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
-
+import { ProtectedRoute } from "./component/utils/ProtectedRoute";
 import { Home } from "./pages/home";
 import { HomeUser } from "./pages/homeUser";
 import { Login } from "./pages/login";
@@ -10,7 +10,7 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Register } from "./pages/register";
 import { Search } from "./pages/search";
 import { MyProfile } from "./pages/userProfile";
-
+import "../../../src/front/styles/home.css";
 import injectContext, { Context } from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -31,19 +31,25 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<HomeUser />} path="/homeUser/:id" />
-            <Route element={<Login />} path="/login" />
-            <Route element={<ForgotPassword />} path="login/forgotPassword" />
-            <Route element={<Register />} path="/register" />
-            <Route element={<MyProfile />} path="/userProfile/:id" />
-            <Route element={<EditProfile />} path="/editProfile/:id" />
-            <Route element={<Search />} path="/search/:id" />
-            <Route element={<Favourites />} path="/favourites/:id" />
-            <Route element={<NotFound />} path="*" />
-          </Routes>
-          <Footer />
+          <div className="content-container">
+            <Routes>
+              <Route element={<Home />} path="/" />
+              <Route element={<Register />} path="/register" />
+              <Route element={<Login />} path="/login" />
+              <Route element={<ForgotPassword />} path="login/forgotPassword" />
+              {/* <Route element={<ProtectedRoute canActivate={comprobar en bbdd} />}> */}
+              <Route element={<HomeUser />} path="/homeUser/:id" />
+              <Route element={<MyProfile />} path="/userProfile/:id" />
+              <Route element={<EditProfile />} path="/editProfile/:id" />
+              <Route element={<Search />} path="/search/:id" />
+              <Route element={<Favourites />} path="/favourites/:id" />
+              {/* </Route> */}
+              <Route element={<NotFound />} path="*" />
+            </Routes>
+          </div>
+          <div className="content-container">
+            <Footer />
+          </div>
         </ScrollToTop>
       </BrowserRouter>
     </div>

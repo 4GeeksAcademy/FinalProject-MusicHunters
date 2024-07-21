@@ -7,11 +7,16 @@
 */
 /* @font-face {
   font-family: "Royalacid";
-  src: url("public/fonts/royal_acidbath/Royalacid.ttf") format("truetype");
+  src: url("/dist/KalniaGlaze-VariableFont_wdth\,wght.ttf") format("truetype");
 } */
 
 body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
+  font-family: "Corben", serif;
+}
+
+.content-container {
+  margin-bottom: 100px !important; /* Ajusta este valor según el margen que desees */
 }
 
 h1 {
@@ -124,13 +129,21 @@ nav {
   box-shadow: 1px 1px 3px rgb(0, 0, 0);
   border-color: rgb(0, 0, 0);
   background-color: #f4a261;
-  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
 }
 
 .btn-warning:focus {
   border-color: #f4a261;
   background-color: #f4a261;
   box-shadow: 0 0 0 0.25rem #f4a3618c;
+}
+
+.show-password {
+  background-color: #2a9d8f;
+}
+
+.fa-eye,
+.fa-eye-slash {
+  color: black;
 }
 
 /*--------------FOOTER--------------*/
@@ -189,9 +202,77 @@ input {
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 5);
 }
 
+input.user-img {
+  width: 9.5em;
+  height: 8em;
+  padding: 0.15em 0.15em;
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 5);
+  background-color: #264653;
+}
+
+.required-asterisk {
+  color: #d34d7a;
+  margin-left: 2px;
+}
+
+/*--------------Cards---------------*/
+
 .card-user-profile {
-  max-width: 80%;
-  height: 40%;
+  min-height: 400px;
+  width: 100%;
+}
+
+.card-user-profile {
+  background-color: #d34d7ada;
+  max-width: 50vw;
+}
+
+.file-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.user-img-input {
+  display: none; /* Oculta el input de archivo por defecto */
+}
+
+.user-img-preview {
+  width: 150px; /* Ajusta el tamaño de la vista previa según el tamaño deseado */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%; /* Hace que la imagen sea circular */
+  margin-bottom: 10px; /* Espacio debajo de la imagen */
+}
+
+.file-input-container::before {
+  content: "Upload Image";
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.file-input-container input[type="file"] + img {
+  display: block;
+  margin-top: 10px;
+}
+
+.flex-grow-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 /*------------VISTA 404----------------*/
@@ -234,13 +315,23 @@ div:where(.swal2-icon).swal2-warning.swal2-icon-show {
   border-color: #d34d7a;
 }
 
-div.swal2-success-circular-line-right,
-div.swal2-success-circular-line-left {
-  background-color: #264653;
+.swal2-success-circular-line-right,
+.swal2-success-circular-line-left,
+.swal2-success-fix {
+  background-color: #264653 !important;
 }
+
+/* .swal2-succes-line-tip,
+.swal2-succes-line-long {
+  background-color: #d34d7a;
+} */
 
 div:where(.swal2-icon).swal2-success,
 div:where(.swal2-icon).swal2-success .swal2-success-ring {
   border-color: #d34d7a;
   color: #d34d7a;
+}
+
+div:where(.swal2-icon).swal2-success [class^="swal2-success-line"] {
+  background-color: #d34d7a;
 }

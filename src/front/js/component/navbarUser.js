@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import userIcon from "../../img/user.png";
 import musicIcon from "../../img/musica.png";
 import favIcon from "../../img/favourites.png";
+import logOutIcon from "../../img/logout.png";
 import getState from "../store/flux";
 
 export const NavbarUser = () => {
@@ -15,18 +16,35 @@ export const NavbarUser = () => {
           <img className="musicIcon" src={musicIcon} alt="Music Icon" />
         </h1>
       </Link>
-      <div className="ml-auto mx-1 p-1">
+      <div className="ml-auto d-flex align-items-center">
         <Link to="/userProfile/:id">
-          <button
-            className="btn btn-warning mx-2"
-            // onClick={() => actions.funcion()}
-          >
-            <img className="userIcon" src={userIcon} alt="User Icon" />
+          <button className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center">
+            <img
+              className="userIcon"
+              src={userIcon}
+              alt="User Icon"
+              style={{ width: "24px", height: "24px" }}
+            />
           </button>
         </Link>
         <Link to="/favourites/:id">
-          <button className="btn btn-warning">
-            <img className="favIcon" src={favIcon} alt="Fav Icon" />
+          <button className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center">
+            <img
+              className="favIcon"
+              src={favIcon}
+              alt="Fav Icon"
+              style={{ width: "24px", height: "24px" }}
+            />
+          </button>
+        </Link>
+        <Link to="/">
+          <button className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center">
+            <img
+              className="logOutIcon"
+              src={logOutIcon}
+              alt="LogOut Icon"
+              style={{ width: "24px", height: "24px" }}
+            />
           </button>
         </Link>
       </div>
