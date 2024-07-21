@@ -135,7 +135,7 @@ export const Register = (props) => {
             </button>
           </div>
         </div>
-        <div className="mb-3 form-check">
+        <div className="mb-2 form-check">
           <input
             type="checkbox"
             className="form-check-input"
@@ -145,6 +145,9 @@ export const Register = (props) => {
           <label className="form-check-label mr-1" htmlFor="exampleCheck1">
             Remember me
           </label>
+        </div>
+        <div id="requiredFields" className="form-text mb-3">
+          <span className="required-asterisk">*</span> Required fields
         </div>
         <div className="form-buttons d-flex justify-content-between">
           {/* <Link to="/homeUser/:id"> */}
