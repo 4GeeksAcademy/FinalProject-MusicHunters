@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       user: null,
       isAuthenticated: false,
+      events: [],
     },
     actions: {
       successRegisterAlert: () => {
@@ -125,7 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
-            sessionStorage.setItem("token", data.token);
+            sessionStorage.setItem("token", data.access_token);
 
             setStore({
               user: data.user,
@@ -143,6 +144,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error al iniciar sesión:", error);
           return false;
         }
+      },
+      events: async () => {
+        const resp = await fetch(`${process.env.BACKEND_URL}api/events`);
+        const data = await resp.json();
+        console.log(data)
+        setStore({ events: data });
       },
     },
   };
