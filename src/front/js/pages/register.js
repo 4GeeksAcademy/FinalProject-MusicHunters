@@ -5,19 +5,26 @@ import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 import { HomeUser } from "./homeUser";
 
-
-
-
 export const Register = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
 
-  const [dataContact, setDataContact] = useState({});
+  const [dataContact, setDataContact] = useState({
+    userName: "",
+    emailAdress: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const handleAddContact = (event) => {
     event.preventDefault();
 
-    actions.register(dataContact.userName, dataContact.emailAdress, dataContact.password, dataContact.confirmPassword);
+    actions.register(
+      dataContact.userName,
+      dataContact.emailAdress,
+      dataContact.password,
+      dataContact.confirmPassword
+    );
     setDataContact({
       userName: "",
       emailAdress: "",
@@ -34,6 +41,12 @@ export const Register = (props) => {
     }));
   };
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const toggleViewPassword = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <>
       <Navbar />
@@ -41,7 +54,7 @@ export const Register = (props) => {
       <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="mb-3">
           <label htmlFor="userName" className="form-label">
-            User Name
+            User Name <span className="required-asterisk">*</span>
           </label>
           <input
             onChange={inputValue}
@@ -53,13 +66,9 @@ export const Register = (props) => {
             placeholder="User Name"
             value={dataContact.userName}
           />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
 
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Email address
+            Email address <span className="required-asterisk">*</span>
           </label>
           <input
             onChange={inputValue}
@@ -71,63 +80,74 @@ export const Register = (props) => {
             placeholder="example@email.com"
             value={dataContact.emailAdress}
           />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
+
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
           </div>
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Password <span className="required-asterisk">*</span>
           </label>
-          <input
-            onChange={inputValue}
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            name="password"
-            placeholder="**********"
-            value={dataContact.password}
-          />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
+          <div className="input-group">
+            <input
+              onChange={inputValue}
+              type={passwordVisible ? "text" : "password"}
+              className="form-control"
+              id="exampleInputPassword1"
+              name="password"
+              placeholder="**********"
+              value={dataContact.password}
+            />
+            <button
+              type="button"
+              className="btn btn-outline-secondary show-password"
+              onClick={toggleViewPassword}
+            >
+              <i
+                className={passwordVisible ? "far fa-eye-slash" : "far fa-eye"}
+              ></i>
+            </button>
+          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword2" className="form-label">
-            Confirm Password
+            Confirm Password <span className="required-asterisk">*</span>
           </label>
-          <input
-            onChange={inputValue}
-            type="password"
-            className="form-control"
-            id="exampleInputPassword2"
-            name="confirmPassword"
-            placeholder="**********"
-            value={dataContact.confirmPassword}
-          />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
+          <div className="input-group">
+            <input
+              onChange={inputValue}
+              type={passwordVisible ? "text" : "password"}
+              className="form-control"
+              id="exampleInputPassword2"
+              name="confirmPassword"
+              placeholder="**********"
+              value={dataContact.confirmPassword}
+            />
+            <button
+              type="button"
+              className="btn btn-outline-secondary show-password"
+              onClick={toggleViewPassword}
+            >
+              <i
+                className={passwordVisible ? "far fa-eye-slash" : "far fa-eye"}
+              ></i>
+            </button>
+          </div>
         </div>
-        <div className="mb-3 form-check">
+        <div className="mb-2 form-check">
           <input
             type="checkbox"
             className="form-check-input"
             id="exampleCheck1"
           />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
+
           <label className="form-check-label mr-1" htmlFor="exampleCheck1">
             Remember me
           </label>
+        </div>
+        <div id="requiredFields" className="form-text mb-3">
+          <span className="required-asterisk">*</span> Required fields
         </div>
         <div className="form-buttons d-flex justify-content-between">
           {/* <Link to="/homeUser/:id"> */}

@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
 
-  const [dataContact, setDataContact] = useState({});
+  const [dataContact, setDataContact] = useState({
+    emailAdress: "",
+    password: "",
+  });
 
   const inputValue = (e) => {
     const { name, value } = e.target;
@@ -17,14 +21,30 @@ export const Login = () => {
     }));
   };
 
-  const handleAddContact = (event) => {
+  // Funcion para visualizar el password
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const toggleViewPassword = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  // ---------------------------------------
+
+  // const onSubmit = () => {
+  //   navigate("/homeUser/:id");
+  // };
+
+  const handleAddContact = async (event) => {
     event.preventDefault();
 
-    actions.login(dataContact.emailAdress, dataContact.password);
+    await actions.login(dataContact.emailAdress, dataContact.password);
+
     setDataContact({
       emailAdress: "",
       password: "",
     });
+    navigate("/homeUser");
   };
 
   return (
@@ -35,7 +55,7 @@ export const Login = () => {
       <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Email address
+            Email address <span className="required-asterisk">*</span>
           </label>
           <input
             onChange={inputValue}
@@ -47,31 +67,35 @@ export const Login = () => {
             placeholder="example@email.com"
             value={dataContact.emailAdress}
           />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
+
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
           </div>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
+            Password <span className="required-asterisk">*</span>
           </label>
-          <input
-            onChange={inputValue}
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            name="password"
-            placeholder="**********"
-            value={dataContact.password}
-          />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
+          <div className="input-group">
+            <input
+              onChange={inputValue}
+              type={passwordVisible ? "text" : "password"}
+              className="form-control"
+              id="exampleInputPassword1"
+              name="password"
+              placeholder="**********"
+              value={dataContact.password}
+            />
+            <button
+              type="button"
+              className="btn btn-outline-secondary show-password"
+              onClick={toggleViewPassword}
+            >
+              <i
+                className={passwordVisible ? "far fa-eye-slash" : "far fa-eye"}
+              ></i>
+            </button>
+          </div>
         </div>
 
         <div className="mb-3 form-check d-flex justify-content-between align-items-center">
@@ -81,10 +105,7 @@ export const Login = () => {
               className="form-check-input me-2"
               id="exampleCheck1"
             />
-            <span className="bottom"></span>
-            <span className="right"></span>
-            <span className="top"></span>
-            <span className="left"></span>
+
             <label className="form-check-label" htmlFor="exampleCheck1">
               Remember me
             </label>
@@ -94,15 +115,15 @@ export const Login = () => {
           </Link>
         </div>
         <div className="form-buttons d-flex justify-content-between">
-          <Link to="homeUser/:id">
-            <button
-              type="submit"
-              className="btn btn-warning"
-              //onClick={() => actions.nombreDeFuncionDelFlux(dataContact)}
-            >
-              Login
-            </button>
-          </Link>
+          {/* <Link to="homeUser/:id"> */}
+          <button
+            type="submit"
+            className="btn btn-warning"
+            //onClick={() => actions.nombreDeFuncionDelFlux(dataContact)}
+          >
+            Login
+          </button>
+          {/* </Link> */}
           <Link to="/">
             <button type="button" className="btn btn-dark">
               Back home

@@ -91,6 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return true;
           } else {
             const errorData = await resp.json();
+            actions.errorLoginAlert();
             console.log("Error al registrar usuario:", errorData.message);
             return false;
           }
@@ -125,7 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
-            sessionStorage.setItem("token", data.token);
+            localStorage.setItem("token", data.access_token);
 
             setStore({
               user: data.user,
@@ -141,6 +142,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         } catch (error) {
           console.error("Error al iniciar sesión:", error);
+          return false;
+        }
+      },
+      events: async () => {
+        const actions = getActions();
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/events`);
+          const data = await resp.json();
+          console.log(data);
+        } catch (error) {
+          console.log(error);
           return false;
         }
       },
