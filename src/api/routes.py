@@ -133,6 +133,7 @@ def get_event(id):
     return jsonify(event.serialize()), 200
 
 #-------------------- RUTA DE OBTENER EVENTOS POR TIPO  DE MUSICA --------------------
+#                       Para un posible filtro de eventos por tipo de música
 @api.route('/events/<genere>', methods=['GET'])
 def get_events_by_genere(genere):
     events = Event.query.filter_by(genere=genere).all()
