@@ -71,6 +71,48 @@ def login():
 
 
 
+#-------------------- RUTA DE EDIT USER --------------------
+@api.route('/user/<int:id>', methods=['PUT'])
+@jwt_required()
+def edit_user():
+    request_body = request.json
+    user = User.query.get(id)
+    if user is None:
+        return jsonify({"msg": "User not found"}), 404
+
+    if "email" in request_body:
+        user.email = request_body["email"]
+    if "password" in request_body:
+        user.password = user.generate_password_hash(request_body["password"])
+    if "username" in request_body:
+        user.username = request_body["username"]
+    if "name" in request_body:
+        user.name = request_body["name"]
+    if "last_name" in request_body:
+        user.last_name = request_body["last_name"]
+    if "phone" in request_body:
+        user.phone = request_body["phone"]
+    if "address" in request_body:
+        user.address = request_body["address"]
+    if "profile_picture" in request_body:
+        user.profile_picture = request_body["profile_picture"]
+
+    db.session.commit()
+
+    return jsonify({"msg": "User updated", "user": user.serialize()}), 200
+
+#-------------------- RUTA DE DELETE USER --------------------
+@api.route('/user/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_user():
+    user = User.query.get(id)
+    if user is None:
+        return jsonify({"msg": "User not found"}), 404
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({"msg": "User deleted"}), 200
 
 ######################## EVENTS ########################
 #-------------------- RUTA DE OBTENER EVENTOS --------------------
@@ -80,4 +122,19 @@ def get_events():
     events = list(map(lambda event: event.serialize(), events))
     return jsonify(events), 200
 
+#-------------------- RUTA DE OBTENER EVENTO POR ID --------------------
+#                       Para la vista de detalle                       
+@api.route('/event/<int:id>', methods=['GET'])
+def get_event(id):
+    event = Event.query.get(id)
+    if event is None:
+        return jsonify({"msg": "Event not found"}), 404
 
+    return jsonify(event.serialize()), 200
+
+#-------------------- RUTA DE OBTENER EVENTOS POR TIPO  DE MUSICA --------------------
+@api.route('/events/<genere>', methods=['GET'])
+def get_events_by_genere(genere):
+    events = Event.query.filter_by(genere=genere).all()
+    events = list(map(lambda event: event.serialize(), events))
+    return jsonify(events), 200

@@ -94,7 +94,7 @@ export const Login = () => {
           </Link>
         </div>
         <div className="form-buttons d-flex justify-content-between">
-          <Link to="homeUser/:id">
+          {/* <Link to="homeUser/:id"> */}
             <button
               type="submit"
               className="btn btn-warning"
@@ -102,7 +102,7 @@ export const Login = () => {
             >
               Login
             </button>
-          </Link>
+          {/* </Link> */}
           <Link to="/">
             <button type="button" className="btn btn-dark">
               Back home
