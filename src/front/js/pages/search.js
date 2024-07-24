@@ -22,10 +22,6 @@ export const Search = () => {
             aria-describedby="searchlHelp"
             placeholder="Search by artist or event"
           />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
         </div>
 
         <div className="form-buttons d-flex justify-content-between">

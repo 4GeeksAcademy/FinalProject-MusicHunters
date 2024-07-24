@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Navbar } from "../component/navbar";
@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  useEffect(() => {
+    console.log(store.isAuthenticated);
+  });
 
   return (
     <>
@@ -17,7 +20,9 @@ export const Home = () => {
           price!
         </h3>
         <div className="row justify-content-center mt-5 mb-5">
-            <button onClick={actions.events}>Get EVENT</button>
+    
+          {/* <button onClick={actions.events}>Events</button> */}
+
           <div className="card p-3 col-12 col-md-8 d-flex flex-row align-items-center">
             <img
               className="img-fluid"
