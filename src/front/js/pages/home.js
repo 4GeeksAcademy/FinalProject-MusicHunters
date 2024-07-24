@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Navbar } from "../component/navbar";
@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  useEffect(() => {
+    console.log(store.isAuthenticated);
+  });
 
   return (
     <>

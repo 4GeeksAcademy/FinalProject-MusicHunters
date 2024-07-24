@@ -1,8 +1,15 @@
-import React from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import React, { useContext } from "react";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
-import { ProtectedRoute } from "./component/utils/ProtectedRoute";
+import { ProtectedRoute } from "./component/ProtectedRoute";
 import { Home } from "./pages/home";
 import { HomeUser } from "./pages/homeUser";
 import { Login } from "./pages/login";
@@ -17,13 +24,14 @@ import { Footer } from "./component/footer";
 import { Favourites } from "./pages/favourites";
 import { NotFound } from "./pages/notFound";
 import { EditProfile } from "./pages/editProfile";
+import { AdminsView } from "./pages/adminsView";
 
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
-
+  const { store, actions } = useContext(Context);
   if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "")
     return <BackendURL />;
 
@@ -37,13 +45,14 @@ const Layout = () => {
               <Route element={<Register />} path="/register" />
               <Route element={<Login />} path="/login" />
               <Route element={<ForgotPassword />} path="login/forgotPassword" />
-              {/* <Route element={<ProtectedRoute canActivate={comprobar en bbdd} />}> */}
-              <Route element={<HomeUser />} path="/homeUser/:id" />
-              <Route element={<MyProfile />} path="/userProfile/:id" />
-              <Route element={<EditProfile />} path="/editProfile/:id" />
-              <Route element={<Search />} path="/search/:id" />
-              <Route element={<Favourites />} path="/favourites/:id" />
-              {/* </Route> */}
+              <Route element={<ProtectedRoute />}>
+                <Route element={<HomeUser />} path="/homeUser" />
+                <Route element={<MyProfile />} path="/userProfile" />
+                <Route element={<EditProfile />} path="/editProfile" />
+                <Route element={<Search />} path="/search" />
+                <Route element={<Favourites />} path="/favourites" />
+                <Route element={<AdminsView />} path="/adminsView" />
+              </Route>
               <Route element={<NotFound />} path="*" />
             </Routes>
           </div>

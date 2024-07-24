@@ -6,13 +6,12 @@ import Swal from "sweetalert2";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
 
   const [dataContact, setDataContact] = useState({
     emailAdress: "",
     password: "",
   });
-
-  const navigate = useNavigate();
 
   const inputValue = (e) => {
     const { name, value } = e.target;
@@ -32,19 +31,20 @@ export const Login = () => {
 
   // ---------------------------------------
 
-  const onSubmit = () => {
-    navigate("/homeUser/:id");
-  };
+  // const onSubmit = () => {
+  //   navigate("/homeUser/:id");
+  // };
 
-  const handleAddContact = (event) => {
+  const handleAddContact = async (event) => {
     event.preventDefault();
 
-    actions.login(dataContact.emailAdress, dataContact.password);
+    await actions.login(dataContact.emailAdress, dataContact.password);
+
     setDataContact({
       emailAdress: "",
       password: "",
     });
-    onSubmit();
+    navigate("/homeUser");
   };
 
   return (

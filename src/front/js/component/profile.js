@@ -58,7 +58,7 @@ export const Profile = () => {
         </p>
       </div>
       <div className="edit-button-container mt-4">
-        <Link to="/editProfile/:id">
+        <Link to="/editProfile">
           <button
             type="button"
             className="btn btn-dark"

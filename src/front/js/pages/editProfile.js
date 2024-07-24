@@ -18,9 +18,10 @@ export const EditProfile = (props) => {
   };
   const [dataContact, setDataContact] = useState({
     userName: "",
-    emailAdress: "",
-    password: "",
-    confirmPassword: "",
+    name: "",
+    lastName: "",
+    phoneNumber: "",
+    adress: "",
   });
 
   const handleAddContact = (event) => {
@@ -127,10 +128,11 @@ export const EditProfile = (props) => {
             aria-describedby="emailHelp"
             placeholder="example@email.com"
             value={dataContact.emailAdress}
+            readOnly
           />
 
           <div id="emailHelp" className="form-text">
-            You'll must check your inbox to confirm your new email.
+            You can't change your email.
           </div>
         </div>
         <div className="mb-3">
@@ -172,7 +174,7 @@ export const EditProfile = (props) => {
             Update
           </button>
           {/* </Link> */}
-          <Link to="/userProfile/:id">
+          <Link to="/userProfile">
             <button type="button" className="btn btn-dark">
               Back
             </button>

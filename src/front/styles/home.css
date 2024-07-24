@@ -5,10 +5,11 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
-/* @font-face {
+@font-face {
   font-family: "Royalacid";
-  src: url("/dist/KalniaGlaze-VariableFont_wdth\,wght.ttf") format("truetype");
-} */
+  src: url("/public/fonts/royal_acidbath/CFAnarchy-Regular.ttf")
+    format("truetype");
+}
 
 body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
@@ -22,8 +23,8 @@ body {
 h1 {
   font-family: "Corben", serif;
   color: white;
-  font-weight: 700;
-  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
+  /* font-weight: 700; */
+  /* text-shadow: 5px 5px 3px rgba(0, 0, 0, 10); */
 }
 
 .register-header,
@@ -31,6 +32,8 @@ h1 {
 .reset-password-header {
   margin-bottom: 40px !important;
   color: #d34d7a;
+  font-weight: 700;
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
 }
 
 .text-center {
@@ -80,10 +83,10 @@ nav {
 /*-----------------TÍTULOS/SUBTÍTULOS---------------*/
 
 .title-music-hunters {
-  color: white;
   font-size: 4.5rem !important;
   margin-bottom: 1rem;
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-family: "Royalacid";
 }
 
 .subtitle {
