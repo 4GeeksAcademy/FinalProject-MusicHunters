@@ -1,8 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from sqlalchemy import Column, Integer, String, ForeignKey, Enum
 import enum
 
-db = SQLAlchemy()
+db=SQLAlchemy()
 bcrypt = Bcrypt()
 
 class EventType(enum.Enum):
@@ -74,6 +75,7 @@ class Event(db.Model):
     location = db.Column(db.String(120), nullable=False)
     event_type = db.Column(db.Enum(EventType), nullable=False)
     genere = db.Column(db.Enum(GenereType), nullable=False)
+    image_url = db.Column(db.String(250), nullable=True)
 
     favoritos = db.relationship('Favoritos', backref='event', lazy=True)
     precios = db.relationship('PrecioTickets', backref='event', lazy=True)
@@ -81,13 +83,14 @@ class Event(db.Model):
     def __repr__(self):
         return f'<Event {self.name}>'
 
-    def create_new_event(self, name, description, date, location, event_type, genere):
+    def create_new_event(self, name, description, date, location, event_type, genere, image_url):
         self.name = name
         self.description = description
         self.date = date
         self.location = location
         self.event_type = event_type
         self.genere = genere
+        self.image_url = image_url
 
         db.session.add(self)
         db.session.commit()
@@ -99,8 +102,8 @@ class Event(db.Model):
             "description": self.description,
             "date": self.date,
             "location": self.location,
-            "event_type": self.event_type.value,  # Serializa el valor del Enum
-            "genere": self.genere.value,          # Serializa el valor del Enum
+            "event_type": self.event_type.value,
+            "genere": self.genere.value,          
             "precios": [precio.serialize() for precio in self.precios]  # Agrega los precios
         }
 
@@ -134,7 +137,7 @@ class PrecioTickets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer, db.ForeignKey('event.id'), nullable=False)
     source_id = db.Column(db.Integer, db.ForeignKey('tickets_source.id'), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    price = db.Column(db.String, nullable=False)
     # url = db.Column(db.String(250), nullable=False)
 
     def __repr__(self):

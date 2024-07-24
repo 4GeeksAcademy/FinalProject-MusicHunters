@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       user: null,
       isAuthenticated: false,
+      events: [],
     },
     actions: {
       successRegisterAlert: () => {
