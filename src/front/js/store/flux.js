@@ -126,7 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
-            sessionStorage.setItem("token", data.access_token);
+            localStorage.setItem("token", data.access_token);
 
             setStore({
               user: data.user,

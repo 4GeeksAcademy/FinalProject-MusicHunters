@@ -31,13 +31,13 @@ class ConciertosSpider(scrapy.Spider):
         buy_urls = product_cards.css('a.product-card::attr(href)').getall()
 
         def format_url(url):
-            # Agregar "https:" si la URL comienza con "//"
+            # Agregar "https:" si la URL comienza con "//" Son las de las fotos
             if url.startswith('//'):
                 return f'https:{url}'
             return url
         
         def format_urlCompra(url):
-            # Agregar "https://www.elcorteingles.es" si la URL comienza con "/"
+            # Agregar "https://www.elcorteingles.es" si la URL comienza con "/" Son las de compra
             if url.startswith('/'):
                 return f'https://www.elcorteingles.es{url}'
             return url
@@ -70,10 +70,12 @@ class ConciertosSpider(scrapy.Spider):
 
         self.save_to_db()
 
+    # Guardar los datos en la base de datos NO FUNCIONA 
     def save_to_db(self):
         for item in self.results:
-            # Crear una instancia del modelo Event con la descripción formateada
-            event = Event(
+          
+            event = Event()
+            event.create_new_event(
                 name=item['title'],
                 description=f"Concierto de {item['title']}",
                 date=item['date'],
@@ -82,19 +84,22 @@ class ConciertosSpider(scrapy.Spider):
                 genere=GenereType.pop,           
                 image_url=item['image_url']
             )
+            
             db.session.add(event)
             db.session.commit()
 
-            # Crear una instancia del modelo TicketsSource
-            ticket_source = TicketsSource(
+           
+            ticket_source = TicketsSource()
+            ticket_source.create_new_tickets_source(
                 name='El Corte Ingles',
                 web_url=item['buy_url']
             )
             db.session.add(ticket_source)
             db.session.commit()
 
-            # Crear una instancia del modelo PrecioTickets
-            precio_tickets = PrecioTickets(
+           
+            precio_tickets = PrecioTickets()
+            precio_tickets.create_new_precio_ticket(
                 event_id=event.id,
                 source_id=ticket_source.id,
                 price=item['price']

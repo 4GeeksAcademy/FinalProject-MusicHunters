@@ -69,7 +69,22 @@ def login():
     else:
         return jsonify({"msg": "Incorrect email or password"}), 401
 
+#-------------------- RUTA DE OBTENER USUARIOS --------------------
+@api.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    users = list(map(lambda user: user.serialize(), users))
+    return jsonify(users), 200
 
+#-------------------- RUTA DE OBTENER USUARIO POR ID --------------------
+@api.route('/user/<int:id>', methods=['GET'])
+
+def get_user(id):
+    user = User.query.get(id)
+    if user is None: 
+        return jsonify({"msg": "User not found"}), 404
+
+    return jsonify(user.serialize()), 200
 
 #-------------------- RUTA DE EDIT USER --------------------
 @api.route('/user/<int:id>', methods=['PUT'])
@@ -80,10 +95,6 @@ def edit_user():
     if user is None:
         return jsonify({"msg": "User not found"}), 404
 
-    if "email" in request_body:
-        user.email = request_body["email"]
-    if "password" in request_body:
-        user.password = user.generate_password_hash(request_body["password"])
     if "username" in request_body:
         user.username = request_body["username"]
     if "name" in request_body:
@@ -139,3 +150,11 @@ def get_events_by_genere(genere):
     events = Event.query.filter_by(genere=genere).all()
     events = list(map(lambda event: event.serialize(), events))
     return jsonify(events), 200
+
+#-------------------- RUTA DE OBTENER EVENTOS POR FECHA --------------------
+@api.route('/events/<date>', methods=['GET'])
+def get_events_by_date(date):
+    events = Event.query.filter_by(date=date).all()
+    events = list(map(lambda event: event.serialize(), events))
+    return jsonify(events), 200
+
