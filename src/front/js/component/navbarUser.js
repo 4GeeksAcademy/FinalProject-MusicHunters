@@ -19,7 +19,7 @@ export const NavbarUser = () => {
       </Link>
       <div className="ml-auto d-flex align-items-center">
         <Link to="/userProfile">
-          <button className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center">
+          <button className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center" onClick={()=>{actions.getUser(store.user.id)}}>
             <img
               className="userIcon"
               src={userIcon}
@@ -41,7 +41,7 @@ export const NavbarUser = () => {
         <Link to="/">
           <button
             className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center"
-            onClick={sessionStorage.removeItem("token")}
+            // onClick={localStorage.removeItem("token")}
           >
             <img
               className="logOutIcon"

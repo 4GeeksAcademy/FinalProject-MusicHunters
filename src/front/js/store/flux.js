@@ -3,7 +3,15 @@ import Swal from "sweetalert2";
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      user: null,
+      user: {
+        userName: "",
+        name: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        address: "",
+        id: null,
+      },
       isAuthenticated: false,
       events: [],
     },
@@ -124,13 +132,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           if (resp.ok) {
             const data = await resp.json();
+            localStorage.setItem("token", data.access_token);
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
-            localStorage.setItem("token", data.access_token);
 
             setStore({
-              user: data.user,
+              user:{
+                username: "",
+                name: "",
+                lastname: "",
+                email:data.user.email,
+                phoneNumber: "",
+                address: "",
+                id: data.user.id,
+              },
               isAuthenticated: true,
             });
 
@@ -157,6 +173,34 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+      getUser: async(id)=>{
+        const actions = getActions();
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`);
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log(data);
+            setStore({
+              user:{
+                userName: data.username,
+                name: data.name,
+                lastName: data.last_name,
+                email:data.email,
+                phoneNumber: data.phone_number,
+                address: data.address,
+              },
+              isAuthenticated: true,
+            });
+          } else {
+            console.log("Error al obtener usuario");
+            return false
+          }
+        } catch (error) {
+          console.log(error);
+          return false
+        }
+
+      }
     },
   };
 };
