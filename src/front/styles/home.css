@@ -11,6 +11,12 @@
     format("truetype");
 }
 
+@font-face {
+  font-family: "Viewtitles";
+  src: url("/public/fonts/royal_acidbath/White\ On\ Black.ttf")
+    format("truetype");
+}
+
 body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
   font-family: "Corben", serif;
@@ -21,7 +27,7 @@ body {
 }
 
 h1 {
-  font-family: "Corben", serif;
+  font-family: "Viewtitles", serif;
   color: white;
   /* font-weight: 700; */
   /* text-shadow: 5px 5px 3px rgba(0, 0, 0, 10); */
@@ -32,7 +38,7 @@ h1 {
 .reset-password-header {
   margin-bottom: 40px !important;
   color: #d34d7a;
-  font-weight: 700;
+  /* font-weight: 700; */
   text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
 }
 
@@ -126,6 +132,7 @@ nav {
 .btn-warning {
   background-color: #2a9d8f;
   border-color: rgb(0, 0, 0);
+  /* font-family: Viewtitles; */
 }
 
 .btn-warning:hover {

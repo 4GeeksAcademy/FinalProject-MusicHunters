@@ -17,11 +17,12 @@ export const EditProfile = (props) => {
     }));
   };
   const [dataContact, setDataContact] = useState({
-    userName: "",
-    name: "",
-    lastName: "",
-    phoneNumber: "",
-    adress: "",
+    userName: store.user.userName ? store.user.userName : "",
+    name: store.user.name ? store.user.name : "",
+    lastName: store.user.lastName ? store.user.lastName : "",
+    emailAdress: store.user.email ? store.user.email : "",
+    phoneNumber: store.user.phoneNumber ? store.user.phoneNumber : "",
+    address: store.user.address ? store.user.address : "",
   });
 
   const handleAddContact = (event) => {
@@ -113,7 +114,7 @@ export const EditProfile = (props) => {
             name="lastName"
             aria-describedby="lastName"
             placeholder="Enter your last name"
-            value={dataContact.lastName}
+            value={store.user.lastName}
           />
 
           <label htmlFor="exampleInputEmail1" className="form-label">
@@ -146,7 +147,7 @@ export const EditProfile = (props) => {
             id="phone-number"
             name="phone-number"
             placeholder="612345678"
-            value={dataContact.phone}
+            value={dataContact.phoneNumber}
           />
         </div>
         <div className="mb-3">
