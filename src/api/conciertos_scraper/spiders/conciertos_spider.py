@@ -86,4 +86,3 @@ class ConciertosSpider(scrapy.Spider):
                         print(f"Estado: {response.status}, Respuesta: {response_text}")
             except aiohttp.ClientError as e:
                 print(f"Ocurrió un error: {e}")
-
