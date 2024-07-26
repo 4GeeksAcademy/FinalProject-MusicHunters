@@ -47,7 +47,7 @@ def register():
         username=request_body["username"],
         name=request_body.get("name"),
         last_name=request_body.get("last_name"),
-        phone_number=request_body.get("phone"),
+        phone=request_body.get("phone"),
         address=request_body.get("address"),
         profile_picture=request_body.get("profile_picture")
     )
@@ -88,7 +88,7 @@ def get_user(id):
 #-------------------- RUTA DE EDIT USER --------------------
 @api.route('/user/<int:id>', methods=['PUT'])
 @jwt_required()
-def edit_user():
+def edit_user(id):
     request_body = request.json
     user = User.query.get(id)
     if user is None:

@@ -27,12 +27,13 @@ export const EditProfile = (props) => {
 
   const handleAddContact = (event) => {
     event.preventDefault();
-
-    actions.register(
+    actions.editUser(
+      store.user.id,
       dataContact.userName,
-      dataContact.emailAdress,
-      dataContact.password,
-      dataContact.confirmPassword
+      dataContact.name,
+      dataContact.lastName,
+      dataContact.phoneNumber,
+      dataContact.address
     );
     setDataContact({
       userName: "",
@@ -137,31 +138,31 @@ export const EditProfile = (props) => {
           </div>
         </div>
         <div className="mb-3">
-          <label htmlFor="phone-number" className="form-label">
+          <label htmlFor="phoneNumber" className="form-label">
             Phone number
           </label>
           <input
             onChange={inputValue}
             type="tel"
             className="form-control"
-            id="phone-number"
-            name="phone-number"
+            id="phoneNumber"
+            name="phoneNumber"
             placeholder="612345678"
             value={dataContact.phoneNumber}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="adress" className="form-label">
-            Adress
+          <label htmlFor="address" className="form-label">
+            Address
           </label>
           <input
             onChange={inputValue}
             type="text"
             className="form-control"
-            id="adress"
-            name="adress"
+            id="address"
+            name="address"
             placeholder="Main St 123"
-            value={dataContact.adress}
+            value={dataContact.address}
           />
         </div>
 
