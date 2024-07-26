@@ -3,7 +3,15 @@ import Swal from "sweetalert2";
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      user: null,
+      user: {
+        userName: "",
+        name: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        address: "",
+        id: null,
+      },
       isAuthenticated: false,
       events: [],
     },
@@ -130,7 +138,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             localStorage.setItem("token", data.access_token);
 
             setStore({
-              user: data.user,
+              user: {
+                userName: "",
+                name: "",
+                lastName: "",
+                email: data.user.email,
+                phoneNumber: "",
+                adress: "",
+                id: data.user.id,
+              },
               isAuthenticated: true,
             });
 
@@ -155,6 +171,31 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.log(error);
           return false;
+        }
+      },
+
+      getUser: async (id) => {
+        const actions = getActions();
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`);
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log(data);
+            setStore({
+              user: {
+                id: data.id,
+                userName: data.username,
+                name: data.name,
+                lastName: data.last_name,
+                email: data.email,
+                phoneNumber: data.phone_number,
+                address: data.address,
+              },
+              isAuthenticated: true,
+            });
+          }
+        } catch (error) {
+          console.log(error);
         }
       },
     },
