@@ -136,9 +136,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
-
             setStore({
-
               user: {
                 userName: "",
                 name: "",
@@ -175,9 +173,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-
       getUser: async (id) => {
-
         const actions = getActions();
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`);
@@ -185,29 +181,27 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             console.log(data);
             setStore({
-
               user: {
                 id: data.id,
                 userName: data.username,
                 name: data.name,
                 lastName: data.last_name,
                 email: data.email,
-                phoneNumber: data.phone_number,
+                phoneNumber: data.phone,
                 address: data.address,
               },
               isAuthenticated: true,
             });
           } else {
             console.log("Error al obtener usuario");
-            return false
+            return false;
           }
         } catch (error) {
           console.log(error);
-          return false
+          return false;
         }
-
       },
-      editUser: async (id, userName,name, lastName, email, phoneNumber, address) => {
+      editUser: async (id, userName, name, lastName, phoneNumber, address) => {
         const actions = getActions();
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
@@ -220,8 +214,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               username: userName,
               name: name,
               last_name: lastName,
-              email: email,
-              phone_number: phoneNumber,
+              phone: phoneNumber,
               address: address,
             }),
           });
@@ -240,7 +233,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
-      deleteUser: async(id)=>{
+      deleteUser: async (id) => {
         const actions = getActions();
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
@@ -264,8 +257,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Error al eliminar usuario:", error);
           return false;
         }
-      }
-
+      },
     },
   };
 };
