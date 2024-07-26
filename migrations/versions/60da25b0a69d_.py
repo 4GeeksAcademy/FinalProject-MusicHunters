@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 71ef6a5f4857
+Revision ID: 60da25b0a69d
 Revises: 
-Create Date: 2024-07-22 16:55:09.742194
+Create Date: 2024-07-25 17:03:01.591161
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '71ef6a5f4857'
+revision = '60da25b0a69d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,7 +25,8 @@ def upgrade():
     sa.Column('date', sa.String(length=120), nullable=False),
     sa.Column('location', sa.String(length=120), nullable=False),
     sa.Column('event_type', sa.Enum('concierto', 'festival', name='eventtype'), nullable=False),
-    sa.Column('genere', sa.Enum('pop', 'rock', 'clasic', 'reggaeton', 'rap', 'trap', 'indie', name='generetype'), nullable=False),
+    sa.Column('genere', sa.Enum('pop', 'fiestas', 'rock', 'clasic', 'reggaeton', 'rap', 'trap', 'indie', name='generetype'), nullable=False),
+    sa.Column('image_url', sa.String(length=250), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('tickets_source',
@@ -60,7 +61,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('event_id', sa.Integer(), nullable=False),
     sa.Column('source_id', sa.Integer(), nullable=False),
-    sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('price', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['event_id'], ['event.id'], ),
     sa.ForeignKeyConstraint(['source_id'], ['tickets_source.id'], ),
     sa.PrimaryKeyConstraint('id')

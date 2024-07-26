@@ -132,19 +132,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           if (resp.ok) {
             const data = await resp.json();
+            localStorage.setItem("token", data.access_token);
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
-            localStorage.setItem("token", data.access_token);
 
             setStore({
+
               user: {
                 userName: "",
                 name: "",
                 lastName: "",
                 email: data.user.email,
                 phoneNumber: "",
-                adress: "",
+                address: "",
                 id: data.user.id,
               },
               isAuthenticated: true,
@@ -174,7 +175,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+
       getUser: async (id) => {
+
         const actions = getActions();
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`);
@@ -182,6 +185,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             console.log(data);
             setStore({
+
               user: {
                 id: data.id,
                 userName: data.username,
@@ -193,11 +197,75 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
               isAuthenticated: true,
             });
+          } else {
+            console.log("Error al obtener usuario");
+            return false
           }
         } catch (error) {
           console.log(error);
+          return false
+        }
+
+      },
+      editUser: async (id, userName,name, lastName, email, phoneNumber, address) => {
+        const actions = getActions();
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              username: userName,
+              name: name,
+              last_name: lastName,
+              email: email,
+              phone_number: phoneNumber,
+              address: address,
+            }),
+          });
+
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log("Usuario editado exitosamente", data);
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log("Error al editar usuario:", errorData.message);
+            return false;
+          }
+        } catch (error) {
+          console.error("Error al editar usuario:", error);
+          return false;
         }
       },
+      deleteUser: async(id)=>{
+        const actions = getActions();
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          });
+
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log("Usuario eliminado exitosamente", data);
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log("Error al eliminar usuario:", errorData.message);
+            return false;
+          }
+        } catch (error) {
+          console.error("Error al eliminar usuario:", error);
+          return false;
+        }
+      }
+
     },
   };
 };

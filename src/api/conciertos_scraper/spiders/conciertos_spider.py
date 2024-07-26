@@ -2,7 +2,8 @@ import scrapy
 from scrapy.http import HtmlResponse
 from scrapy.selector import Selector
 import json
-from models import db, Event, TicketsSource, PrecioTickets, EventType, GenereType
+import aiohttp
+import asyncio
 
 class ConciertosSpider(scrapy.Spider):
     name = 'conciertos'
@@ -31,13 +32,13 @@ class ConciertosSpider(scrapy.Spider):
         buy_urls = product_cards.css('a.product-card::attr(href)').getall()
 
         def format_url(url):
-            # Agregar "https:" si la URL comienza con "//" Son las de las fotos
+            # Agregar "https:" si la URL comienza con "//" (para las fotos)
             if url.startswith('//'):
                 return f'https:{url}'
             return url
         
         def format_urlCompra(url):
-            # Agregar "https://www.elcorteingles.es" si la URL comienza con "/" Son las de compra
+            # Agregar "https://www.elcorteingles.es" si la URL comienza con "/" (para las compras)
             if url.startswith('/'):
                 return f'https://www.elcorteingles.es{url}'
             return url
@@ -67,42 +68,21 @@ class ConciertosSpider(scrapy.Spider):
         # Exportar a un archivo JSON con codificación UTF-8 y ensure_ascii=False
         with open('conciertos_data.json', 'w', encoding='utf-8') as f:
             json.dump(self.results, f, indent=4, ensure_ascii=False)
+        
+        # Iniciar la tarea asincrónica para agregar eventos a la base de datos
+        loop = asyncio.get_event_loop()
+        loop.create_task(self.add_events())
 
-        self.save_to_db()
-
-    # Guardar los datos en la base de datos NO FUNCIONA 
-    def save_to_db(self):
-        for item in self.results:
-          
-            event = Event()
-            event.create_new_event(
-                name=item['title'],
-                description=f"Concierto de {item['title']}",
-                date=item['date'],
-                location=item['place'],
-                event_type=EventType.concierto, 
-                genere=GenereType.pop,           
-                image_url=item['image_url']
-            )
-            
-            db.session.add(event)
-            db.session.commit()
-
-           
-            ticket_source = TicketsSource()
-            ticket_source.create_new_tickets_source(
-                name='El Corte Ingles',
-                web_url=item['buy_url']
-            )
-            db.session.add(ticket_source)
-            db.session.commit()
-
-           
-            precio_tickets = PrecioTickets()
-            precio_tickets.create_new_precio_ticket(
-                event_id=event.id,
-                source_id=ticket_source.id,
-                price=item['price']
-            )
-            db.session.add(precio_tickets)
-            db.session.commit()
+    async def add_events(self):
+        url = 'http://localhost:3001/api/events'
+        
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.post(url, json=self.results) as response:
+                    if response.status == 201:
+                        print("Eventos creados exitosamente")
+                    else:
+                        response_text = await response.text()
+                        print(f"Estado: {response.status}, Respuesta: {response_text}")
+            except aiohttp.ClientError as e:
+                print(f"Ocurrió un error: {e}")

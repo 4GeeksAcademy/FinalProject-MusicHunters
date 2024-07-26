@@ -44,7 +44,7 @@ export const NavbarUser = () => {
         <Link to="/">
           <button
             className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center"
-            onClick={sessionStorage.removeItem("token")}
+            // onClick={localStorage.removeItem("token")}
           >
             <img
               className="logOutIcon"

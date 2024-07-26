@@ -47,7 +47,7 @@ def register():
         username=request_body["username"],
         name=request_body.get("name"),
         last_name=request_body.get("last_name"),
-        phone=request_body.get("phone"),
+        phone_number=request_body.get("phone"),
         address=request_body.get("address"),
         profile_picture=request_body.get("profile_picture")
     )
@@ -78,7 +78,6 @@ def get_users():
 
 #-------------------- RUTA DE OBTENER USUARIO POR ID --------------------
 @api.route('/user/<int:id>', methods=['GET'])
-
 def get_user(id):
     user = User.query.get(id)
     if user is None: 
@@ -126,6 +125,59 @@ def delete_user():
     return jsonify({"msg": "User deleted"}), 200
 
 ######################## EVENTS ########################
+#-------------------- RUTA DE CREAR EVENTO --------------------
+#           Se hace desde Python con la librerya asyncio
+@api.route('/events', methods=['POST'])
+def add_event():
+    try:
+        request_body = request.json
+        print(request_body)
+        if not isinstance(request_body, list):
+            return jsonify({"msg": "Request body must be a list of events"}), 400
+
+        for item in request_body:
+            # if not all(key in item for key in ["name", "description", "date", "location", "event_type", "genere", "image_url", "tickets_source", "web_url", "price"]):
+            #     return jsonify({"msg": "Missing required fields"}), 400
+
+            event = Event()
+            tickets_source = TicketsSource()
+            precio_tickets = PrecioTickets()  
+
+            event.create_new_event(
+                name=item["title"],
+                description="",
+                date=item["date"],
+                location=item["place"],
+                event_type="concierto",
+                genere=item["product_type"],
+                image_url=item["image_url"]
+            )
+
+            db.session.add(event)
+            db.session.commit()
+
+            tickets_source.create_new_tickets_source(
+                name="El Corte Ingles",
+                web_url=item["buy_url"]
+            )
+
+            db.session.add(tickets_source)
+            db.session.commit()
+
+            precio_tickets.create_new_precio_ticket(
+                event_id=event.id,
+                source_id=tickets_source.id,
+                price=item["price"]
+            )
+            db.session.add(precio_tickets)
+            db.session.commit()
+        
+        return jsonify({"msg": "Events created successfully"}), 201
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"msg": "An error occurred while processing the request"}), 500
+
 #-------------------- RUTA DE OBTENER EVENTOS --------------------
 @api.route('/events', methods=['GET'])
 def get_events():

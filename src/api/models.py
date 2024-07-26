@@ -10,14 +10,6 @@ class EventType(enum.Enum):
     concierto = "concierto"
     festival = "festival"
 
-class GenereType(enum.Enum):
-    pop = "pop"
-    rock = "rock"
-    clasic = "clasic"
-    reggaeton = "reggaeton"
-    rap = "rap"
-    trap = "trap"
-    indie = "indie"
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -70,11 +62,11 @@ class User(db.Model):
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
-    description = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
     date = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(120), nullable=False)
     event_type = db.Column(db.Enum(EventType), nullable=False)
-    genere = db.Column(db.Enum(GenereType), nullable=False)
+    genere = db.Column(db.String(120), nullable=False)
     image_url = db.Column(db.String(250), nullable=True)
 
     favoritos = db.relationship('Favoritos', backref='event', lazy=True)
@@ -143,7 +135,7 @@ class PrecioTickets(db.Model):
     def __repr__(self):
         return f'<PrecioTickets {self.price}>'
 
-    def create_new_precio_ticket(self, event_id, source_id, price, url):
+    def create_new_precio_ticket(self, event_id, source_id, price):
         if event_id is None or source_id is None:
             raise ValueError("Event ID and Source ID cannot be null")
         self.event_id = event_id

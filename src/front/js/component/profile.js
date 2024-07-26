@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 
 export const Profile = () => {
   const { store, actions } = useContext(Context);
+
   const handleClick = (id) => {
     navigate(`/editProfile/${id}`);
   };
