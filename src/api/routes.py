@@ -126,6 +126,7 @@ def delete_user():
 
 ######################## EVENTS ########################
 #-------------------- RUTA DE CREAR EVENTO --------------------
+#           Se hace desde Python con la librerya asyncio
 @api.route('/events', methods=['POST'])
 def add_event():
     try:
