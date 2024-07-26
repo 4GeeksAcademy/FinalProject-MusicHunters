@@ -138,11 +138,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
             setStore({
-              user:{
-                username: "",
+
+              user: {
+                userName: "",
                 name: "",
-                lastname: "",
-                email:data.user.email,
+                lastName: "",
+                email: data.user.email,
                 phoneNumber: "",
                 address: "",
                 id: data.user.id,
@@ -173,7 +174,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
-      getUser: async(id)=>{
+
+
+      getUser: async (id) => {
+
         const actions = getActions();
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`);
@@ -181,11 +185,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             console.log(data);
             setStore({
-              user:{
+
+              user: {
+                id: data.id,
                 userName: data.username,
                 name: data.name,
                 lastName: data.last_name,
-                email:data.email,
+                email: data.email,
                 phoneNumber: data.phone_number,
                 address: data.address,
               },
@@ -259,6 +265,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       }
+
     },
   };
 };

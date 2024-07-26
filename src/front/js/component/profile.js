@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import getState from "../store/flux";
 import { Context } from "../store/appContext";
+
 export const Profile = () => {
   const { store, actions } = useContext(Context);
 
