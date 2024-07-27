@@ -116,6 +116,14 @@ nav {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1) !important;
 }
 
+/*----------------Carrusel HOME--------------*/
+
+.carousel-item,
+.carousel-item :active {
+  height: 40vw;
+  box-shadow: 10px 10px 20px #000000;
+}
+
 /* -----------------BOTONES--------------- */
 
 .btn-dark:hover {
@@ -202,6 +210,10 @@ form {
 
 .form-check-label {
   text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
+}
+
+.form-search-bar {
+  width: 35vw;
 }
 /* efecto para los inputs */
 input {
@@ -344,4 +356,17 @@ div:where(.swal2-icon).swal2-success .swal2-success-ring {
 
 div:where(.swal2-icon).swal2-success [class^="swal2-success-line"] {
   background-color: #d34d7a;
+}
+
+div:where(.swal2-container)
+  button:where(.swal2-styled):where(.swal2-confirm):focus-visible {
+  box-shadow: 0 0 0 3px #a7456591;
+}
+
+div:where(.swal2-icon).swal2-error [class^="swal2-x-mark-line"] {
+  background-color: #d34d7a;
+}
+
+div:where(.swal2-icon).swal2-error {
+  border-color: #d34d7a;
 }

@@ -18,11 +18,13 @@ export const EditProfile = (props) => {
   };
   const [dataContact, setDataContact] = useState({
     userName: store.user.userName ? store.user.userName : "",
-    name: store.user.name ? store.user.name : "",
-    lastName: store.user.lastName ? store.user.lastName : "",
+    name: store.user.name ? store.user.name : "Name",
+    lastName: store.user.lastName ? store.user.lastName : "Last name",
     emailAdress: store.user.email ? store.user.email : "",
-    phoneNumber: store.user.phoneNumber ? store.user.phoneNumber : "",
-    address: store.user.address ? store.user.address : "",
+    phoneNumber: store.user.phoneNumber
+      ? store.user.phoneNumber
+      : "Phone number",
+    address: store.user.address ? store.user.address : "Addres",
   });
 
   const handleAddContact = (event) => {
@@ -36,12 +38,12 @@ export const EditProfile = (props) => {
       dataContact.address
     );
     setDataContact({
-      userName: "",
-      name: "",
-      lastName: "",
-      emailAdress: "",
-      phoneNumber: "",
-      adress: "",
+      userName: dataContact.userName,
+      name: dataContact.name,
+      lastName: dataContact.lastName,
+      emailAdress: dataContact.emailAdress,
+      phoneNumber: dataContact.phoneNumber,
+      adress: dataContact.address,
     });
   };
   const [image, setImage] = useState(null); //Para guardar imagen de usuario
@@ -67,7 +69,7 @@ export const EditProfile = (props) => {
           <input
             type="file"
             className="user-img-input"
-            // onClick={handleImageChange}
+            onClick={handleImageChange}
             // style={{ display: "none" }} // Oculta el input de archivo
           />
 
@@ -115,7 +117,7 @@ export const EditProfile = (props) => {
             name="lastName"
             aria-describedby="lastName"
             placeholder="Enter your last name"
-            value={store.user.lastName}
+            value={dataContact.lastName}
           />
 
           <label htmlFor="exampleInputEmail1" className="form-label">

@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
+import { NavbarUser } from "../component/navbarUser";
 
 export const Search = () => {
   const { store, actions } = useContext(Context);
 
   return (
     <>
+      <NavbarUser />
       <h1 className="text-center reset-password-header mb-3">
         Search your events
       </h1>
@@ -29,7 +30,7 @@ export const Search = () => {
             Search
           </button>
 
-          <Link to="/">
+          <Link to="/homeUser">
             <button type="button" className="btn btn-dark">
               Back home
             </button>

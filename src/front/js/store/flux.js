@@ -18,12 +18,12 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       successRegisterAlert: () => {
         Swal.fire({
-          title: "Done!",
-          text: "Wellcome Music Hunter! You're registered now",
+          title: "Welcome Music Hunter!",
+          text: "You're registered now",
           imageUrl:
-            "https://i.pinimg.com/736x/4e/2e/86/4e2e8641ef36f78f9480d062843f653a.jpg",
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHcwZXlzZ2UzenlvaGVxZ2R6cTZka24ydmEydTBwZ2dqcjM2cDQ3dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hxR2gm5IRPFSUfuCKC/giphy.webp",
           imageWidth: 400,
-          imageHeight: 200,
+          imageHeight: 220,
           confirmButtonText: "OK",
           customClass: { popup: "sweet-dark" },
         });
@@ -32,7 +32,35 @@ const getState = ({ getStore, getActions, setStore }) => {
       successLoginAlert: () => {
         Swal.fire({
           title: "Done!",
-          text: "Music Hunter login!",
+          text: "Music Hunter logged!",
+          imageUrl:
+            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWN5dTQxemZ0eTI2eW45NXFnM29qc2F2aTBuYnRwb3M4cGh6NTVpciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6KYPwNChIl8DRZL2TJ/giphy.webp",
+          imageWidth: 400,
+          imageHeight: 240,
+          confirmButtonText: "OK",
+        });
+      },
+
+      // successLoginAlertGif: () => {
+      //   Swal.fire({
+      //     title: "Music Hunter logged!",
+      //     width: 600,
+      //     padding: "3em",
+      //     color: "#d34d7a",
+      //     background: "url('img/concierto.jpg')",
+      //     backdrop: `
+      //       rgba(0,0,123,0.4)
+      //       url("/src/front/img/giphy.gif")
+      //       left top
+      //       no-repeat
+      //     `,
+      //   });
+      // },
+
+      editUserAlert: () => {
+        Swal.fire({
+          title: "Well done!",
+          text: "Changes saved!",
           icon: "success",
           confirmButtonText: "OK",
         });
@@ -221,6 +249,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           if (resp.ok) {
             const data = await resp.json();
+            actions.editUserAlert();
             console.log("Usuario editado exitosamente", data);
             return true;
           } else {
@@ -229,6 +258,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
         } catch (error) {
+          actions.errorLoginAlert();
           console.error("Error al editar usuario:", error);
           return false;
         }
