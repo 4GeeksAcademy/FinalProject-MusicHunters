@@ -150,6 +150,8 @@
 
 		"@sweetalert2/themes": "^5.0.17",
 
+		"jwt-decode": "^4.0.0",
+
 		"prop-types": "^15.6.1",
 
 		"react": "^16.8.4",

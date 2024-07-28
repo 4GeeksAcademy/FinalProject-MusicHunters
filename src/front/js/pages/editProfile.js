@@ -63,19 +63,32 @@ export const EditProfile = (props) => {
     <>
       <NavbarUser />
       <h1 className="text-center register-header mb-3">Edit Profile</h1>
-      {/* Poner form de editar */}
+
       <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="file-input-container mb-3 mt-3">
           <input
             type="file"
+            id="user-img-input"
             className="user-img-input"
-            onClick={handleImageChange}
-            // style={{ display: "none" }} // Oculta el input de archivo
+            onChange={handleImageChange}
+            style={{ display: "none" }} // Oculta el input de archivo
           />
-
-          {image && (
-            <img src={image} alt="User Profile" className="user-img-preview" />
-          )}
+          <label htmlFor="user-img-input" className="custom-file-upload">
+            {image ? (
+              <img
+                src={image}
+                alt="User Profile"
+                className="user-img-preview"
+              />
+            ) : (
+              <p
+                className="upload-img-letters"
+                style={{ color: "#000000", fontStyle: "bold" }}
+              >
+                Upload Image{" "}
+              </p>
+            )}
+          </label>
         </div>
         <div className="mb-3">
           <label htmlFor="userName" className="form-label">

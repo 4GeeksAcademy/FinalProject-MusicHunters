@@ -33,7 +33,7 @@ export const NavbarUser = () => {
         <Link to="/userProfile">
           <button
             className="btn btn-warning p-2 d-flex align-items-center justify-content-center"
-            onClick={() => actions.getUser(store.user.id)}
+            onClick={() => actions.getUserDataFromToken(store.user.id)}
           >
             <img
               className="userIcon"

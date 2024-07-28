@@ -1,4 +1,7 @@
 import Swal from "sweetalert2";
+import { InvalidTokenError, jwtDecode } from "jwt-decode";
+import { Context } from "../store/appContext";
+import React, { useState, useEffect, useContext } from "react";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -94,6 +97,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+      errorTokenAlert: () => {
+        Swal.fire({
+          title: "Ops!",
+          text: "User not found...",
+          icon: "error",
+          confirmButtonText: "Try again",
+        });
+      },
+
       register: async (username, email, password1, password2) => {
         const actions = getActions();
         if (!username || !email || !password1 || !password2) {
@@ -138,7 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      login: async (email, password) => {
+      login: async (email, password, rememberMe) => {
         const actions = getActions();
         if (!email || !password) {
           actions.errorEmptyFieldsAlert();
@@ -160,19 +172,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           if (resp.ok) {
             const data = await resp.json();
-            localStorage.setItem("token", data.access_token);
+            if (rememberMe) {
+              localStorage.setItem("token", data.access_token);
+            }
+            sessionStorage.setItem("token", data.access_token);
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
+            const decodeToken = jwtDecode(data.access_token);
+            const { userName, name, last_name, email, phone, address, id } =
+              decodeToken.sub || {};
+
             setStore({
               user: {
-                userName: "",
-                name: "",
-                lastName: "",
-                email: data.user.email,
-                phoneNumber: "",
-                address: "",
-                id: data.user.id,
+                userName: userName || "",
+                name: name || "",
+                lastName: last_name || "",
+                email: email || "",
+                phoneNumber: phone || "",
+                address: address || "",
+                id: id || "",
               },
               isAuthenticated: true,
             });
@@ -189,12 +208,55 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+
+      getUserDataFromToken: () => {
+        const actions = getActions();
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.log("No hay token almacenado");
+          return null;
+        }
+        try {
+          const decodeToken = jwtDecode(token);
+          const { sub } = decodeToken;
+          const { username, name, last_name, email, phone, address } = sub;
+          setStore({
+            user: {
+              userName: username || "",
+              name: name || "",
+              lastName: last_name || "",
+              email: email || "",
+              phoneNumber: phone || "",
+              address: address || "",
+              id: decodeToken.id || "",
+            },
+            isAuthenticated: true,
+          });
+          console.log(sub);
+          return {
+            username,
+            name,
+            last_name,
+            email,
+            phone,
+            address,
+          };
+        } catch (error) {
+          actions.errorTokenAlert();
+          console.log(error);
+          return null;
+        }
+      },
+
       events: async () => {
         const actions = getActions();
+        console.log(`${process.env.BACKEND_URL}api/events`);
+
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/events`);
           const data = await resp.json();
           console.log(data);
+          // console.log(store.events);
         } catch (error) {
           console.log(error);
           return false;

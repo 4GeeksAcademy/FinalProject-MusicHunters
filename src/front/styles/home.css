@@ -6,20 +6,31 @@
     on that page only (the ones not reused in other pages).
 */
 @font-face {
-  font-family: "Royalacid";
+  font-family: "NavbarBrand";
   src: url("/public/fonts/royal_acidbath/CFAnarchy-Regular.ttf")
     format("truetype");
 }
 
 @font-face {
-  font-family: "Viewtitles";
+  font-family: "TitlesFont";
+  src: url("/public/fonts/royal_acidbath/titles/Good\ Brush.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "WhiteonBlack";
   src: url("/public/fonts/royal_acidbath/White\ On\ Black.ttf")
     format("truetype");
 }
 
+@font-face {
+  font-family: "Body";
+  src: url("/public/fonts/body/Comfortaa-Regular.ttf") format("truetype");
+}
+
 body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
-  font-family: "Corben", serif;
+  font-family: "Body", serif;
 }
 
 .content-container {
@@ -27,7 +38,7 @@ body {
 }
 
 h1 {
-  font-family: "Viewtitles", serif;
+  font-family: "TitlesFont", serif;
   color: white;
   /* font-weight: 700; */
   /* text-shadow: 5px 5px 3px rgba(0, 0, 0, 10); */
@@ -39,7 +50,8 @@ h1 {
   margin-bottom: 40px !important;
   color: #d34d7a;
   /* font-weight: 700; */
-  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
+  text-shadow: 3px 6px 2px rgba(0, 0, 0, 10);
+  font-size: 60px;
 }
 
 .text-center {
@@ -51,7 +63,7 @@ label {
 }
 
 .card {
-  background-color: #f4a3615b;
+  background-color: #2a9d90b7;
   margin-bottom: 50px;
 }
 
@@ -72,6 +84,7 @@ nav {
 .navbar-light .navbar-brand {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
+  font-family: "WhiteonBlack" !important;
 }
 
 .navbar-light .navbar-brand:hover {
@@ -92,7 +105,7 @@ nav {
   font-size: 4.5rem !important;
   margin-bottom: 1rem;
   /* font-weight: bold; */
-  font-family: "Royalacid";
+  font-family: "NavbarBrand";
 }
 
 .subtitle {
@@ -129,23 +142,25 @@ nav {
 .btn-dark:hover {
   box-shadow: 1px 1px 1px #d34d7a;
   border-color: #d34d7a;
-  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
+  text-shadow: 1px 0px 1px #d34d7a;
 }
 
 .btn-dark {
   background-color: #264653;
   border-color: #000000;
+  box-shadow: 1px 1px 5px 0px #000000;
 }
 
 .btn-warning {
   background-color: #2a9d8f;
   border-color: rgb(0, 0, 0);
   /* font-family: Viewtitles; */
+  box-shadow: 1px 1px 5px 0px #000000;
 }
 
 .btn-warning:hover {
-  box-shadow: 1px 1px 3px rgb(0, 0, 0);
-  border-color: rgb(0, 0, 0);
+  box-shadow: 1px 1px 1px #000000;
+  border-color: #f4a261;
   background-color: #f4a261;
 }
 
@@ -247,7 +262,7 @@ input.user-img {
 }
 
 .card-user-profile {
-  background-color: #d34d7ada;
+  background-color: #2a9d90ef;
   max-width: 50vw;
 }
 
@@ -263,21 +278,14 @@ input.user-img {
 }
 
 .user-img-preview {
-  width: 150px; /* Ajusta el tamaño de la vista previa según el tamaño deseado */
+  width: 150px;
   height: 150px;
   object-fit: cover;
-  border-radius: 50%; /* Hace que la imagen sea circular */
-  margin-bottom: 10px; /* Espacio debajo de la imagen */
-}
-
-.file-input-container::before {
-  content: "Upload Image";
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border-color: #2a9d9036;
+  border-style: solid;
+  box-shadow: 1px 1px 7px 4px rgba(0, 0, 0);
 }
 
 .file-input-container input[type="file"] + img {
@@ -295,6 +303,19 @@ input.user-img {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+.upload-img-letters {
+  background-color: #2a9d8f;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 10);
+}
+
+.upload-img-letters:hover {
+  background-color: #f4a261;
 }
 
 /*------------VISTA 404----------------*/

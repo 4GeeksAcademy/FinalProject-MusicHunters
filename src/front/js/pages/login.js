@@ -8,6 +8,15 @@ export const Login = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
+  /*-------useState y función para mantener sesión iniciada------*/
+
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleRememberMe = (e) => {
+    setRememberMe(e.target.checked);
+  };
+  /*-----------------------------------------------------------------*/
+
   const [dataContact, setDataContact] = useState({
     emailAdress: "",
     password: "",
@@ -37,15 +46,29 @@ export const Login = () => {
 
   const handleAddContact = async (event) => {
     event.preventDefault();
+    const loginSuccess = await actions.login(
+      dataContact.emailAdress,
+      dataContact.password,
+      rememberMe
+    );
 
-    await actions.login(dataContact.emailAdress, dataContact.password);
+    if (loginSuccess) {
+      navigate("/homeUser");
+    }
 
-    setDataContact({
-      emailAdress: "",
-      password: "",
-    });
-    navigate("/homeUser");
+    // setDataContact({
+    //   emailAdress: "",
+    //   password: "",
+    // });
   };
+
+  // await actions.login(dataContact.emailAdress, dataContact.password);
+
+  // setDataContact({
+  //   emailAdress: "",
+  //   password: "",
+  // });
+  // navigate("/homeUser");
 
   return (
     <>
@@ -104,6 +127,8 @@ export const Login = () => {
               type="checkbox"
               className="form-check-input me-2"
               id="exampleCheck1"
+              checked={rememberMe}
+              onChange={handleRememberMe}
             />
 
             <label className="form-check-label" htmlFor="exampleCheck1">
