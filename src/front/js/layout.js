@@ -25,6 +25,7 @@ import { Favourites } from "./pages/favourites";
 import { NotFound } from "./pages/notFound";
 import { EditProfile } from "./pages/editProfile";
 import { AdminsView } from "./pages/adminsView";
+import { ResetPassword } from "./pages/resetPassword";
 
 //create your first component
 const Layout = () => {
@@ -39,7 +40,7 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <div className="content-container">
+          <div className="content-container mb-5">
             <Routes>
               <Route element={<Home />} path="/" />
               <Route element={<Register />} path="/register" />
@@ -47,6 +48,7 @@ const Layout = () => {
               <Route element={<ForgotPassword />} path="login/forgotPassword" />
               <Route element={<ProtectedRoute />}>
                 <Route element={<HomeUser />} path="/homeUser" />
+                <Route element={<ResetPassword />} path="/resetPassword" />
                 <Route element={<MyProfile />} path="/userProfile" />
                 <Route element={<EditProfile />} path="/editProfile" />
                 <Route element={<Search />} path="/search" />
@@ -56,7 +58,7 @@ const Layout = () => {
               <Route element={<NotFound />} path="*" />
             </Routes>
           </div>
-          <div className="content-container">
+          <div className="content-container mt-5">
             <Footer />
           </div>
         </ScrollToTop>

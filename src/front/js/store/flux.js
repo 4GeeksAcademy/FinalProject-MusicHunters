@@ -1,4 +1,7 @@
 import Swal from "sweetalert2";
+import { InvalidTokenError, jwtDecode } from "jwt-decode";
+import { Context } from "../store/appContext";
+import React, { useState, useEffect, useContext } from "react";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -18,12 +21,12 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       successRegisterAlert: () => {
         Swal.fire({
-          title: "Done!",
-          text: "Wellcome Music Hunter! You're registered now",
+          title: "Welcome Music Hunter!",
+          text: "You're registered now",
           imageUrl:
-            "https://i.pinimg.com/736x/4e/2e/86/4e2e8641ef36f78f9480d062843f653a.jpg",
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHcwZXlzZ2UzenlvaGVxZ2R6cTZka24ydmEydTBwZ2dqcjM2cDQ3dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hxR2gm5IRPFSUfuCKC/giphy.webp",
           imageWidth: 400,
-          imageHeight: 200,
+          imageHeight: 220,
           confirmButtonText: "OK",
           customClass: { popup: "sweet-dark" },
         });
@@ -32,7 +35,35 @@ const getState = ({ getStore, getActions, setStore }) => {
       successLoginAlert: () => {
         Swal.fire({
           title: "Done!",
-          text: "Music Hunter login!",
+          text: "Music Hunter logged!",
+          imageUrl:
+            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWN5dTQxemZ0eTI2eW45NXFnM29qc2F2aTBuYnRwb3M4cGh6NTVpciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6KYPwNChIl8DRZL2TJ/giphy.webp",
+          imageWidth: 400,
+          imageHeight: 240,
+          confirmButtonText: "OK",
+        });
+      },
+
+      // successLoginAlertGif: () => {
+      //   Swal.fire({
+      //     title: "Music Hunter logged!",
+      //     width: 600,
+      //     padding: "3em",
+      //     color: "#d34d7a",
+      //     background: "url('img/concierto.jpg')",
+      //     backdrop: `
+      //       rgba(0,0,123,0.4)
+      //       url("/src/front/img/giphy.gif")
+      //       left top
+      //       no-repeat
+      //     `,
+      //   });
+      // },
+
+      editUserAlert: () => {
+        Swal.fire({
+          title: "Well done!",
+          text: "Changes saved!",
           icon: "success",
           confirmButtonText: "OK",
         });
@@ -61,6 +92,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         Swal.fire({
           title: "Ops!",
           text: "Something went wrong...",
+          icon: "error",
+          confirmButtonText: "Try again",
+        });
+      },
+
+      errorTokenAlert: () => {
+        Swal.fire({
+          title: "Ops!",
+          text: "User not found...",
           icon: "error",
           confirmButtonText: "Try again",
         });
@@ -110,7 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      login: async (email, password) => {
+      login: async (email, password, rememberMe) => {
         const actions = getActions();
         if (!email || !password) {
           actions.errorEmptyFieldsAlert();
@@ -132,19 +172,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           if (resp.ok) {
             const data = await resp.json();
-            localStorage.setItem("token", data.access_token);
+            if (rememberMe) {
+              localStorage.setItem("token", data.access_token);
+            }
+            sessionStorage.setItem("token", data.access_token);
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
+            const decodeToken = jwtDecode(data.access_token);
+            const { userName, name, last_name, email, phone, address, id } =
+              decodeToken.sub || {};
+
             setStore({
               user: {
-                userName: "",
-                name: "",
-                lastName: "",
-                email: data.user.email,
-                phoneNumber: "",
-                address: "",
-                id: data.user.id,
+                userName: userName || "",
+                name: name || "",
+                lastName: last_name || "",
+                email: email || "",
+                phoneNumber: phone || "",
+                address: address || "",
+                id: id || "",
               },
               isAuthenticated: true,
             });
@@ -161,12 +208,55 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+
+      getUserDataFromToken: () => {
+        const actions = getActions();
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.log("No hay token almacenado");
+          return null;
+        }
+        try {
+          const decodeToken = jwtDecode(token);
+          const { sub } = decodeToken;
+          const { username, name, last_name, email, phone, address } = sub;
+          setStore({
+            user: {
+              userName: username || "",
+              name: name || "",
+              lastName: last_name || "",
+              email: email || "",
+              phoneNumber: phone || "",
+              address: address || "",
+              id: decodeToken.id || "",
+            },
+            isAuthenticated: true,
+          });
+          console.log(sub);
+          return {
+            username,
+            name,
+            last_name,
+            email,
+            phone,
+            address,
+          };
+        } catch (error) {
+          actions.errorTokenAlert();
+          console.log(error);
+          return null;
+        }
+      },
+
       events: async () => {
         const actions = getActions();
+        console.log(`${process.env.BACKEND_URL}api/events`);
+
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/events`);
           const data = await resp.json();
           console.log(data);
+          // console.log(store.events);
         } catch (error) {
           console.log(error);
           return false;
@@ -221,6 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           if (resp.ok) {
             const data = await resp.json();
+            actions.editUserAlert();
             console.log("Usuario editado exitosamente", data);
             return true;
           } else {
@@ -229,6 +320,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
         } catch (error) {
+          actions.errorLoginAlert();
           console.error("Error al editar usuario:", error);
           return false;
         }

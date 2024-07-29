@@ -9,7 +9,8 @@ import Swal from "sweetalert2";
 export const ProtectedRoute = ({ redirectPath = "/login" }) => {
   const { store, actions } = useContext(Context);
   const isAuthenticated = () => {
-    const token = localStorage.getItem("token");
+    const token =
+      localStorage.getItem("token") || sessionStorage.getItem("token");
     return token !== null;
   };
 

@@ -17,12 +17,15 @@ export const EditProfile = (props) => {
     }));
   };
   const [dataContact, setDataContact] = useState({
-    userName: store.user.userName? store.user.userName : "",
-    name: store.user.name? store.user.name : "",
-    lastName: store.user.lastName? store.user.lastName : "",
-    emailAdress:store.user.email? store.user.email : "",
-    phoneNumber:store.user.phoneNumber? store.user.phoneNumber : "",
-    adress: store.user.address? store.user.address : "",
+
+    userName: store.user.userName ? store.user.userName : "",
+    name: store.user.name ? store.user.name : "Name",
+    lastName: store.user.lastName ? store.user.lastName : "Last name",
+    emailAdress: store.user.email ? store.user.email : "",
+    phoneNumber: store.user.phoneNumber
+      ? store.user.phoneNumber
+      : "Phone number",
+    address: store.user.address ? store.user.address : "Addres",
   });
 
   const handleAddContact = (event) => {
@@ -37,12 +40,12 @@ export const EditProfile = (props) => {
       dataContact.adress
     );
     setDataContact({
-      userName: "",
-      name: "",
-      lastName: "",
-      emailAdress: "",
-      phoneNumber: "",
-      adress: "",
+      userName: dataContact.userName,
+      name: dataContact.name,
+      lastName: dataContact.lastName,
+      emailAdress: dataContact.emailAdress,
+      phoneNumber: dataContact.phoneNumber,
+      adress: dataContact.address,
     });
   };
   const [image, setImage] = useState(null); //Para guardar imagen de usuario
@@ -62,19 +65,31 @@ export const EditProfile = (props) => {
     <>
       <NavbarUser />
       <h1 className="text-center register-header mb-3">Edit Profile</h1>
-      {/* Poner form de editar */}
-      <form className="mx-auto" onSubmit={()=>handleAddContact()}>
+      <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="file-input-container mb-3 mt-3">
           <input
             type="file"
+            id="user-img-input"
             className="user-img-input"
-            // onClick={handleImageChange}
-            // style={{ display: "none" }} // Oculta el input de archivo
+            onChange={handleImageChange}
+            style={{ display: "none" }} // Oculta el input de archivo
           />
-
-          {image && (
-            <img src={image} alt="User Profile" className="user-img-preview" />
-          )}
+          <label htmlFor="user-img-input" className="custom-file-upload">
+            {image ? (
+              <img
+                src={image}
+                alt="User Profile"
+                className="user-img-preview"
+              />
+            ) : (
+              <p
+                className="upload-img-letters"
+                style={{ color: "#000000", fontStyle: "bold" }}
+              >
+                Upload Image{" "}
+              </p>
+            )}
+          </label>
         </div>
         <div className="mb-3">
           <label htmlFor="userName" className="form-label">

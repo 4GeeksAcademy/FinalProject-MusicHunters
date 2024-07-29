@@ -10,6 +10,15 @@ export const Profile = () => {
     navigate(`/editProfile/${id}`);
   };
 
+  const [dataContact, setDataContact] = useState({
+    userName: "",
+    name: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+  });
+
   // const [image, setImage] = useState(null); //Para guardar imagen de usuario
 
   // const handleImageChange = (event) => {
@@ -36,28 +45,40 @@ export const Profile = () => {
         <h3 className="mb-3">
           <i className="fas fa-thumbtack"></i>
           <span className="ms-2">
-            <strong>{store.user.userName}</strong>
+            <strong>
+              {store.user.userName ? store.user.userName : "Username"}
+            </strong>
           </span>
         </h3>
         <p className="mb-2">
           <i className="far fa-user" style={{ color: "black" }}></i>
-          <span className="ms-2">{store.user.name}</span>
+          <span className="ms-2">
+            {store.user.name ? store.user.name : "Name"}
+          </span>
         </p>
         <p className="mb-2">
           <i className="far fa-user" style={{ color: "black" }}></i>
-          <span className="ms-2">{store.user.lastName}</span>
+          <span className="ms-2">
+            {store.user.lastName ? store.user.lastName : "Last name"}
+          </span>
         </p>
         <p className="mb-2">
           <i className="far fa-paper-plane" style={{ color: "black" }}></i>
-          <span className="ms-2">{store.user.email}</span>
+          <span className="ms-2">
+            {store.user.email ? store.user.email : "Email"}
+          </span>
         </p>
         <p className="mb-2">
           <i className="fas fa-mobile-alt fa-lg" style={{ color: "black" }}></i>
-          <span className="ms-2">{store.user.phoneNumber}</span>
+          <span className="ms-2">
+            {store.user.phoneNumber ? store.user.phoneNumber : "Phone"}
+          </span>
         </p>
         <p className="mb-2">
           <i className="far fa-envelope" style={{ color: "black" }}></i>
-          <span className="ms-2">{store.user.address}</span>
+          <span className="ms-2">
+            {store.user.address ? store.user.address : "Address"}
+          </span>
         </p>
       </div>
       <div className="edit-button-container mt-4">
