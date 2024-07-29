@@ -17,6 +17,7 @@ export const EditProfile = (props) => {
     }));
   };
   const [dataContact, setDataContact] = useState({
+
     userName: store.user.userName ? store.user.userName : "",
     name: store.user.name ? store.user.name : "Name",
     lastName: store.user.lastName ? store.user.lastName : "Last name",
@@ -29,13 +30,14 @@ export const EditProfile = (props) => {
 
   const handleAddContact = (event) => {
     event.preventDefault();
+
     actions.editUser(
       store.user.id,
       dataContact.userName,
       dataContact.name,
       dataContact.lastName,
       dataContact.phoneNumber,
-      dataContact.address
+      dataContact.adress
     );
     setDataContact({
       userName: dataContact.userName,
@@ -63,7 +65,6 @@ export const EditProfile = (props) => {
     <>
       <NavbarUser />
       <h1 className="text-center register-header mb-3">Edit Profile</h1>
-
       <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="file-input-container mb-3 mt-3">
           <input
@@ -167,8 +168,8 @@ export const EditProfile = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="address" className="form-label">
-            Address
+          <label htmlFor="adress" className="form-label">
+            Adress
           </label>
           <input
             onChange={inputValue}

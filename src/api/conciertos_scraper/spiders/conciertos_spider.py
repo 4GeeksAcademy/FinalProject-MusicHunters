@@ -8,7 +8,15 @@ import asyncio
 class ConciertosSpider(scrapy.Spider):
     name = 'conciertos'
     allowed_domains = ['elcorteingles.es']
-    start_urls = ['https://www.elcorteingles.es/entradas/conciertos/todos/pop/']
+    start_urls = ['https://www.elcorteingles.es/entradas/conciertos/todos/pop/',
+                  'https://www.elcorteingles.es/entradas/conciertos/todos/rock/',
+                  'https://www.elcorteingles.es/entradas/conciertos/todos/latino/',
+                  'https://www.elcorteingles.es/entradas/conciertos/todos/flamenco/',
+                  'https://www.elcorteingles.es/entradas/conciertos/todos/rap-hip-hop/',
+                  'https://www.elcorteingles.es/entradas/conciertos/todos/indie-alternativo/',
+                  'https://www.elcorteingles.es/entradas/conciertos/todos/dance-electronica/',
+                  'https://www.elcorteingles.es/entradas/conciertos/todos/trap/',
+                  'https://www.elcorteingles.es/entradas/conciertos/todos/reggaeton/']
 
     def __init__(self, *args, **kwargs):
         super(ConciertosSpider, self).__init__(*args, **kwargs)
@@ -53,7 +61,8 @@ class ConciertosSpider(scrapy.Spider):
                 'price': f'{price_int.strip()}{price_decimal.strip()}' if price_int and price_decimal else None,
                 'product_type': typeProduct.strip() if typeProduct else None,
                 'image_url': final_image_url.strip() if final_image_url else None,
-                'buy_url': final_url_compra.strip() if final_url_compra else None
+                'buy_url': final_url_compra.strip() if final_url_compra else None,
+                'source':self.allowed_domains[0]
             }
 
             self.results.append(item)

@@ -157,7 +157,7 @@ def add_event():
             db.session.commit()
 
             tickets_source.create_new_tickets_source(
-                name="El Corte Ingles",
+                name=item["source"],
                 web_url=item["buy_url"]
             )
 
