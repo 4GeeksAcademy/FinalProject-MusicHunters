@@ -95,8 +95,9 @@ class Event(db.Model):
             "date": self.date,
             "location": self.location,
             "event_type": self.event_type.value,
-            "genere": self.genere.value,          
-            "precios": [precio.serialize() for precio in self.precios]  # Agrega los precios
+            "genere": self.genere,          
+            "precios": [precio.serialize() for precio in self.precios],
+            "image_url":self.image_url
         }
 
 

@@ -17,23 +17,24 @@ export const EditProfile = (props) => {
     }));
   };
   const [dataContact, setDataContact] = useState({
-    userName: store.user.userName ? store.user.userName : "",
-    name: store.user.name ? store.user.name : "",
-    lastName: store.user.lastName ? store.user.lastName : "",
-    emailAdress: store.user.email ? store.user.email : "",
-    phoneNumber: store.user.phoneNumber ? store.user.phoneNumber : "",
-    address: store.user.address ? store.user.address : "",
+    userName: store.user.userName? store.user.userName : "",
+    name: store.user.name? store.user.name : "",
+    lastName: store.user.lastName? store.user.lastName : "",
+    emailAdress:store.user.email? store.user.email : "",
+    phoneNumber:store.user.phoneNumber? store.user.phoneNumber : "",
+    adress: store.user.address? store.user.address : "",
   });
 
   const handleAddContact = (event) => {
     event.preventDefault();
+
     actions.editUser(
       store.user.id,
       dataContact.userName,
       dataContact.name,
       dataContact.lastName,
       dataContact.phoneNumber,
-      dataContact.address
+      dataContact.adress
     );
     setDataContact({
       userName: "",
@@ -62,7 +63,7 @@ export const EditProfile = (props) => {
       <NavbarUser />
       <h1 className="text-center register-header mb-3">Edit Profile</h1>
       {/* Poner form de editar */}
-      <form className="mx-auto" onSubmit={handleAddContact}>
+      <form className="mx-auto" onSubmit={()=>handleAddContact()}>
         <div className="file-input-container mb-3 mt-3">
           <input
             type="file"
@@ -115,7 +116,7 @@ export const EditProfile = (props) => {
             name="lastName"
             aria-describedby="lastName"
             placeholder="Enter your last name"
-            value={store.user.lastName}
+            value={dataContact.lastName}
           />
 
           <label htmlFor="exampleInputEmail1" className="form-label">
@@ -152,8 +153,8 @@ export const EditProfile = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="address" className="form-label">
-            Address
+          <label htmlFor="adress" className="form-label">
+            Adress
           </label>
           <input
             onChange={inputValue}
