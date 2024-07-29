@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export const Footer = () => (
   <nav
-    className="navbar bg-body-tertiary navbar bg-dark fixed-bottom mt-4"
+    className="navbar fixed-bottom bg-body-tertiary navbar bg-dark mt-4"
     data-bs-theme="dark"
   >
     <div className="container-fluid justify-content-center">
