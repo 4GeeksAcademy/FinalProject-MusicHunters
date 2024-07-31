@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       user: {
+        photo: null,
         userName: "",
         name: "",
         lastName: "",
@@ -17,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       isAuthenticated: false,
       events: [],
+      favourites: [],
     },
     actions: {
       successRegisterAlert: () => {
@@ -174,8 +176,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             if (rememberMe) {
               localStorage.setItem("token", data.access_token);
+            } else {
+              sessionStorage.setItem("token", data.access_token);
             }
-            sessionStorage.setItem("token", data.access_token);
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
@@ -233,30 +236,36 @@ const getState = ({ getStore, getActions, setStore }) => {
             isAuthenticated: true,
           });
           console.log(sub);
-          return {
-            username,
-            name,
-            last_name,
-            email,
-            phone,
-            address,
-          };
+          return true;
+          // return {
+          //   username,
+          //   name,
+          //   last_name,
+          //   email,
+          //   phone,
+          //   address,
+          // };
         } catch (error) {
           actions.errorTokenAlert();
           console.log(error);
-          return null;
+          return false;
         }
       },
 
       events: async () => {
         const actions = getActions();
+        const store = getStore();
         console.log(`${process.env.BACKEND_URL}api/events`);
 
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/events`);
           const data = await resp.json();
-          console.log(data);
-          // console.log(store.events);
+          for (let event of data) {
+            setStore({ events: [...store.events, event] });
+          }
+
+          // console.log(data);
+          console.log(store.events);
         } catch (error) {
           console.log(error);
           return false;
@@ -291,7 +300,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
-      editUser: async (id, userName, name, lastName, phoneNumber, address) => {
+      editUser: async (
+        photo,
+        id,
+        userName,
+        name,
+        lastName,
+        phoneNumber,
+        address
+      ) => {
         const actions = getActions();
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
@@ -301,6 +318,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
+              profile_picture: photo,
               username: userName,
               name: name,
               last_name: lastName,
@@ -325,6 +343,37 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+
+      // userFavourites: async (id, favourite) => {
+      //   const actions = getActions();
+      //   try {
+      //     const resp = await fetch(
+      //       `${process.env.BACKEND_URL}api/favourites/${id}`,
+      //       {
+      //         method: "PUT",
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //       }
+      //     );
+      //     if (resp.ok) {
+      //       const data = await resp.json();
+      //       console.log(data);
+      //       setStore({
+      //         favourite: {
+      //           favourite: fav,
+      //         },
+      //       });
+      //       favourite.push(fav);
+      //     } else {
+      //       console.log("Error al añadir favoritos");
+      //       return false;
+      //     }
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // },
+
       deleteUser: async (id) => {
         const actions = getActions();
         try {
