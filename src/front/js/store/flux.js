@@ -174,8 +174,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             if (rememberMe) {
               localStorage.setItem("token", data.access_token);
+            }else{
+              sessionStorage.setItem("token", data.access_token);
             }
-            sessionStorage.setItem("token", data.access_token);
+
             console.log("Usuario iniciado sesión exitosamente", data);
             actions.successLoginAlert();
 
@@ -255,6 +257,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/events`);
           const data = await resp.json();
+          for(let event of data){
+            setStore({events: [...store.events, event]});
+          }
           console.log(data);
           // console.log(store.events);
         } catch (error) {
