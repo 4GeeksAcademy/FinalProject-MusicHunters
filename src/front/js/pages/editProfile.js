@@ -17,7 +17,7 @@ export const EditProfile = (props) => {
     }));
   };
   const [dataContact, setDataContact] = useState({
-
+    photo: store.user.photo ? store.user.photo : "",
     userName: store.user.userName ? store.user.userName : "",
     name: store.user.name ? store.user.name : "Name",
     lastName: store.user.lastName ? store.user.lastName : "Last name",
@@ -32,12 +32,13 @@ export const EditProfile = (props) => {
     event.preventDefault();
 
     actions.editUser(
+      dataContact.photo,
       store.user.id,
       dataContact.userName,
       dataContact.name,
       dataContact.lastName,
       dataContact.phoneNumber,
-      dataContact.adress
+      dataContact.address
     );
     setDataContact({
       userName: dataContact.userName,

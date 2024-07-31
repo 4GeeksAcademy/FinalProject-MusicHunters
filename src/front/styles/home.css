@@ -31,8 +31,17 @@
 body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
   font-family: "Body", serif;
+  background-attachment: fixed;
+  background-size: auto;
 }
 
+/* div.div-body {
+  min-height: 110vh !important;
+} */
+
+/* .div-footer {
+  margin-top: 60px !important;
+} */
 .content-container {
   margin-bottom: 100px !important; /* Ajusta este valor según el margen que desees */
 }
@@ -63,13 +72,22 @@ label {
 }
 
 .card {
-  background-color: #2a9d90b7;
+  background-color: #2a9d90e0;
   margin-bottom: 50px;
+  box-shadow: 10px 10px 20px #000000;
 }
 
-li {
+.cards-events {
   box-shadow: 10px 10px 20px #000000;
   border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card-events-title {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  text-shadow: 2px 0px 3px #d34d7a;
 }
 /*--------------------NAVBAR--------------------*/
 
@@ -179,6 +197,15 @@ nav {
   color: black;
 }
 
+.fav-button {
+  background-color: #d34d7a;
+}
+
+div.prices-fav-icon {
+  display: flex;
+  justify-content: space-between !important;
+}
+
 /*--------------FOOTER--------------*/
 a,
 .footer-color {
@@ -256,6 +283,18 @@ input.user-img {
 
 /*--------------Cards---------------*/
 
+a.card-prices {
+  font-weight: bold;
+  color: #000000;
+  text-decoration: none;
+}
+
+a.card-prices:hover {
+  font-weight: bolder;
+  color: #264653;
+  text-decoration: underline;
+}
+
 .card-user-profile {
   min-height: 400px;
   width: 100%;
@@ -263,6 +302,7 @@ input.user-img {
 
 .card-user-profile {
   background-color: #2a9d90ef;
+  filter: blur(50%);
   max-width: 50vw;
 }
 
@@ -316,6 +356,7 @@ input.user-img {
 
 .upload-img-letters:hover {
   background-color: #f4a261;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 10);
 }
 
 /*------------VISTA 404----------------*/

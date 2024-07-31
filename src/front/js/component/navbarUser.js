@@ -63,7 +63,7 @@ export const NavbarUser = () => {
           <input
             className="form-control me-2"
             type="search"
-            placeholder="Search by artist or event"
+            placeholder="Search by artist, genere or location"
             aria-label="Search"
           />
           <button className="btn btn-warning me-2" type="submit">

@@ -14,6 +14,19 @@ export const Favourites = (props) => {
     <>
       <NavbarUser />
       <h1 className="text-center register-header mb-3">My Favourites</h1>
+      {/* {store.favourites === undefined ? (
+        <p className="text-center fs-3">There's no favourites to show</p>
+      ) : (
+        store.favourite.map((fav) => (
+          <div
+            className="card mb-5 mx-auto cards-events"
+            key={fav.id}
+            style={{ maxWidth: "540px" }}
+          >
+            {fav.id}
+          </div>
+        ))
+      )} */}
     </>
   );
 };
