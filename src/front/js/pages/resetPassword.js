@@ -131,7 +131,7 @@ export const ResetPassword = () => {
             className="btn btn-warning"
             //onClick={() => actions.nombreDeFuncionDelFlux(dataContact)}
           >
-            Login
+            Save
           </button>
           {/* </Link> */}
           <Link to="/">
