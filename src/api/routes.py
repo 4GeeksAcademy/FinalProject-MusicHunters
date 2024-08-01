@@ -3,9 +3,10 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Event, TicketsSource, PrecioTickets, Favoritos
-from api.utils import generate_sitemap, APIException, validate_password
+from api.utils import generate_sitemap, APIException, validate_password, standard_date
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+
 
 api = Blueprint('api', __name__)
 
@@ -146,7 +147,7 @@ def add_event():
             event.create_new_event(
                 name=item["title"],
                 description="",
-                date=item["date"],
+                date=standard_date(item["date"]),
                 location=item["place"],
                 event_type="concierto",
                 genere=item["product_type"],

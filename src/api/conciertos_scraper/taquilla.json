@@ -260,26 +260,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Pastora Soler",
-        "date": "2024-09-26",
-        "place": "Torrevieja",
-        "price": "30,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/8a/pastora-soler__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/pastora-soler",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Pastora Soler",
-        "date": "2024-10-05",
-        "place": "Zaragoza",
-        "price": "27,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/8a/pastora-soler__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/pastora-soler",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Cariño",
         "date": "2024-12-20",
         "place": "Sevilla",
@@ -337,6 +317,26 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/c1/carino__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/carino",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Pastora Soler",
+        "date": "2024-09-26",
+        "place": "Torrevieja",
+        "price": "30,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/8a/pastora-soler__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/pastora-soler",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Pastora Soler",
+        "date": "2024-10-05",
+        "place": "Zaragoza",
+        "price": "27,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/8a/pastora-soler__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/pastora-soler",
         "source": "taquilla.com"
     },
     {
@@ -440,56 +440,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Pablo López",
-        "date": "2024-08-07",
-        "place": "Salobreña",
-        "price": "44,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Pablo López",
-        "date": "2024-08-09",
-        "place": "San Pedro del Pinatar",
-        "price": "42,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Pablo López",
-        "date": "2024-08-10",
-        "place": "Pontevedra",
-        "price": "35,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Pablo López",
-        "date": "2024-08-12",
-        "place": "El Puerto de Santa María",
-        "price": "6,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Sergio Dalma",
-        "date": "2024-08-06",
-        "place": "Tarragona",
-        "price": "40,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/fc/sergio-dalma__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/sergio-dalma",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Antoñito Molina",
         "date": "2024-08-05",
         "place": "Benidorm",
@@ -580,6 +530,126 @@
         "source": "taquilla.com"
     },
     {
+        "title": "Antoñito Molina",
+        "date": "2024-09-07",
+        "place": "Almendralejo",
+        "price": "33,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Antoñito Molina",
+        "date": "2024-09-15",
+        "place": "Úbeda",
+        "price": "30,80€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Antoñito Molina",
+        "date": "2024-09-20",
+        "place": "Málaga",
+        "price": "25,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Antoñito Molina",
+        "date": "2024-09-29",
+        "place": "Córdoba",
+        "price": "Agotadas",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Antoñito Molina",
+        "date": "2024-10-04",
+        "place": "Alba de Tormes",
+        "price": "22,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Antoñito Molina",
+        "date": "2024-10-11",
+        "place": "Cartagena",
+        "price": "24,20€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Antoñito Molina",
+        "date": "2024-10-25",
+        "place": "Granada",
+        "price": "16,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Antoñito Molina",
+        "date": "2024-11-01",
+        "place": "Madrid",
+        "price": "25,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Pablo López",
+        "date": "2024-08-07",
+        "place": "Salobreña",
+        "price": "44,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Pablo López",
+        "date": "2024-08-09",
+        "place": "San Pedro del Pinatar",
+        "price": "42,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Pablo López",
+        "date": "2024-08-10",
+        "place": "Pontevedra",
+        "price": "35,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Pablo López",
+        "date": "2024-08-12",
+        "place": "El Puerto de Santa María",
+        "price": "6,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
+        "source": "taquilla.com"
+    },
+    {
         "title": "Pablo López",
         "date": "2024-08-14",
         "place": "Santa Cruz de Tenerife",
@@ -607,6 +677,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/30/pablo-lopez__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/pablo-lopez",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Sergio Dalma",
+        "date": "2024-08-06",
+        "place": "Tarragona",
+        "price": "40,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/fc/sergio-dalma__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/sergio-dalma",
         "source": "taquilla.com"
     },
     {
@@ -730,86 +810,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Antoñito Molina",
-        "date": "2024-09-07",
-        "place": "Almendralejo",
-        "price": "33,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Antoñito Molina",
-        "date": "2024-09-15",
-        "place": "Úbeda",
-        "price": "30,80€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Antoñito Molina",
-        "date": "2024-09-20",
-        "place": "Málaga",
-        "price": "25,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Antoñito Molina",
-        "date": "2024-09-29",
-        "place": "Córdoba",
-        "price": "Agotadas",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Antoñito Molina",
-        "date": "2024-10-04",
-        "place": "Alba de Tormes",
-        "price": "22,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Antoñito Molina",
-        "date": "2024-10-11",
-        "place": "Cartagena",
-        "price": "24,20€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Antoñito Molina",
-        "date": "2024-10-25",
-        "place": "Granada",
-        "price": "16,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Antoñito Molina",
-        "date": "2024-11-01",
-        "place": "Madrid",
-        "price": "25,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/antonito-molina-guitar-bcn-23__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/antonito-molina",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Dani Fernández",
         "date": "2025-02-01",
         "place": "Zaragoza",
@@ -880,26 +880,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Los Rebujitos",
-        "date": "2024-10-19",
-        "place": "San Vicente del Raspeig",
-        "price": "25,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/3f/los-rebujitos__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/los-rebujitos",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Los Rebujitos",
-        "date": "2024-10-26",
-        "place": "Cáceres",
-        "price": "25,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/3f/los-rebujitos__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/los-rebujitos",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Karavana",
         "date": "2024-11-02",
         "place": "Granada",
@@ -957,6 +937,26 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/31/karavana__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/karavana",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Los Rebujitos",
+        "date": "2024-10-19",
+        "place": "San Vicente del Raspeig",
+        "price": "25,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/3f/los-rebujitos__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/los-rebujitos",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Los Rebujitos",
+        "date": "2024-10-26",
+        "place": "Cáceres",
+        "price": "25,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/3f/los-rebujitos__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/los-rebujitos",
         "source": "taquilla.com"
     },
     {
@@ -1060,26 +1060,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Loquillo",
-        "date": "2024-08-15",
-        "place": "Alicante",
-        "price": "6,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/55/loquillo__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/loquillo",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Camela",
-        "date": "2024-08-02",
-        "place": "Sitges",
-        "price": "25,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/73/camela__330x275.jpeg",
-        "buy_url": "https://www.taquilla.com/entradas/camela",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Maldita Nerea",
         "date": "2024-09-21",
         "place": "Murcia",
@@ -1107,6 +1087,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/96/maldita-nerea__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/maldita-nerea",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Loquillo",
+        "date": "2024-08-15",
+        "place": "Alicante",
+        "price": "6,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/55/loquillo__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/loquillo",
         "source": "taquilla.com"
     },
     {
@@ -1197,6 +1187,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/55/loquillo__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/loquillo",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Camela",
+        "date": "2024-08-02",
+        "place": "Sitges",
+        "price": "25,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/73/camela__330x275.jpeg",
+        "buy_url": "https://www.taquilla.com/entradas/camela",
         "source": "taquilla.com"
     },
     {
@@ -1340,26 +1340,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Belako",
-        "date": "2024-10-31",
-        "place": "Granada",
-        "price": "18,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/73/belako__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/belako",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "David Bisbal",
-        "date": "2024-08-01",
-        "place": "Es Mercadal",
-        "price": "49,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/68/david-bisbal__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/david-bisbal",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Camela",
         "date": "2024-11-17",
         "place": "Girona",
@@ -1401,6 +1381,16 @@
     },
     {
         "title": "Belako",
+        "date": "2024-10-31",
+        "place": "Granada",
+        "price": "18,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/73/belako__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/belako",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Belako",
         "date": "2024-11-01",
         "place": "Bullas",
         "price": "18,00€",
@@ -1417,6 +1407,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/73/belako__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/belako",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "David Bisbal",
+        "date": "2024-08-01",
+        "place": "Es Mercadal",
+        "price": "49,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/68/david-bisbal__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/david-bisbal",
         "source": "taquilla.com"
     },
     {
@@ -1470,46 +1470,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Rulo y la Contrabanda",
-        "date": "2024-08-04",
-        "place": "Arenas de San Pedro",
-        "price": "33,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/2f/rulo-y-la-contrabanda__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/rulo-y-la-contrabanda",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Dorian",
-        "date": "2024-08-16",
-        "place": "San Sebastián",
-        "price": "15,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/9d/dorian__330x275.jpg",
-        "buy_url": "https://www.taquilla.com/entradas/dorian",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Crystal Fighters",
-        "date": "2024-08-24",
-        "place": "Oporto",
-        "price": "53,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/f5/crystal-fighters__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/crystal-fighters",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Los Planetas",
-        "date": "2024-09-04",
-        "place": "Granada",
-        "price": "35,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/eb/los-planetas__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/los-planetas",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Isabel Pantoja",
         "date": "2024-08-14",
         "place": "Albacete",
@@ -1537,6 +1497,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/e9/isabel-pantoja-0__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/isabel-pantoja",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Rulo y la Contrabanda",
+        "date": "2024-08-04",
+        "place": "Arenas de San Pedro",
+        "price": "33,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/2f/rulo-y-la-contrabanda__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/rulo-y-la-contrabanda",
         "source": "taquilla.com"
     },
     {
@@ -1571,6 +1541,16 @@
     },
     {
         "title": "Dorian",
+        "date": "2024-08-16",
+        "place": "San Sebastián",
+        "price": "15,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/9d/dorian__330x275.jpg",
+        "buy_url": "https://www.taquilla.com/entradas/dorian",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Dorian",
         "date": "2024-11-07",
         "place": "Vitoria-Gasteiz",
         "price": "22,50€",
@@ -1597,6 +1577,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/9d/dorian__330x275.jpg",
         "buy_url": "https://www.taquilla.com/entradas/dorian",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Crystal Fighters",
+        "date": "2024-08-24",
+        "place": "Oporto",
+        "price": "53,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/f5/crystal-fighters__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/crystal-fighters",
         "source": "taquilla.com"
     },
     {
@@ -1661,6 +1651,16 @@
     },
     {
         "title": "Los Planetas",
+        "date": "2024-09-04",
+        "place": "Granada",
+        "price": "35,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/eb/los-planetas__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/los-planetas",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Los Planetas",
         "date": "2024-09-28",
         "place": "Barcelona",
         "price": "48,00€",
@@ -1697,26 +1697,6 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/e2/elefantes__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/elefantes",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "El Arrebato",
-        "date": "2024-08-03",
-        "place": "Burgos",
-        "price": "15,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/cc/el-arrebato__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/el-arrebato",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "El Arrebato",
-        "date": "2024-10-12",
-        "place": "La Línea de la Concepción",
-        "price": "36,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/cc/el-arrebato__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/el-arrebato",
         "source": "taquilla.com"
     },
     {
@@ -1781,6 +1761,26 @@
     },
     {
         "title": "El Arrebato",
+        "date": "2024-08-03",
+        "place": "Burgos",
+        "price": "15,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/cc/el-arrebato__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/el-arrebato",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "El Arrebato",
+        "date": "2024-10-12",
+        "place": "La Línea de la Concepción",
+        "price": "36,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/cc/el-arrebato__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/el-arrebato",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "El Arrebato",
         "date": "2024-10-26",
         "place": "Badajoz",
         "price": "35,00€",
@@ -1840,46 +1840,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "El Barrio",
-        "date": "2024-08-04",
-        "place": "Torrevieja",
-        "price": "42,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/8b/el-barrio__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/el-barrio",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Nick Cave",
-        "date": "2024-10-24",
-        "place": "Madrid",
-        "price": "71,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/e4/nick-cave__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/nick-cave",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Nick Cave",
-        "date": "2024-10-25",
-        "place": "Lisboa - Portugal",
-        "price": "55,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/e4/nick-cave__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/nick-cave",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Depedro",
-        "date": "2024-08-23",
-        "place": "Guadalajara",
-        "price": "30,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/1c/depedro__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/depedro",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Anastacia",
         "date": "2025-03-12",
         "place": "Madrid",
@@ -1897,6 +1857,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/cd/anastacia__330x275.jpg",
         "buy_url": "https://www.taquilla.com/entradas/anastacia",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "El Barrio",
+        "date": "2024-08-04",
+        "place": "Torrevieja",
+        "price": "42,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/8b/el-barrio__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/el-barrio",
         "source": "taquilla.com"
     },
     {
@@ -1987,6 +1957,36 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/8b/el-barrio__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/el-barrio",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Nick Cave",
+        "date": "2024-10-24",
+        "place": "Madrid",
+        "price": "71,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/e4/nick-cave__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/nick-cave",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Nick Cave",
+        "date": "2024-10-25",
+        "place": "Lisboa - Portugal",
+        "price": "55,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/e4/nick-cave__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/nick-cave",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Depedro",
+        "date": "2024-08-23",
+        "place": "Guadalajara",
+        "price": "30,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/1c/depedro__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/depedro",
         "source": "taquilla.com"
     },
     {
@@ -2090,10 +2090,90 @@
         "source": "taquilla.com"
     },
     {
+        "title": "Amaral",
+        "date": "2024-08-09",
+        "place": "Sant Feliu de Guíxols",
+        "price": "35,20€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/2f/amaral__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/amaral",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Amaral",
+        "date": "2024-08-11",
+        "place": "Puigcerdà",
+        "price": "35,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/2f/amaral__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/amaral",
+        "source": "taquilla.com"
+    },
+    {
         "title": "Miguel Campello",
         "date": "2024-09-28",
         "place": "La Zubia",
         "price": "23,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Miguel Campello",
+        "date": "2024-10-19",
+        "place": "Vitoria-Gasteiz",
+        "price": "27,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Miguel Campello",
+        "date": "2024-10-26",
+        "place": "València",
+        "price": "27,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Miguel Campello",
+        "date": "2024-11-02",
+        "place": "Valencia",
+        "price": "27,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Miguel Campello",
+        "date": "2024-11-02",
+        "place": "Cádiz",
+        "price": "27,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Miguel Campello",
+        "date": "2024-11-09",
+        "place": "Madrid",
+        "price": "27,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Miguel Campello",
+        "date": "2024-11-16",
+        "place": "Barcelona",
+        "price": "27,50€",
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
@@ -2220,106 +2300,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Arco en concierto",
-        "date": "2024-10-18",
-        "place": "Cádiz",
-        "price": "18,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/fb/arco__330x275.JPG",
-        "buy_url": "https://www.taquilla.com/entradas/arco-en-concierto",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Los gandules",
-        "date": "2024-09-20",
-        "place": "Madrid",
-        "price": "12,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/33/los-gandules__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/los-gandules",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Amaral",
-        "date": "2024-08-09",
-        "place": "Sant Feliu de Guíxols",
-        "price": "35,20€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/2f/amaral__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/amaral",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Amaral",
-        "date": "2024-08-11",
-        "place": "Puigcerdà",
-        "price": "35,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/2f/amaral__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/amaral",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Miguel Campello",
-        "date": "2024-10-19",
-        "place": "Vitoria-Gasteiz",
-        "price": "27,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Miguel Campello",
-        "date": "2024-10-26",
-        "place": "València",
-        "price": "27,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Miguel Campello",
-        "date": "2024-11-02",
-        "place": "Valencia",
-        "price": "27,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Miguel Campello",
-        "date": "2024-11-02",
-        "place": "Cádiz",
-        "price": "27,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Miguel Campello",
-        "date": "2024-11-09",
-        "place": "Madrid",
-        "price": "27,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Miguel Campello",
-        "date": "2024-11-16",
-        "place": "Barcelona",
-        "price": "27,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/6b/miguel-campello__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/miguel-campello",
-        "source": "taquilla.com"
-    },
-    {
         "title": "La Oreja de Van Gogh",
         "date": "2024-09-14",
         "place": "Tarragona",
@@ -2327,6 +2307,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/45/la-oreja-de-van-gogh__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/la-oreja-de-van-gogh",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Arco en concierto",
+        "date": "2024-10-18",
+        "place": "Cádiz",
+        "price": "18,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/fb/arco__330x275.JPG",
+        "buy_url": "https://www.taquilla.com/entradas/arco-en-concierto",
         "source": "taquilla.com"
     },
     {
@@ -2407,6 +2397,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/fb/arco__330x275.JPG",
         "buy_url": "https://www.taquilla.com/entradas/arco-en-concierto",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Los gandules",
+        "date": "2024-09-20",
+        "place": "Madrid",
+        "price": "12,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/33/los-gandules__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/los-gandules",
         "source": "taquilla.com"
     },
     {
@@ -2710,26 +2710,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Tributo a Abba - Abba The New Experience",
-        "date": "2024-08-18",
-        "place": "Barcelona",
-        "price": "25,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/d4/tributo-a-abba-abba-the-new-experience__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/abba-new-experiencie",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Lori Meyers",
-        "date": "2024-08-07",
-        "place": "Granada",
-        "price": "19,98€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/98/lori-meyers__330x275.jpeg",
-        "buy_url": "https://www.taquilla.com/entradas/lori-meyers",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Rupatrupa",
         "date": "2024-11-15",
         "place": "Málaga",
@@ -2811,6 +2791,16 @@
     },
     {
         "title": "Tributo a Abba - Abba The New Experience",
+        "date": "2024-08-18",
+        "place": "Barcelona",
+        "price": "25,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/d4/tributo-a-abba-abba-the-new-experience__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/abba-new-experiencie",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Tributo a Abba - Abba The New Experience",
         "date": "2024-10-05",
         "place": "Alcoy",
         "price": "18,00€",
@@ -2837,6 +2827,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/d4/tributo-a-abba-abba-the-new-experience__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/abba-new-experiencie",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Lori Meyers",
+        "date": "2024-08-07",
+        "place": "Granada",
+        "price": "19,98€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/98/lori-meyers__330x275.jpeg",
+        "buy_url": "https://www.taquilla.com/entradas/lori-meyers",
         "source": "taquilla.com"
     },
     {
@@ -2960,16 +2960,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Ojete Calor",
-        "date": "2024-08-03",
-        "place": "Santa Susanna",
-        "price": "30,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/61/ojete-calor__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/ojete-calor",
-        "source": "taquilla.com"
-    },
-    {
         "title": "God Save The Queen- Dios Salve a la Reina",
         "date": "2024-08-03",
         "place": "Santa Susanna",
@@ -3040,6 +3030,46 @@
         "source": "taquilla.com"
     },
     {
+        "title": "God Save The Queen- Dios Salve a la Reina",
+        "date": "2024-10-11",
+        "place": "Barcelona",
+        "price": "46,20€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/god-save-the-queen-dios-salve-a-la-reina__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/god-save-the-queen-dios-salve-a-la-reina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "God Save The Queen- Dios Salve a la Reina",
+        "date": "2024-10-17",
+        "place": "Zaragoza",
+        "price": "40,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/god-save-the-queen-dios-salve-a-la-reina__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/god-save-the-queen-dios-salve-a-la-reina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "God Save The Queen- Dios Salve a la Reina",
+        "date": "2024-10-18",
+        "place": "Tarragona",
+        "price": "50,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7d/god-save-the-queen-dios-salve-a-la-reina__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/god-save-the-queen-dios-salve-a-la-reina",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Ojete Calor",
+        "date": "2024-08-03",
+        "place": "Santa Susanna",
+        "price": "30,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/61/ojete-calor__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/ojete-calor",
+        "source": "taquilla.com"
+    },
+    {
         "title": "Ojete Calor",
         "date": "2024-08-03",
         "place": "La Roda",
@@ -3090,46 +3120,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Miguel Poveda",
-        "date": "2024-08-02",
-        "place": "Marbella",
-        "price": "Agotadas",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/25/miguel-poveda__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/miguel-poveda",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "God Save The Queen- Dios Salve a la Reina",
-        "date": "2024-10-11",
-        "place": "Barcelona",
-        "price": "46,20€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/god-save-the-queen-dios-salve-a-la-reina__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/god-save-the-queen-dios-salve-a-la-reina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "God Save The Queen- Dios Salve a la Reina",
-        "date": "2024-10-17",
-        "place": "Zaragoza",
-        "price": "40,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/god-save-the-queen-dios-salve-a-la-reina__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/god-save-the-queen-dios-salve-a-la-reina",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "God Save The Queen- Dios Salve a la Reina",
-        "date": "2024-10-18",
-        "place": "Tarragona",
-        "price": "50,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7d/god-save-the-queen-dios-salve-a-la-reina__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/god-save-the-queen-dios-salve-a-la-reina",
-        "source": "taquilla.com"
-    },
-    {
         "title": "El último Tributo: tributo a El último de la fila",
         "date": "2024-10-18",
         "place": "Terrassa",
@@ -3137,6 +3127,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/20/el-ultimo-tributo-tributo-a-el-ultimo-de-la-fila__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/el-ultimo-tributo-tributo-a-el-ultimo-de-la-fila",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Miguel Poveda",
+        "date": "2024-08-02",
+        "place": "Marbella",
+        "price": "Agotadas",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/25/miguel-poveda__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/miguel-poveda",
         "source": "taquilla.com"
     },
     {
@@ -3260,46 +3260,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Travis Birds",
-        "date": "2024-08-01",
-        "place": "Alicante",
-        "price": "40,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/bd/travis-birds__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/travis-birds",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Ciro y los Persas",
-        "date": "2024-09-20",
-        "place": "Madrid",
-        "price": "30,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7c/ciro-y-los-persas__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/ciro-y-los-persas",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Ciro y los Persas",
-        "date": "2024-09-21",
-        "place": "Palma de Mallorca",
-        "price": "35,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7c/ciro-y-los-persas__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/ciro-y-los-persas",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Ciro y los Persas",
-        "date": "2024-09-24",
-        "place": "Palma de Mallorca",
-        "price": "35,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/7c/ciro-y-los-persas__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/ciro-y-los-persas",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Aidalai Tributo Mecano",
         "date": "2024-08-21",
         "place": "Murcia",
@@ -3357,6 +3317,46 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/d2/aidalai-tributo-mecano__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/aidalai-tributo-mecano",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Travis Birds",
+        "date": "2024-08-01",
+        "place": "Alicante",
+        "price": "40,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/bd/travis-birds__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/travis-birds",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Ciro y los Persas",
+        "date": "2024-09-20",
+        "place": "Madrid",
+        "price": "30,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7c/ciro-y-los-persas__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/ciro-y-los-persas",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Ciro y los Persas",
+        "date": "2024-09-21",
+        "place": "Palma de Mallorca",
+        "price": "35,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7c/ciro-y-los-persas__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/ciro-y-los-persas",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Ciro y los Persas",
+        "date": "2024-09-24",
+        "place": "Palma de Mallorca",
+        "price": "35,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/7c/ciro-y-los-persas__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/ciro-y-los-persas",
         "source": "taquilla.com"
     },
     {
@@ -3470,26 +3470,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Mikel Izal",
-        "date": "2024-08-13",
-        "place": "Grau de Castelló",
-        "price": "35,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/4b/izal__330x275.jpeg",
-        "buy_url": "https://www.taquilla.com/entradas/izal",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Estopa",
-        "date": "2024-08-03",
-        "place": "Gijón",
-        "price": "40,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/b9/estopa__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/estopa",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Los Secretos",
         "date": "2024-08-04",
         "place": "Pontevedra",
@@ -3517,6 +3497,46 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/3a/los-secretos__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/los-secretos",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Los Secretos",
+        "date": "2024-09-07",
+        "place": "Zaragoza",
+        "price": "27,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/3a/los-secretos__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/los-secretos",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Los Secretos",
+        "date": "2024-10-05",
+        "place": "León",
+        "price": "35,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/3a/los-secretos__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/los-secretos",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Los Secretos",
+        "date": "2024-10-26",
+        "place": "Madrid",
+        "price": "38,50€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/3a/los-secretos__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/los-secretos",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Mikel Izal",
+        "date": "2024-08-13",
+        "place": "Grau de Castelló",
+        "price": "35,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/4b/izal__330x275.jpeg",
+        "buy_url": "https://www.taquilla.com/entradas/izal",
         "source": "taquilla.com"
     },
     {
@@ -3567,6 +3587,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/4b/izal__330x275.jpeg",
         "buy_url": "https://www.taquilla.com/entradas/izal",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Estopa",
+        "date": "2024-08-03",
+        "place": "Gijón",
+        "price": "40,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/b9/estopa__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/estopa",
         "source": "taquilla.com"
     },
     {
@@ -3690,46 +3720,6 @@
         "source": "taquilla.com"
     },
     {
-        "title": "Michael´s Legacy",
-        "date": "2024-09-27",
-        "place": "Santiago de Compostela",
-        "price": "25,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/90/michael-s-legacy__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/michaelos-legacy",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Los Secretos",
-        "date": "2024-09-07",
-        "place": "Zaragoza",
-        "price": "27,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/3a/los-secretos__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/los-secretos",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Los Secretos",
-        "date": "2024-10-05",
-        "place": "León",
-        "price": "35,00€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/3a/los-secretos__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/los-secretos",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Los Secretos",
-        "date": "2024-10-26",
-        "place": "Madrid",
-        "price": "38,50€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/3a/los-secretos__330x275.webp",
-        "buy_url": "https://www.taquilla.com/entradas/los-secretos",
-        "source": "taquilla.com"
-    },
-    {
         "title": "Taburete",
         "date": "2024-08-09",
         "place": "Elche",
@@ -3791,6 +3781,16 @@
     },
     {
         "title": "Michael´s Legacy",
+        "date": "2024-09-27",
+        "place": "Santiago de Compostela",
+        "price": "25,00€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/90/michael-s-legacy__330x275.webp",
+        "buy_url": "https://www.taquilla.com/entradas/michaelos-legacy",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Michael´s Legacy",
         "date": "2024-09-28",
         "place": "Vigo",
         "price": "25,00€",
@@ -3827,16 +3827,6 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/ba/juan-magan__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/juan-magan",
-        "source": "taquilla.com"
-    },
-    {
-        "title": "Manolo Garcia",
-        "date": "2024-09-21",
-        "place": "Mairena del Aljarafe",
-        "price": "51,70€",
-        "product_type": "Pop",
-        "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg",
-        "buy_url": "https://www.taquilla.com/entradas/manolo-garcia",
         "source": "taquilla.com"
     },
     {
@@ -3877,6 +3867,16 @@
         "product_type": "Pop",
         "image_url": "https://cd1.taquilla.com/data/images/t/ba/juan-magan__330x275.webp",
         "buy_url": "https://www.taquilla.com/entradas/juan-magan",
+        "source": "taquilla.com"
+    },
+    {
+        "title": "Manolo Garcia",
+        "date": "2024-09-21",
+        "place": "Mairena del Aljarafe",
+        "price": "51,70€",
+        "product_type": "Pop",
+        "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg",
+        "buy_url": "https://www.taquilla.com/entradas/manolo-garcia",
         "source": "taquilla.com"
     },
     {
@@ -3959,4 +3959,18 @@
         "buy_url": "https://www.taquilla.com/entradas/manolo-garcia",
         "source": "taquilla.com"
     }
+]{"title": "Juan Magan", "date": "2024-08-07", "place": "Santa Susanna", "price": "40,00€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/ba/juan-magan__330x275.webp", "buy_url": "https://www.taquilla.com/entradas/juan-magan", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-09-21", "place": "Mairena del Aljarafe", "price": "51,70€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"},
+{"title": "Juan Magan", "date": "2024-08-08", "place": "Elche", "price": "30,00€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/ba/juan-magan__330x275.webp", "buy_url": "https://www.taquilla.com/entradas/juan-magan", "source": "taquilla.com"},
+{"title": "Juan Magan", "date": "2024-08-09", "place": "Marbella", "price": "19,98€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/ba/juan-magan__330x275.webp", "buy_url": "https://www.taquilla.com/entradas/juan-magan", "source": "taquilla.com"},
+{"title": "Juan Magan", "date": "2024-08-14", "place": "Xátiva", "price": "40,00€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/ba/juan-magan__330x275.webp", "buy_url": "https://www.taquilla.com/entradas/juan-magan", "source": "taquilla.com"},
+{"title": "Juan Magan", "date": "2024-08-17", "place": "Marbella", "price": "20,00€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/ba/juan-magan__330x275.webp", "buy_url": "https://www.taquilla.com/entradas/juan-magan", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-09-28", "place": "Murcia", "price": "51,70€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-10-05", "place": "Valdemoro", "price": "51,70€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-10-18", "place": "Santander", "price": "16,50€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-10-19", "place": "Valladolid", "price": "51,70€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-10-26", "place": "A Coruña", "price": "51,70€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-11-09", "place": "Valencia", "price": "51,70€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-11-16", "place": "Bilbao", "price": "51,70€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"},
+{"title": "Manolo Garcia", "date": "2024-11-23", "place": "Barcelona", "price": "51,70€", "product_type": "Pop", "image_url": "https://cd1.taquilla.com/data/images/t/90/manolo-garcia__330x275.jpeg", "buy_url": "https://www.taquilla.com/entradas/manolo-garcia", "source": "taquilla.com"}
 ]

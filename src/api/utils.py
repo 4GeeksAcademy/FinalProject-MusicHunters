@@ -1,5 +1,6 @@
 from flask import jsonify, url_for
 import re 
+from datetime import datetime
 
 class APIException(Exception):
     status_code = 400
@@ -52,3 +53,13 @@ def validate_password(password):
         return False, "Password must contain at least one number"
     return True, ""
 
+def standard_date(fecha_str, formato_salida="%Y-%m-%d"):
+    formatos = ["%d/%m/%Y", "%Y-%m-%d"]
+    for formato in formatos:
+        try:
+            fecha_obj = datetime.strptime(fecha_str, formato)
+            return fecha_obj.strftime(formato_salida)
+        except ValueError:
+            continue
+    
+    return None
