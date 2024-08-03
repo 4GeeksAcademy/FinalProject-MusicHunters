@@ -206,8 +206,8 @@ def get_events():
 
 
     for event in events:
-        # Usamos fecha y nombre como clave para agrupar los eventos
-        key = (event.name)
+        
+        key = (event.name, event.date)
         match_key= find_matching_key(key, combined_events.keys())
         if match_key:
             key = match_key
@@ -226,8 +226,8 @@ def get_events():
             }
         else:
             combined_events[key]['prices'].append(event.precios[0].price)
-            # combined_events[key]['buy_urls'].append(event.precios[0]['source']['web_url'])
-            # combined_events[key]['source'].append(event.precios[0]['source']['name'])
+            combined_events[key]['buy_urls'].append(event.precios[0].source.web_url)
+            combined_events[key]['source'].append(event.precios[0].source.name)
 
     final_events = [
         {
@@ -236,9 +236,9 @@ def get_events():
             'place': details['place'],
             'genere': details['genere'],
             'image_url': details['image_url'],
-            'price': ", ".join(details['prices']),
-            # 'buy_url': ", ".join(details['buy_urls']),
-            # 'source': ", ".join(details['source'])
+            'price':details['prices'],
+            'buy_url': details['buy_urls'],
+            'source': details['source']
         }
         for details in combined_events.values()
     ]

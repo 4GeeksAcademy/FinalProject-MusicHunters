@@ -8,7 +8,11 @@ import asyncio
 class TaquillaSpider(scrapy.Spider):
     name = 'taquilla'
     allowed_domains = ['taquilla.com']
-    start_urls = ['https://www.taquilla.com/conciertos/pop-rock']
+    start_urls = ['https://www.taquilla.com/conciertos/pop-rock',
+                  'https://www.taquilla.com/conciertos/hip-hop',
+                  'https://www.taquilla.com/conciertos/hard-rock',
+                  'https://www.taquilla.com/conciertos/autor',
+                  'https://www.taquilla.com/conciertos/electronica']
 
     def __init__(self, *args, **kwargs):
         super(TaquillaSpider, self).__init__(*args, **kwargs)
