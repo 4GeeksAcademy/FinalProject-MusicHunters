@@ -1,42 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
-import { Navbar } from "../component/navbar";
-import { NavbarUser } from "../component/navbarUser";
-import { EventsFilter } from "../component/eventsFilter";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { NavbarUser } from "./navbarUser";
 import favIcon from "../../img/favourites.png";
-import { ScrollNavigateToTop } from "../component/scrollNavigateToTop";
 
-export const HomeUser = () => {
-  useEffect(() => {
-    actions.events();
-  }, []);
-
-  const { store, actions } = useContext(Context);
+export const EventsFilter = () => {
+  const { store } = useContext(Context);
   const navigate = useNavigate();
-  const [showFilter, setShowFilter] = useState(false);
-  const handleFilterClick = () => {
-    setShowFilter(!showFilter);
-    if (!showFilter) {
-      navigate("/filteredEvents");
-    }
-  };
-  const handleGenereClick = (genere) => {
-    setSelectedGenere(genere);
-    handleFilterClick();
-  };
 
   // Estado para el género seleccionado
   const [selectedGenere, setSelectedGenere] = useState(null);
 
+  // Accede a los eventos desde el store
   const eventsFilterBy = store.events || [];
 
-  // Filtro eventos por el género seleccionado
+  // Filtrar eventos por el género seleccionado
   const filterByGenere = eventsFilterBy.filter(
     (event) => event.genere === selectedGenere
   );
+
+  // useEffect(() => {
+  //   if (selectedGenere && filterByGenere.length > 0) {
+  //     navigate("/filteredEvents");
+  //   }
+  // }, [selectedGenere, filterByGenere, navigate]);
+
+  // Función para manejar el clic en una tarjeta de género
+  const handleGenereClick = (genere) => {
+    setSelectedGenere(genere);
+  };
 
   return (
     <>
@@ -122,9 +114,66 @@ export const HomeUser = () => {
             </div>
           </div>
         </div>
-        <ScrollNavigateToTop />
 
-        {showFilter && <EventsFilter />}
+        {/* Renderiza los eventos filtrados aquí si es necesario */}
+        <div className="container">
+          <div className="row">
+            {filterByGenere.map((event, index) => (
+              <div key={`${event.id}-${index}`} className="event-card">
+                <div className="col-md-6 mb-4" key={event.id}>
+                  <div
+                    className="card mx-auto cards-events"
+                    style={{ maxWidth: "540px" }}
+                  >
+                    <div className="row g-0 p-2 event-card">
+                      <div className="col-md-4">
+                        <img
+                          src={event.image_url}
+                          className="img-fluid rounded-start"
+                          alt={event.name}
+                        />
+                      </div>
+                      <div className="col-md-8">
+                        <div className="card-body">
+                          <h3 className="card-events-title">
+                            <strong>{event.name}</strong>
+                          </h3>
+                          <p className="card-text">
+                            <small className="text-body-secondary">
+                              {event.date}
+                            </small>
+                          </p>
+                          <p className="card-text">{event.location}</p>
+                          <p className="card-text">{event.genere}</p>
+                          {event.precios.length > 0 && (
+                            <div className="prices-fav-icon">
+                              <a
+                                className="card-prices"
+                                href={event.precios[0].source.web_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {event.precios[0].price}
+                              </a>
+                              <button className="btn btn-warning fav-button">
+                                <img
+                                  className="favIcon"
+                                  src={favIcon}
+                                  alt="Fav Icon"
+                                  style={{ width: "24px", height: "24px" }}
+                                />
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
