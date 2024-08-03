@@ -276,23 +276,63 @@ def get_events_by_date(date):
 @jwt_required()
 def add_favorite():
     request_body = request.json
-    user = User.query.get(get_jwt_identity())
 
-    if not isinstance(request_body, list):
-        return jsonify({"msg": "Request body must be a list of events"}), 400
+    # Verificar que el cuerpo de la solicitud contiene los campos necesarios
+    user_id = request_body.get("user_id")
+    event_id = request_body.get("event_id")
 
-    for item in request_body:
-        event = Event.query.get(item["event_id"])
-        if event is None:
-            return jsonify({"msg": "Event not found"}), 404
+    if user_id is None or event_id is None:
+        return jsonify({"msg": "Request body must contain 'user_id' and 'event_id'"}), 400
 
-        favorite = Favoritos()
-        favorite.create_new_favorite(
-            user_id=user.id,
-            event_id=event.id
-        )
 
-        db.session.add(favorite)
-        db.session.commit()
+    # Obtener el usuario y el evento desde la base de datos
+    user = User.query.get(user_id)
+    event = Event.query.get(event_id)
+    
+    if user is None:
+        return jsonify({"msg": "User not found"}), 404
 
-    return jsonify({"msg": "Favorites added successfully"}), 201
+    if event is None:
+        return jsonify({"msg": "Event not found"}), 404
+
+    # Verificar si el favorito ya existe para evitar duplicados
+    existing_favorite = Favoritos.query.filter_by(user_id=user.id, event_id=event.id).first()
+    if existing_favorite:
+        return jsonify({"msg": "Event is already in favorites"}), 400
+
+    # Crear nuevo favorito y agregarlo a la base de datos
+    favorite = Favoritos(user_id=user.id, event_id=event.id)
+    db.session.add(favorite)
+    db.session.commit()
+
+    return jsonify({"msg": "Favorite added successfully"}), 201
+
+#-------------------- RUTA DE OBTENER FAVORITOS --------------------
+
+@api.route('/favorites', methods=['GET'])
+@jwt_required()
+def get_favorites():
+    user_id = get_jwt_identity().get('id')
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({"msg": "User not found"}), 404
+
+    favorites = Favoritos.query.filter_by(user_id=user.id).all()
+
+    if not favorites:
+        return jsonify([]), 200 
+    
+    serialized_favorites = [favorite.serialize() for favorite in favorites]
+    return jsonify(serialized_favorites), 200
+#-------------------- RUTA DE ELIMINAR FAVORITO --------------------
+@api.route('/favorite/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_favorite(id):
+    favorite = Favoritos.query.get(id)
+    if favorite is None:
+        return jsonify({"msg": "Favorite not found"}), 404
+
+    db.session.delete(favorite)
+    db.session.commit()
+
+    return jsonify({"msg": "Favorite deleted"}), 200
