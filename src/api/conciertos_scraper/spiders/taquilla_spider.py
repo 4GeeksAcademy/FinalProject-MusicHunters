@@ -102,8 +102,7 @@ class TaquillaSpider(scrapy.Spider):
         
         #Transforms the event details from the first format to the second format.
 
-       
-        
+    
         transformed_events = []
         for info in event.get("additional_info", []):
             transformed_event = {

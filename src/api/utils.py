@@ -53,7 +53,7 @@ def validate_password(password):
         return False, "Password must contain at least one number"
     return True, ""
 
-def standard_date(fecha_str, formato_salida="%Y-%m-%d"):
+def standard_date(fecha_str, formato_salida="%d/%m/%Y"):
     formatos = ["%d/%m/%Y", "%Y-%m-%d"]
     for formato in formatos:
         try:
@@ -62,4 +62,4 @@ def standard_date(fecha_str, formato_salida="%Y-%m-%d"):
         except ValueError:
             continue
     
-    return None
+    return fecha_str
