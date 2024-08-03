@@ -26,6 +26,9 @@ import { NotFound } from "./pages/notFound";
 import { EditProfile } from "./pages/editProfile";
 import { AdminsView } from "./pages/adminsView";
 import { ResetPassword } from "./pages/resetPassword";
+import { EventsFilter } from "./component/eventsFilter";
+import { FilteredEvents } from "./pages/filteredEvents";
+import { NavbarUser } from "./component/navbarUser";
 
 //create your first component
 const Layout = () => {
@@ -52,6 +55,7 @@ const Layout = () => {
                 <Route element={<MyProfile />} path="/userProfile" />
                 <Route element={<EditProfile />} path="/editProfile" />
                 <Route element={<Search />} path="/search" />
+                <Route element={<FilteredEvents />} path="/filteredEvents" />
                 <Route element={<Favourites />} path="/favourites" />
                 <Route element={<AdminsView />} path="/adminsView" />
               </Route>

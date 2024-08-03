@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export const Footer = () => (
   <nav
-    className="navbar fixed-bottom bg-body-tertiary navbar bg-dark mt-4"
+    className="navbar  bg-body-tertiary navbar bg-dark mt-4"
     data-bs-theme="dark"
   >
     <div className="container-fluid justify-content-center">
@@ -11,7 +11,7 @@ export const Footer = () => (
         target="_blank"
         href="https://github.com/4GeeksAcademy/FinalProject-MusicHunters"
       >
-        Made by ©Isverni Team
+        Made by ©Isver Team
       </a>
       <a
         className="git-icon"

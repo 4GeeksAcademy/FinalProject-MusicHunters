@@ -43,7 +43,7 @@ body {
   margin-top: 60px !important;
 } */
 .content-container {
-  margin-bottom: 100px !important; /* Ajusta este valor según el margen que desees */
+  margin-bottom: 100px !important;
 }
 
 h1 {
@@ -56,11 +56,11 @@ h1 {
 .register-header,
 .login-header,
 .reset-password-header {
-  margin-bottom: 40px !important;
+  margin-bottom: 5rem !important;
   color: #d34d7a;
   /* font-weight: 700; */
   text-shadow: 3px 6px 2px rgba(0, 0, 0, 10);
-  font-size: 60px;
+  font-size: 4.5rem;
 }
 
 .text-center {
@@ -84,10 +84,28 @@ label {
   font-weight: bold;
 }
 
+a.page-link,
+a.page-link:hover .page-item.disable {
+  background-color: #264653;
+  color: #d34d7a;
+  border-color: #d34d7a;
+}
+
+.page-link:hover {
+  z-index: 2;
+  background-color: #264653;
+  color: #d34d7a;
+  border-color: #d34d7a;
+}
+
+.page-link:focus {
+  box-shadow: 0 0 0 0.25rem #d34d7a3d;
+}
+
 .card-events-title {
   font-size: 1.2rem;
   font-weight: bolder;
-  text-shadow: 2px 0px 3px #d34d7a;
+  text-shadow: 2px 1px 2.5px #d34d7a;
 }
 /*--------------------NAVBAR--------------------*/
 
@@ -130,7 +148,7 @@ nav {
   color: whitesmoke;
   font-size: 2.5 rem;
   margin-bottom: 2rem;
-  text-shadow: 5px 5px 3px rgba(0, 0, 0, 10);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 10);
   text-align: center;
 }
 
@@ -151,8 +169,27 @@ nav {
 
 .carousel-item,
 .carousel-item :active {
-  height: 40vw;
-  box-shadow: 10px 10px 20px #000000;
+  height: 25vw;
+  /* box-shadow: 10px 10px 20px #000000; */
+}
+
+.carousel-item img {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho del carrusel */
+  height: 100%; /* Ajusta la altura del carrusel según tus necesidades */
+  object-fit: contain; /* Recorta la imagen para llenar el contenedor */
+}
+
+.carousel-dark {
+  max-height: 50% !important;
+}
+
+button.carousel-control-next,
+button.carousel-control-prev {
+  color: #d34d7a !important;
+  background-color: #03ffe2;
+  border-radius: 50%;
+  height: fit-content;
+  width: fit-content;
 }
 
 /* -----------------BOTONES--------------- */
@@ -167,6 +204,13 @@ nav {
   background-color: #264653;
   border-color: #000000;
   box-shadow: 1px 1px 5px 0px #000000;
+}
+
+.home-button {
+  background-color: #d34d7a;
+  border-color: #000000;
+  box-shadow: 1px 1px 5px 0px #000000;
+  color: #000000;
 }
 
 .btn-warning {
@@ -204,6 +248,131 @@ nav {
 div.prices-fav-icon {
   display: flex;
   justify-content: space-between !important;
+}
+
+.button-to-scroll {
+  height: fit-content;
+  width: fit-content;
+  /* justify-content: end; */
+  background-color: #d34d7a;
+  border-color: #000000;
+  box-shadow: 1px 1px 5px 0px #000000;
+  color: #000000;
+  position: fixed;
+  bottom: 10vh;
+  right: 3vh;
+}
+
+.button-to-scroll:hover {
+  box-shadow: 1px 1px 1px #000000;
+  border-color: #000000;
+  text-shadow: 1px 0px 1px #000000;
+  color: white;
+  background-color: #264653;
+}
+
+/*-------------FICHAS GENERO MUSICA----------*/
+
+.card-music-type {
+  position: relative;
+  width: 190px;
+  height: 254px;
+  background-color: #000000a4;
+
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card-music-type::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -5px;
+  margin: auto;
+  width: 200px;
+  height: 264px;
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #d4245f 0%, #03ffe2 100%);
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-music-type::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #d34d7a 0%, #2a9d8f 100%);
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+.heading-music-type {
+  color: #d34d7a;
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.card-music-type p:not(.heading) {
+  font-size: 14px;
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+}
+
+/* .card-music-type p:last-child {
+  color: #d34d7a;
+  font-weight: 600;
+} */
+
+.card-music-type:hover::after {
+  filter: blur(30px);
+}
+
+.pop-card:hover {
+  background-image: url("https://jenesaispop.com/wp-content/uploads/2021/06/billie-eilish-696x464.jpg");
+}
+.rock-card:hover {
+  background-image: url("https://www.billboard.com/wp-content/uploads/2023/08/freddie-mercury-queen-1985-billboard-1240.jpg?w=393");
+}
+.latino-card:hover {
+  background-image: url("https://www.colombiamania.com/AA_IMAGENES/musica/juanes/juanes_final.jpg");
+}
+.flamenco-card:hover {
+  background-image: url("https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2018/07/04/15307214393164.jpg");
+}
+.rap-card:hover {
+  background-image: url("https://i.etsystatic.com/7693665/r/il/040896/414214604/il_fullxfull.414214604_ev03.jpg");
+}
+.indie-card:hover {
+  background-image: url("https://images.ecestaticos.com/9aI4LcX6cuoPFmb__KMSPVY1w8o=/0x0:594x413/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fc54%2F7e9%2F054%2Fc547e9054ced4b7c7e61dfaa831821ee.jpg");
+}
+.dance-card:hover {
+  background-image: url("https://static.eldiario.es/clip/386f3e3f-80a3-4b20-9c39-50aa01dacfdf_16-9-aspect-ratio_default_0.jpg");
+}
+.trap-card:hover {
+  background-image: url("https://imagenes.iberoeconomia.es/wp-content/uploads/2021/12/06223642/16228101907390.jpg");
+}
+.reggaeton-card:hover {
+  background-image: url("https://cloudfront-eu-central-1.images.arcpublishing.com/prisaradiolos40/2PAVIIM7WRNHZMGTGRMKLQO6HQ.jpg");
+}
+
+.card-music-type:hover > .heading-music-type {
+  /* background-image: url("https://cdn5.dibujos.net/dibujos/pintados/201445/guitarra-y-estrellas-musica-pintado-por-violetta08-9910200.jpg");
+  background-size: cover; */
+  font-size: 1.2em;
+  text-shadow: 2px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.card-music-type:hover::before {
+  transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
 }
 
 /*--------------FOOTER--------------*/
