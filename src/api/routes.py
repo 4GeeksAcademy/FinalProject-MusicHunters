@@ -3,9 +3,10 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Event, TicketsSource, PrecioTickets, Favoritos
-from api.utils import generate_sitemap, APIException, validate_password
+from api.utils import generate_sitemap, APIException, validate_password, standard_date
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+
 
 api = Blueprint('api', __name__)
 
@@ -132,6 +133,7 @@ def add_event():
     try:
         request_body = request.json
         print(request_body)
+        
         if not isinstance(request_body, list):
             return jsonify({"msg": "Request body must be a list of events"}), 400
 
@@ -146,7 +148,7 @@ def add_event():
             event.create_new_event(
                 name=item["title"],
                 description="",
-                date=item["date"],
+                date = standard_date(item["date"]),
                 location=item["place"],
                 event_type="concierto",
                 genere=item["product_type"],
@@ -179,11 +181,69 @@ def add_event():
         return jsonify({"msg": "An error occurred while processing the request"}), 500
 
 #-------------------- RUTA DE OBTENER EVENTOS --------------------
+# @api.route('/events', methods=['GET'])
+# def get_events():
+#     events = Event.query.all()
+#     events = list(map(lambda event: event.serialize(), events))
+#     return jsonify(events), 200
+
 @api.route('/events', methods=['GET'])
 def get_events():
     events = Event.query.all()
-    events = list(map(lambda event: event.serialize(), events))
-    return jsonify(events), 200
+    combined_events = {}
+
+    def is_substring(str1, str2):
+        str1 = str1.lower()
+        str2 = str2.lower()
+        return str1 in str2 or str2 in str1
+
+    def find_matching_key(new_key, existing_keys):
+        for key in existing_keys:
+            if key[0] == new_key[0]:
+                if is_substring(key[1], new_key[1]):
+                    return key
+        return None
+
+
+    for event in events:
+        
+        key = (event.name, event.date)
+        match_key= find_matching_key(key, combined_events.keys())
+        if match_key:
+            key = match_key
+
+
+        if key not in combined_events:
+            combined_events[key] = {
+                'title': event.name,
+                'date': event.date,
+                'place': event.location,
+                'genere': event.genere,
+                'image_url': event.image_url,
+                'prices': [event.precios[0].price],
+                'buy_urls': [event.precios[0].source.web_url],
+                'source': [event.precios[0].source.name]
+            }
+        else:
+            combined_events[key]['prices'].append(event.precios[0].price)
+            combined_events[key]['buy_urls'].append(event.precios[0].source.web_url)
+            combined_events[key]['source'].append(event.precios[0].source.name)
+
+    final_events = [
+        {
+            'title': details['title'],
+            'date': details['date'],
+            'place': details['place'],
+            'genere': details['genere'],
+            'image_url': details['image_url'],
+            'price':details['prices'],
+            'buy_url': details['buy_urls'],
+            'source': details['source']
+        }
+        for details in combined_events.values()
+    ]
+
+    return jsonify(final_events), 200
 
 #-------------------- RUTA DE OBTENER EVENTO POR ID --------------------
 #                       Para la vista de detalle                       
@@ -210,3 +270,29 @@ def get_events_by_date(date):
     events = list(map(lambda event: event.serialize(), events))
     return jsonify(events), 200
 
+######################## FAVORITES ########################
+#-------------------- RUTA DE AGREGAR FAVORITO --------------------
+@api.route('/favorites', methods=['POST'])
+@jwt_required()
+def add_favorite():
+    request_body = request.json
+    user = User.query.get(get_jwt_identity())
+
+    if not isinstance(request_body, list):
+        return jsonify({"msg": "Request body must be a list of events"}), 400
+
+    for item in request_body:
+        event = Event.query.get(item["event_id"])
+        if event is None:
+            return jsonify({"msg": "Event not found"}), 404
+
+        favorite = Favoritos()
+        favorite.create_new_favorite(
+            user_id=user.id,
+            event_id=event.id
+        )
+
+        db.session.add(favorite)
+        db.session.commit()
+
+    return jsonify({"msg": "Favorites added successfully"}), 201
