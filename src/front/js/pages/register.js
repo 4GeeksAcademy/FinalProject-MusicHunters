@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 import { HomeUser } from "./homeUser";
@@ -8,7 +8,7 @@ import { HomeUser } from "./homeUser";
 export const Register = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
-
+  const navigate = useNavigate();
   const [dataContact, setDataContact] = useState({
     userName: "",
     emailAdress: "",
@@ -16,10 +16,10 @@ export const Register = (props) => {
     confirmPassword: "",
   });
 
-  const handleAddContact = (event) => {
+  const handleAddContact = async (event) => {
     event.preventDefault();
 
-    actions.register(
+    const registerOk = await actions.register(
       dataContact.userName,
       dataContact.emailAdress,
       dataContact.password,
@@ -31,6 +31,10 @@ export const Register = (props) => {
       password: "",
       confirmPassword: "",
     });
+
+    if (registerOk == true) {
+      navigate("/login");
+    }
   };
 
   const inputValue = (e) => {
@@ -135,17 +139,7 @@ export const Register = (props) => {
             </button>
           </div>
         </div>
-        <div className="mb-2 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
 
-          <label className="form-check-label mr-1" htmlFor="exampleCheck1">
-            Remember me
-          </label>
-        </div>
         <div id="requiredFields" className="form-text mb-3">
           <span className="required-asterisk">*</span> Required fields
         </div>
