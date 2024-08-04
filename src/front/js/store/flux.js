@@ -216,7 +216,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       getUserDataFromToken: () => {
         const actions = getActions();
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token")?localStorage.getItem("token") : sessionStorage.getItem("token");
         if (!token) {
           console.log("No hay token almacenado");
           return null;
@@ -224,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const decodeToken = jwtDecode(token);
           const { sub } = decodeToken;
-          const { username, name, last_name, email, phone, address } = sub;
+          const { username, name, last_name, email, phone, address,id } = sub;
           setStore({
             user: {
               userName: username || "",
@@ -233,7 +233,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               email: email || "",
               phoneNumber: phone || "",
               address: address || "",
-              id: decodeToken.id || "",
+              id: id || "",
             },
             isAuthenticated: true,
           });
@@ -347,37 +347,90 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      // userFavourites: async (id, favourite) => {
-      //   const actions = getActions();
-      //   try {
-      //     const resp = await fetch(
-      //       `${process.env.BACKEND_URL}api/favourites/${id}`,
-      //       {
-      //         method: "PUT",
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //         },
-      //       }
-      //     );
-      //     if (resp.ok) {
-      //       const data = await resp.json();
-      //       console.log(data);
-      //       setStore({
-      //         favourite: {
-      //           favourite: fav,
-      //         },
-      //       });
-      //       favourite.push(fav);
-      //     } else {
-      //       console.log("Error al añadir favoritos");
-      //       return false;
-      //     }
-      //   } catch (error) {
-      //     console.log(error);
-      //   }
-      // },
+    addFavourite: async (userId, eventId) => {
+      const actions = getActions();
+      try {
+        const resp = await fetch(`${process.env.BACKEND_URL}api/favourite`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            user_id: userId,
+            event_id: eventId,
+          }),
+        });
 
-      deleteUser: async (id) => {
+        if (resp.ok) {
+          const data = await resp.json();
+          console.log("Evento añadido a favoritos exitosamente", data);
+          return true;
+        } else {
+          const errorData = await resp.json();
+          console.log("Error al añadir evento a favoritos:", errorData.message);
+          return false;
+        }
+      } catch (error) {
+        console.error("Error al añadir evento a favoritos:", error);
+        return false;
+      }
+    },
+
+    getFavourites: async () => {
+      const actions = getActions();
+      try{
+        const resp = await fetch(`${process.env.BACKEND_URL}api/favourite`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (resp.ok) {
+          const data = await resp.json();
+          console.log("Favoritos obtenidos exitosamente", data);
+          return true;
+        } else {
+          const errorData = await resp.json();
+          console.log("Error al obtener favoritos:", errorData.message);
+          return false;
+        }
+      }catch (error) {
+        console.error("Error al obtener favoritos:", error);
+        return false;
+      }
+    },
+
+    deleteFavourite: async (id) => {
+      const actions = getActions();
+      try {
+        const resp = await fetch(`${process.env.BACKEND_URL}api/favourite/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (resp.ok) {
+          const data = await resp.json();
+          console.log("Favorito eliminado exitosamente", data);
+          return true;
+        } else {
+          const errorData = await resp.json();
+          console.log("Error al eliminar favorito:", errorData.message);
+          return false;
+        }
+        } catch (error) {
+        console.error("Error al eliminar favorito:", error);
+        return false;
+      }
+    },
+
+
+    deleteUser: async (id) => {
         const actions = getActions();
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
