@@ -19,6 +19,10 @@ export const Profile = () => {
     address: "",
   });
 
+  useEffect(() => {
+    actions.getUser(store.user.id);
+ },[])
+
   // const [image, setImage] = useState(null); //Para guardar imagen de usuario
 
   // const handleImageChange = (event) => {

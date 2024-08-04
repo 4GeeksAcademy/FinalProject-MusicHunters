@@ -216,7 +216,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       getUserDataFromToken: () => {
         const actions = getActions();
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token")?localStorage.getItem("token") : sessionStorage.getItem("token");
         if (!token) {
           console.log("No hay token almacenado");
           return null;
@@ -224,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const decodeToken = jwtDecode(token);
           const { sub } = decodeToken;
-          const { username, name, last_name, email, phone, address } = sub;
+          const { username, name, last_name, email, phone, address,id } = sub;
           setStore({
             user: {
               userName: username || "",
@@ -233,7 +233,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               email: email || "",
               phoneNumber: phone || "",
               address: address || "",
-              id: decodeToken.id || "",
+              id: id || "",
             },
             isAuthenticated: true,
           });
