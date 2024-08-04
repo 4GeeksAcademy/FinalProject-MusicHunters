@@ -63,7 +63,7 @@ const Layout = () => {
             </Routes>
           </div>
           <div className="content-container div-footer">
-            <Footer />
+            <Footer className="mb-0" />
           </div>
         </ScrollToTop>
       </BrowserRouter>

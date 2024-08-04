@@ -73,11 +73,11 @@ export const Home = () => {
       <div className="container text-center mt-5">
         <h1 className="title-music-hunters">Music Hunters Home</h1>
         <h3 className="subtitle">
-          Find the best price for the best music events!
+          ¡Encuentra el mejor precio para los mejores eventos musicales!
         </h3>
         <Link to="/register/">
           <button className="btn btn-dark home-button">
-            Create your account to access now!
+            ¡Crea tu cuenta para acceder ahora!
           </button>
         </Link>
       </div>
@@ -105,12 +105,12 @@ export const Home = () => {
               >
                 <img
                   src={event.image_url}
-                  className="d-block w-100"
+                  className="d-block w-100 img-fluid"
                   alt={event.title}
                 />
                 {/* <div className="carousel-caption d-none d-md-block">
                   <h5>{event.title}</h5>
-                  <p>Some representative placeholder content.</p>
+                  <p>Contenido de marcador de posición representativo.</p>
                 </div> */}
               </div>
             ))}
@@ -125,7 +125,7 @@ export const Home = () => {
               className="carousel-control-prev-icon"
               aria-hidden="true"
             ></span>
-            <span className="visually-hidden">Previous</span>
+            <span className="visually-hidden">Anterior</span>
           </button>
           <button
             className="carousel-control-next"
@@ -137,7 +137,7 @@ export const Home = () => {
               className="carousel-control-next-icon"
               aria-hidden="true"
             ></span>
-            <span className="visually-hidden">Next</span>
+            <span className="visually-hidden">Siguiente</span>
           </button>
         </div>
       </div>

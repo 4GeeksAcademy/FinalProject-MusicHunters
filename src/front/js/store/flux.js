@@ -176,8 +176,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             const data = await resp.json();
             if (rememberMe) {
               localStorage.setItem("token", data.access_token);
-
-            }else{
+            } else {
               sessionStorage.setItem("token", data.access_token);
             }
 
@@ -216,7 +215,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       getUserDataFromToken: () => {
         const actions = getActions();
-        const token = localStorage.getItem("token")?localStorage.getItem("token") : sessionStorage.getItem("token");
+
+        const token = localStorage.getItem("token")
+          ? localStorage.getItem("token")
+          : sessionStorage.getItem("token");
+
         if (!token) {
           console.log("No hay token almacenado");
           return null;
@@ -224,7 +227,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const decodeToken = jwtDecode(token);
           const { sub } = decodeToken;
-          const { username, name, last_name, email, phone, address,id } = sub;
+
+          const { username, name, last_name, email, phone, address, id } = sub;
+
           setStore({
             user: {
               userName: username || "",
@@ -262,14 +267,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/events`);
           const data = await resp.json();
-
+          setStore({ events: [] });
           for (let event of data) {
             setStore({ events: [...store.events, event] });
           }
 
           // console.log(data);
           console.log(store.events);
-      } catch (error) {
+        } catch (error) {
           console.log(error);
           return false;
         }
@@ -318,7 +323,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")?localStorage.getItem("token"):sessionStorage.getItem("token")}`,
+              Authorization: `Bearer ${
+                localStorage.getItem("token")
+                  ? localStorage.getItem("token")
+                  : sessionStorage.getItem("token")
+              }`,
             },
             body: JSON.stringify({
               profile_picture: photo,

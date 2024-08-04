@@ -33,6 +33,13 @@ body {
   font-family: "Body", serif;
   background-attachment: fixed;
   background-size: auto;
+  padding-bottom: 10%;
+}
+
+/*-------SOLUCIÓN AL PROBLEMA DEL FOOTER----------*/
+div.div-footer {
+  /* margin-top: 10px; */
+  padding-top: 3%;
 }
 
 /* div.div-body {
@@ -71,10 +78,13 @@ label {
   color: white;
 }
 
+/*--------------------CARDS EVENTOS----------------*/
+
 .card {
   background-color: #2a9d90e0;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   box-shadow: 10px 10px 20px #000000;
+  /* min-height: max-content !important; */
 }
 
 .cards-events {
@@ -84,11 +94,33 @@ label {
   font-weight: bold;
 }
 
+a.card-prices {
+  font-weight: bold;
+  color: #000000;
+  text-decoration: none;
+}
+
+a.card-prices:hover {
+  font-weight: bolder;
+  color: #264653;
+  text-decoration: underline;
+}
+
 a.page-link,
 a.page-link:hover .page-item.disable {
   background-color: #264653;
   color: #d34d7a;
   border-color: #d34d7a;
+}
+
+a.card-price-link {
+  color: #000000;
+  text-decoration: none;
+}
+
+a.card-price-link:hover {
+  color: #a02c53 !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 10);
 }
 
 .page-link:hover {
@@ -165,6 +197,10 @@ nav {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1) !important;
 }
 
+.text-error-search {
+  color: #d34d7a;
+}
+
 /*----------------Carrusel HOME--------------*/
 
 .carousel-item,
@@ -174,9 +210,9 @@ nav {
 }
 
 .carousel-item img {
-  width: 100%; /* Asegura que la imagen ocupe todo el ancho del carrusel */
-  height: 100%; /* Ajusta la altura del carrusel según tus necesidades */
-  object-fit: contain; /* Recorta la imagen para llenar el contenedor */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .carousel-dark {
@@ -186,9 +222,8 @@ nav {
 button.carousel-control-next,
 button.carousel-control-prev {
   color: #d34d7a !important;
-  background-color: #03ffe2;
-  border-radius: 50%;
-  height: fit-content;
+  background-color: #4a4b4b;
+  border-radius: 0.5rem;
   width: fit-content;
 }
 
@@ -285,6 +320,7 @@ div.prices-fav-icon {
   justify-content: end;
   padding: 12px;
   gap: 12px;
+  margin-left: 2.5rem;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -349,13 +385,13 @@ div.prices-fav-icon {
   background-image: url("https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2018/07/04/15307214393164.jpg");
 }
 .rap-card:hover {
-  background-image: url("https://i.etsystatic.com/7693665/r/il/040896/414214604/il_fullxfull.414214604_ev03.jpg");
+  background-image: url("https://dynamicmedia.livenationinternational.com/Media/g/r/s/fd60e188-86ab-437b-b4e1-d33b5ac52b66.jpg");
 }
 .indie-card:hover {
-  background-image: url("https://images.ecestaticos.com/9aI4LcX6cuoPFmb__KMSPVY1w8o=/0x0:594x413/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fc54%2F7e9%2F054%2Fc547e9054ced4b7c7e61dfaa831821ee.jpg");
+  background-image: url("https://www.zonadeobras.com/wp-content/uploads/2022/12/bien-cuadrada-360x360.jpg");
 }
 .dance-card:hover {
-  background-image: url("https://static.eldiario.es/clip/386f3e3f-80a3-4b20-9c39-50aa01dacfdf_16-9-aspect-ratio_default_0.jpg");
+  background-image: url("https://globalylive.com/wp-content/uploads/2024/03/guetta_snippet-1.jpg");
 }
 .trap-card:hover {
   background-image: url("https://imagenes.iberoeconomia.es/wp-content/uploads/2021/12/06223642/16228101907390.jpg");
@@ -376,14 +412,16 @@ div.prices-fav-icon {
 }
 
 /*--------------FOOTER--------------*/
-a,
-.footer-color {
+a.footer-color {
   color: white;
 }
 
-a,
-.footer-color:hover {
+a.footer-color:hover {
   color: #d34d7a;
+}
+
+.bg-dark {
+  background-color: transparent;
 }
 
 /*------------------FORMS----------------*/
@@ -452,18 +490,6 @@ input.user-img {
 
 /*--------------Cards---------------*/
 
-a.card-prices {
-  font-weight: bold;
-  color: #000000;
-  text-decoration: none;
-}
-
-a.card-prices:hover {
-  font-weight: bolder;
-  color: #264653;
-  text-decoration: underline;
-}
-
 .card-user-profile {
   min-height: 400px;
   width: 100%;
@@ -472,7 +498,7 @@ a.card-prices:hover {
 .card-user-profile {
   background-color: #2a9d90ef;
   filter: blur(50%);
-  max-width: 50vw;
+  max-width: 40vh;
 }
 
 .file-input-container {

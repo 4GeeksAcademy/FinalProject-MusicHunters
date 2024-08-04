@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { NavbarUser } from "./navbarUser";
@@ -11,10 +11,13 @@ export const EventsFilter = () => {
   // Estado para el género seleccionado
   const [selectedGenere, setSelectedGenere] = useState(null);
 
+  // Referencia para la primera tarjeta de evento
+  const firstEventRef = useRef(null);
+
   // Accede a los eventos desde el store
   const eventsFilterBy = store.events || [];
 
-  // Filtrar eventos por el género seleccionado
+  // Filtro eventos por el género seleccionado
   const filterByGenere = eventsFilterBy.filter(
     (event) => event.genere === selectedGenere
   );
@@ -28,6 +31,12 @@ export const EventsFilter = () => {
   // Función para manejar el clic en una tarjeta de género
   const handleGenereClick = (genere) => {
     setSelectedGenere(genere);
+    setTimeout(() => {
+      // Si hay eventos filtrados, desplazarse al primero
+      if (firstEventRef.current) {
+        firstEventRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 0);
   };
 
   return (
@@ -39,7 +48,7 @@ export const EventsFilter = () => {
           Find the best price for the best music events!
         </h3>
 
-        <div className="row g-2 justify-content-center ms-auto">
+        <div className="row justify-content-center ms-auto">
           {/* Cada tarjeta representa un género musical */}
           <div
             className="col-md-6 col-lg-3 mb-5"
@@ -115,45 +124,49 @@ export const EventsFilter = () => {
           </div>
         </div>
 
-        {/* Renderiza los eventos filtrados aquí si es necesario */}
+        {/* Se renderizan los eventos filtrados aquí */}
         <div className="container">
-          <div className="row">
-            {filterByGenere.map((event, index) => (
-              <div key={`${event.id}-${index}`} className="event-card">
-                <div className="col-md-6 mb-4" key={event.id}>
+          {filterByGenere.map((event, index) => (
+            <div className="row" key={`${event.id}-${index}`}>
+              {/* // Navego a la primera tarjeta */}
+              <div
+                ref={index === 0 ? firstEventRef : null}
+                className="event-card"
+              >
+                <div className="col-md-6 mb-4">
                   <div
                     className="card mx-auto cards-events"
-                    style={{ maxWidth: "540px" }}
+                    // style={{ maxWidth: "540px" }}
                   >
                     <div className="row g-0 p-2 event-card">
                       <div className="col-md-4">
                         <img
                           src={event.image_url}
                           className="img-fluid rounded-start"
-                          alt={event.name}
+                          alt={event.title}
                         />
                       </div>
                       <div className="col-md-8">
                         <div className="card-body">
                           <h3 className="card-events-title">
-                            <strong>{event.name}</strong>
+                            <strong>{event.title}</strong>
                           </h3>
                           <p className="card-text">
                             <small className="text-body-secondary">
                               {event.date}
                             </small>
                           </p>
-                          <p className="card-text">{event.location}</p>
+                          <p className="card-text">{event.place}</p>
                           <p className="card-text">{event.genere}</p>
-                          {event.precios.length > 0 && (
+                          {event.price.length > 0 && (
                             <div className="prices-fav-icon">
                               <a
                                 className="card-prices"
-                                href={event.precios[0].source.web_url}
+                                href={event.buy_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                {event.precios[0].price}
+                                {event.price[0]}
                               </a>
                               <button className="btn btn-warning fav-button">
                                 <img
@@ -171,8 +184,8 @@ export const EventsFilter = () => {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
