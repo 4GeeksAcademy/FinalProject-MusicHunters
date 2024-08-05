@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { InvalidTokenError, jwtDecode } from "jwt-decode";
 import { Context } from "../store/appContext";
 import React, { useState, useEffect, useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -357,8 +358,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       addFavourite: async (userId, eventId) => {
+
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/favorites`, {
+
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -371,6 +374,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
 
           if (resp.ok) {
+
             const newFavourite = await resp.json();
             console.log(
               "Evento añadido a favoritos exitosamente",
@@ -379,7 +383,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             const store = getStore();
             setStore({ favourites: [...store.favourites, newFavourite] });
-
             return true;
           } else {
             const errorData = await resp.json();
@@ -396,8 +399,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getFavourites: async () => {
+
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/favorites`, {
+
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -406,9 +411,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
 
           if (resp.ok) {
+
             const favourites = await resp.json();
             console.log("Favoritos obtenidos exitosamente", favourites);
             setStore({ favourites });
+
             return true;
           } else {
             const errorData = await resp.json();
@@ -420,6 +427,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+
       deleteFavourite: async (id) => {
         try {
           const resp = await fetch(
@@ -440,6 +448,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({
               favourites: store.favourites.filter((fav) => fav.id !== id),
             });
+
 
             return true;
           } else {
