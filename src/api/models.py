@@ -120,7 +120,7 @@ class TicketsSource(db.Model):
         db.session.commit()
 
     def serialize(self):
-        return {
+        return {        
             "id": self.id,
             "name": self.name,
             "web_url": self.web_url

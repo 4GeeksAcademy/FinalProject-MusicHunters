@@ -358,9 +358,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       addFavourite: async (userId, eventId) => {
-        const actions = getActions();
+
         try {
-          const resp = await fetch(`${process.env.BACKEND_URL}api/favourite`, {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/favorites`, {
+
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -373,8 +374,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
 
           if (resp.ok) {
-            const data = await resp.json();
-            console.log("Evento añadido a favoritos exitosamente", data);
+
+            const newFavourite = await resp.json();
+            console.log(
+              "Evento añadido a favoritos exitosamente",
+              newFavourite
+            );
+
+            const store = getStore();
+            setStore({ favourites: [...store.favourites, newFavourite] });
             return true;
           } else {
             const errorData = await resp.json();
@@ -391,10 +399,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getFavourites: async () => {
-        const actions = getActions();
-        const navigate = useNavigate();
+
         try {
-          const resp = await fetch(`${process.env.BACKEND_URL}api/favourite`, {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/favorites`, {
+
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -403,8 +411,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
 
           if (resp.ok) {
-            const data = await resp.json();
-            console.log("Favoritos obtenidos exitosamente", data);
+
+            const favourites = await resp.json();
+            console.log("Favoritos obtenidos exitosamente", favourites);
+            setStore({ favourites });
+
             return true;
           } else {
             const errorData = await resp.json();
@@ -418,10 +429,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       deleteFavourite: async (id) => {
-        const actions = getActions();
         try {
           const resp = await fetch(
-            `${process.env.BACKEND_URL}api/favourite/${id}`,
+            `${process.env.BACKEND_URL}api/favorite/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -432,8 +442,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
 
           if (resp.ok) {
-            const data = await resp.json();
-            console.log("Favorito eliminado exitosamente", data);
+            console.log("Favorito eliminado exitosamente");
+
+            const store = getStore();
+            setStore({
+              favourites: store.favourites.filter((fav) => fav.id !== id),
+            });
+
+
             return true;
           } else {
             const errorData = await resp.json();

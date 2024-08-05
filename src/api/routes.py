@@ -215,6 +215,7 @@ def get_events():
 
         if key not in combined_events:
             combined_events[key] = {
+                'id': [event.id],
                 'title': event.name,
                 'date': event.date,
                 'place': event.location,
@@ -225,12 +226,14 @@ def get_events():
                 'source': [event.precios[0].source.name]
             }
         else:
+            combined_events[key]['id'].append(event.id)
             combined_events[key]['prices'].append(event.precios[0].price)
             combined_events[key]['buy_urls'].append(event.precios[0].source.web_url)
             combined_events[key]['source'].append(event.precios[0].source.name)
 
     final_events = [
         {
+            'id': ids[0],
             'title': details['title'],
             'date': details['date'],
             'place': details['place'],
@@ -240,7 +243,7 @@ def get_events():
             'buy_url': details['buy_urls'],
             'source': details['source']
         }
-        for details in combined_events.values()
+        for ids, details in [(v['id'], v) for v in combined_events.values()]
     ]
 
     return jsonify(final_events), 200
