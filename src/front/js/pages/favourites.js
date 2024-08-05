@@ -10,10 +10,17 @@ export const Favourites = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
 
+  useEffect(() => {
+    actions.getFavourites();
+    console.log(store.favourites);
+  });
+
   return (
     <>
       <NavbarUser />
       <h1 className="text-center register-header mb-3">My Favourites</h1>
+      
+
       {/* {store.favourites === undefined ? (
         <p className="text-center fs-3">There's no favourites to show</p>
       ) : (

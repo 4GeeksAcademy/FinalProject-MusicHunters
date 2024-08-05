@@ -51,7 +51,10 @@ const Layout = () => {
               <Route element={<ForgotPassword />} path="login/forgotPassword" />
               <Route element={<ProtectedRoute />}>
                 <Route element={<HomeUser />} path="/homeUser" />
-                <Route element={<ResetPassword />} path="/resetPassword" />
+                <Route
+                  element={<ResetPassword />}
+                  path="/resetPassword/:token"
+                />
                 <Route element={<MyProfile />} path="/userProfile" />
                 <Route element={<EditProfile />} path="/editProfile" />
                 <Route element={<Search />} path="/search" />
