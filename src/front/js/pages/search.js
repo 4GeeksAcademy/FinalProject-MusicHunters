@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { NavbarUser } from "../component/navbarUser";
@@ -6,7 +6,11 @@ import favIcon from "../../img/favourites.png";
 import { ScrollNavigateToTop } from "../component/scrollNavigateToTop";
 
 export const Search = () => {
-  const { store,actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
+
+  useEffect(() => {
+    actions.getFavourites();
+  }, []);
 
   // Función para formatear los precios con sus URLs correspondientes
   const formatPrices = (prices, urls) => {
@@ -50,13 +54,15 @@ export const Search = () => {
 
   const handleFavouriteClick = async (event) => {
     const favourite = store.favourites.find(
-      (fav) => fav.eventId === event.id
+      (fav) => fav.event_id === event.id && fav.user_id === store.user.id
     );
 
     if (favourite) {
       await actions.deleteFavourite(favourite.id);
+      actions.getFavourites();
     } else {
       await actions.addFavourite(store.user.id, event.id);
+      actions.getFavourites();
     }
   };
 
@@ -101,7 +107,10 @@ export const Search = () => {
                           <div className="prices-fav-icon">
                             {/* Utilizar la función para mostrar los precios con URLs */}
                             {formatPrices(event.price, event.buy_url)}
-                            <button className="btn btn-warning fav-button" onClick={()=>handleFavouriteClick(event)}>
+                            <button
+                              className="btn btn-warning fav-button"
+                              onClick={() => handleFavouriteClick(event)}
+                            >
                               <img
                                 className="favIcon"
                                 src={favIcon}

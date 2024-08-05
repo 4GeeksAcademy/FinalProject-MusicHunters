@@ -356,90 +356,104 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-    addFavourite: async (userId, eventId) => {
-      const actions = getActions();
-      try {
-        const resp = await fetch(`${process.env.BACKEND_URL}api/favourites`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({
-            user_id: userId,
-            event_id: eventId,
-          }),
-        });
+      addFavourite: async (userId, eventId) => {
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/favorites`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              user_id: userId,
+              event_id: eventId,
+            }),
+          });
 
-        if (resp.ok) {
-          const data = await resp.json();
-          console.log("Evento añadido a favoritos exitosamente", data);
-          return true;
-        } else {
-          const errorData = await resp.json();
-          console.log("Error al añadir evento a favoritos:", errorData.message);
-          return false;
-        }
-      } catch (error) {
-        console.error("Error al añadir evento a favoritos:", error);
-        return false;
-      }
-    },
+          if (resp.ok) {
+            const newFavourite = await resp.json();
+            console.log(
+              "Evento añadido a favoritos exitosamente",
+              newFavourite
+            );
 
-    getFavourites: async () => {
-      const actions = getActions();
-      try{
-        const resp = await fetch(`${process.env.BACKEND_URL}api/favourites`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+            const store = getStore();
+            setStore({ favourites: [...store.favourites, newFavourite] });
 
-        if (resp.ok) {
-          const data = await resp.json();
-          console.log("Favoritos obtenidos exitosamente", data);
-          return true;
-        } else {
-          const errorData = await resp.json();
-          console.log("Error al obtener favoritos:", errorData.message);
-          return false;
-        }
-      }catch (error) {
-        console.error("Error al obtener favoritos:", error);
-        return false;
-      }
-    },
-
-    deleteFavourite: async (id) => {
-      const actions = getActions();
-      try {
-        const resp = await fetch(`${process.env.BACKEND_URL}api/favourite/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-
-        if (resp.ok) {
-          const data = await resp.json();
-          console.log("Favorito eliminado exitosamente", data);
-          return true;
-        } else {
-          const errorData = await resp.json();
-          console.log("Error al eliminar favorito:", errorData.message);
-          return false;
-        }
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log(
+              "Error al añadir evento a favoritos:",
+              errorData.message
+            );
+            return false;
+          }
         } catch (error) {
-        console.error("Error al eliminar favorito:", error);
-        return false;
-      }
-    },
+          console.error("Error al añadir evento a favoritos:", error);
+          return false;
+        }
+      },
 
+      getFavourites: async () => {
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}api/favorites`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          });
 
-    deleteUser: async (id) => {
+          if (resp.ok) {
+            const favourites = await resp.json();
+            console.log("Favoritos obtenidos exitosamente", favourites);
+            setStore({ favourites });
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log("Error al obtener favoritos:", errorData.message);
+            return false;
+          }
+        } catch (error) {
+          console.error("Error al obtener favoritos:", error);
+          return false;
+        }
+      },
+      deleteFavourite: async (id) => {
+        try {
+          const resp = await fetch(
+            `${process.env.BACKEND_URL}api/favorite/${id}`,
+            {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+
+          if (resp.ok) {
+            console.log("Favorito eliminado exitosamente");
+
+            const store = getStore();
+            setStore({
+              favourites: store.favourites.filter((fav) => fav.id !== id),
+            });
+
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log("Error al eliminar favorito:", errorData.message);
+            return false;
+          }
+        } catch (error) {
+          console.error("Error al eliminar favorito:", error);
+          return false;
+        }
+      },
+
+      deleteUser: async (id) => {
         const actions = getActions();
         try {
           const resp = await fetch(`${process.env.BACKEND_URL}api/user/${id}`, {
