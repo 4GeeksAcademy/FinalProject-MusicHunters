@@ -6,7 +6,7 @@ import favIcon from "../../img/favourites.png";
 import { ScrollNavigateToTop } from "../component/scrollNavigateToTop";
 
 export const Search = () => {
-  const { store } = useContext(Context);
+  const { store,actions } = useContext(Context);
 
   // Función para formatear los precios con sus URLs correspondientes
   const formatPrices = (prices, urls) => {
@@ -47,6 +47,19 @@ export const Search = () => {
     });
   };
   const uniqueEvents = filterUniqueEvents(store.events || []);
+
+  const handleFavouriteClick = async (event) => {
+    const favourite = store.favourites.find(
+      (fav) => fav.eventId === event.id
+    );
+
+    if (favourite) {
+      await actions.deleteFavourite(favourite.id);
+    } else {
+      await actions.addFavourite(store.user.id, event.id);
+    }
+  };
+
   return (
     <>
       <NavbarUser />
@@ -88,7 +101,7 @@ export const Search = () => {
                           <div className="prices-fav-icon">
                             {/* Utilizar la función para mostrar los precios con URLs */}
                             {formatPrices(event.price, event.buy_url)}
-                            <button className="btn btn-warning fav-button">
+                            <button className="btn btn-warning fav-button" onClick={()=>handleFavouriteClick(event)}>
                               <img
                                 className="favIcon"
                                 src={favIcon}

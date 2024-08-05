@@ -359,7 +359,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     addFavourite: async (userId, eventId) => {
       const actions = getActions();
       try {
-        const resp = await fetch(`${process.env.BACKEND_URL}api/favourite`, {
+        const resp = await fetch(`${process.env.BACKEND_URL}api/favourites`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -389,7 +389,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     getFavourites: async () => {
       const actions = getActions();
       try{
-        const resp = await fetch(`${process.env.BACKEND_URL}api/favourite`, {
+        const resp = await fetch(`${process.env.BACKEND_URL}api/favourites`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
