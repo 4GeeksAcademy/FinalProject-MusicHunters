@@ -22,6 +22,12 @@ export const NavbarUser = () => {
     sessionStorage.removeItem("token");
     navigate("/");
   };
+
+  const userFavourites = () => {
+    if (store.getFavourites() == true) {
+      navigate("/favourites");
+    }
+  };
   return (
     <nav className="navbar navbar-light top-nav bg-transparent mb-5">
       <Link to="/homeUser">
@@ -48,6 +54,7 @@ export const NavbarUser = () => {
           <button className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center">
             <img
               className="favIcon"
+              onClick={() => userFavourites()}
               src={favIcon}
               alt="Fav Icon"
               style={{ width: "24px", height: "24px" }}
