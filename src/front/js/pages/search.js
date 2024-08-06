@@ -55,11 +55,12 @@ export const Search = () => {
 
   const handleFavouriteClick = async (event) => {
     const favourite = store.favourites.find(
-      (fav) => fav.event_id === event.id && fav.user_id === store.user.id
+      (fav) => fav.id === event.id && fav.user_id === store.user.id
     );
+    console.log(favourite);
 
     if (favourite) {
-      await actions.deleteFavourite(favourite.id);
+      await actions.deleteFavourite(favourite.favorite_id);
       actions.getFavourites();
       setFavorites((prev) => {
         const newFavorites = new Set(prev);

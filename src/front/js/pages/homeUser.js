@@ -85,11 +85,12 @@ export const HomeUser = () => {
 
   const handleFavouriteClick = async (event) => {
     const favourite = store.favourites.find(
-      (fav) => fav.event_id === event.id && fav.user_id === store.user.id
+
+      (fav) => fav.id === event.id && fav.user_id === store.user.id
     );
 
     if (favourite) {
-      await actions.deleteFavourite(favourite.id);
+      await actions.deleteFavourite(favourite.favorite_id);
       actions.getFavourites();
       setFavorites((prev) => {
         const newFavorites = new Set(prev);
@@ -102,6 +103,7 @@ export const HomeUser = () => {
       setFavorites((prev) => new Set(prev).add(event.id));
     }
   };
+
   return (
     <>
       <NavbarUser />
@@ -221,13 +223,16 @@ export const HomeUser = () => {
                               {/* Función para mostrar los precios con URLs */}
                               {formatPrices(event.price, event.buy_url)}
                               <button
+
                                 className={`btn fav-button ${
                                   favorites.has(event.id) ? "fav-active" : ""
                                 }`}
+                                onClick={() => handleFavouriteClick(event)}
+
                               >
                                 <img
                                   className="favIcon"
-                                  onClick={() => handleFavouriteClick(event)}
+                                  
                                   src={favIcon}
                                   alt="Fav Icon"
                                   style={{ width: "24px", height: "24px" }}

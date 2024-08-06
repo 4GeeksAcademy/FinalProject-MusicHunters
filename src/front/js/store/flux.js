@@ -3,6 +3,8 @@ import { InvalidTokenError, jwtDecode } from "jwt-decode";
 import { Context } from "../store/appContext";
 import React, { useState, useEffect, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ForgotPassword } from "../pages/forgotPassword";
+import { ResetPassword } from "../pages/resetPassword";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -207,6 +209,81 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+      forgotPassword: async (email) => {
+        const actions = getActions();
+        if (!email) {
+          actions.errorEmptyFieldsAlert();
+          console.log("Faltan campos");
+          return false;
+        }
+
+        try {
+          const resp = await fetch(
+            `${process.env.BACKEND_URL}forgot-password`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: email,
+              }),
+            }
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log("Email enviado exitosamente", data);
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log("Error al enviar email:", errorData.message);
+            return false;
+          }
+        } catch (error) {
+          console.error("Error al enviar email:", error);
+          return false;
+        }
+      },
+      resetPassword: async (token, password1, password2) => {
+        const actions = getActions();
+        if (!password1 || !password2) {
+          actions.errorEmptyFieldsAlert();
+          console.log("Faltan campos");
+          return false;
+        }
+
+        if (password1 !== password2) {
+          console.log("Las contraseñas no coinciden");
+          actions.errorPasswordAlert();
+          return false;
+        }
+
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}reset-password`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              password: password1,
+            }),
+          });
+
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log("Contraseña cambiada exitosamente", data);
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log("Error al cambiar contraseña:", errorData.message);
+            return false;
+          }
+        } catch (error) {
+          console.error("Error al cambiar contraseña:", error);
+          return false;
+        }
+      },
 
       searchEvents: (query) => {
         const store = getStore();
@@ -378,7 +455,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${
+                localStorage.getItem("token")
+                  ? localStorage.getItem("token")
+                  : sessionStorage.getItem("token")
+              }`,
             },
             body: JSON.stringify({
               user_id: userId,
@@ -416,7 +497,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${
+                localStorage.getItem("token")
+                  ? localStorage.getItem("token")
+                  : sessionStorage.getItem("token")
+              }`,
             },
           });
 
@@ -445,7 +530,11 @@ const getState = ({ getStore, getActions, setStore }) => {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                Authorization: `Bearer ${
+                  localStorage.getItem("token")
+                    ? localStorage.getItem("token")
+                    : sessionStorage.getItem("token")
+                }`,
               },
             }
           );

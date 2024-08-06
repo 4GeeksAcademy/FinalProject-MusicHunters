@@ -12,6 +12,7 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager,create_access_token,get_jwt_identity, jwt_required
 from flask_mail import Mail, Message
+from flask_cors import CORS
 from datetime import timedelta
 
 # from models import Person
@@ -31,6 +32,7 @@ app.config['MAIL_USERNAME'] = 'musichunterweb@gmail.com'
 app.config['MAIL_PASSWORD'] = 'fazj yuxy icai wxlf'
 
 mail = Mail(app)
+CORS(app)
 
 jwt = JWTManager(app)
 
