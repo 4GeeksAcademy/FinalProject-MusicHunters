@@ -250,7 +250,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
-      resetPassword: async (password1, password2) => {
+      resetPassword: async (token, password1, password2) => {
         const actions = getActions();
         if (!password1 || !password2) {
           actions.errorEmptyFieldsAlert();
@@ -269,6 +269,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
               password: password1,
@@ -439,7 +440,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${
+                localStorage.getItem("token")
+                  ? localStorage.getItem("token")
+                  : sessionStorage.getItem("token")
+              }`,
             },
             body: JSON.stringify({
               user_id: userId,
@@ -477,7 +482,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${
+                localStorage.getItem("token")
+                  ? localStorage.getItem("token")
+                  : sessionStorage.getItem("token")
+              }`,
             },
           });
 
@@ -506,7 +515,11 @@ const getState = ({ getStore, getActions, setStore }) => {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                Authorization: `Bearer ${
+                  localStorage.getItem("token")
+                    ? localStorage.getItem("token")
+                    : sessionStorage.getItem("token")
+                }`,
               },
             }
           );

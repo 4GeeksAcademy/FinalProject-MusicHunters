@@ -32,7 +32,7 @@ body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
   font-family: "Body", serif;
   background-attachment: fixed;
-  background-size: auto;
+  background-size: cover;
   padding-bottom: 10%;
 }
 
