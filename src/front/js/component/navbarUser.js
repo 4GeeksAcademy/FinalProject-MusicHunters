@@ -1,20 +1,21 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import userIcon from "../../img/user.png";
 import musicIcon from "../../img/musica.png";
 import favIcon from "../../img/favourites.png";
 import logOutIcon from "../../img/logout.png";
-import getState from "../store/flux";
 import { Context } from "../store/appContext";
 
 export const NavbarUser = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState(""); // estado para searchbar
 
-  const handleAddContact = async (events) => {
+  const handleSearch = (event) => {
     event.preventDefault();
-    await actions.events(events);
+    actions.searchEvents(searchQuery); // Busco eventos
     navigate("/search");
+    console.log(searchQuery);
   };
 
   const logOut = () => {
@@ -23,11 +24,12 @@ export const NavbarUser = () => {
     navigate("/");
   };
 
-  const userFavourites = () => {
-    if (store.getFavourites() == true) {
+  const getFavourites = () => {
+    if (store.getFavourites === true) {
       navigate("/favourites");
     }
   };
+
   return (
     <nav className="navbar navbar-light top-nav bg-transparent mb-5">
       <Link to="/homeUser">
@@ -51,10 +53,12 @@ export const NavbarUser = () => {
           </button>
         </Link>
         <Link to="/favourites">
-          <button className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center">
+          <button
+            className="btn btn-warning mx-2 p-2 d-flex align-items-center justify-content-center"
+            onClick={getFavourites}
+          >
             <img
               className="favIcon"
-              onClick={() => userFavourites()}
               src={favIcon}
               alt="Fav Icon"
               style={{ width: "24px", height: "24px" }}
@@ -65,22 +69,24 @@ export const NavbarUser = () => {
         <form
           className="d-flex form-search-bar"
           role="search"
-          onSubmit={handleAddContact}
+          onSubmit={(event) => handleSearch(event)}
         >
           <input
             className="form-control me-2"
             type="search"
             placeholder="Search by artist, genere or location"
             aria-label="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button className="btn btn-warning me-2" type="submit">
             Search
           </button>
         </form>
-        {/* <Link to="/"> */}
+
         <button
           className="btn btn-warning p-2 me-2 d-flex align-items-center justify-content-center"
-          onClick={() => logOut()}
+          onClick={logOut}
         >
           <img
             className="logOutIcon"
@@ -89,7 +95,6 @@ export const NavbarUser = () => {
             style={{ width: "24px", height: "24px" }}
           />
         </button>
-        {/* </Link> */}
       </div>
     </nav>
   );

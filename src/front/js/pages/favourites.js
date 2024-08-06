@@ -13,27 +13,28 @@ export const Favourites = (props) => {
   useEffect(() => {
     actions.getFavourites();
     console.log(store.favourites);
-  });
+  }, []);
 
   return (
     <>
       <NavbarUser />
       <h1 className="text-center register-header mb-3">My Favourites</h1>
-      
 
-      {/* {store.favourites === undefined ? (
+      {store.favourites === undefined ? (
         <p className="text-center fs-3">There's no favourites to show</p>
       ) : (
-        store.favourite.map((fav) => (
-          <div
-            className="card mb-5 mx-auto cards-events"
-            key={fav.id}
-            style={{ maxWidth: "540px" }}
-          >
-            {fav.id}
+        store.favourites.map((fav) => (
+          <div className="container">
+            <div
+              className="card mb-5 mx-auto cards-events"
+              key={fav.id}
+              style={{ maxWidth: "540px" }}
+            >
+              {fav.id}
+            </div>
           </div>
         ))
-      )} */}
+      )}
     </>
   );
 };

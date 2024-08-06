@@ -22,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       isAuthenticated: false,
       events: [],
       favourites: [],
+      searchResults: [],
     },
     actions: {
       successRegisterAlert: () => {
@@ -49,26 +50,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
-      // successLoginAlertGif: () => {
-      //   Swal.fire({
-      //     title: "Music Hunter logged!",
-      //     width: 600,
-      //     padding: "3em",
-      //     color: "#d34d7a",
-      //     background: "url('img/concierto.jpg')",
-      //     backdrop: `
-      //       rgba(0,0,123,0.4)
-      //       url("/src/front/img/giphy.gif")
-      //       left top
-      //       no-repeat
-      //     `,
-      //   });
-      // },
-
       editUserAlert: () => {
         Swal.fire({
           title: "Well done!",
           text: "Changes saved!",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      },
+
+      forgotPasswordAlert: () => {
+        Swal.fire({
+          title: "Email send",
+          text: "Check your emails to reset password!",
           icon: "success",
           confirmButtonText: "OK",
         });
@@ -104,10 +98,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       errorTokenAlert: () => {
         Swal.fire({
-          title: "Ops!",
-          text: "User not found...",
+          title: "Token expired!",
+          text: "You have to login again",
           icon: "error",
-          confirmButtonText: "Try again",
+          confirmButtonText: "Ok",
         });
       },
 
@@ -291,9 +285,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+      searchEvents: (query) => {
+        const store = getStore();
+        const results = store.events.filter(
+          (event) =>
+            event.title.toLowerCase().includes(query.toLowerCase()) ||
+            event.genere.toLowerCase().includes(query.toLowerCase()) ||
+            event.place.toLowerCase().includes(query.toLowerCase())
+        );
+        setStore({ searchResults: results });
+      },
+
       getUserDataFromToken: () => {
         const actions = getActions();
-
         const token = localStorage.getItem("token")
           ? localStorage.getItem("token")
           : sessionStorage.getItem("token");
@@ -304,6 +308,17 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
         try {
           const decodeToken = jwtDecode(token);
+          const currentTime = Date.now() / 1000; // Tiempo actual en segundos
+          const { exp } = decodeToken; // Accedo al campo 'exp' del token donde se indica el tiempo de vida del token
+
+          if (exp < currentTime) {
+            console.log("El token ha expirado");
+            actions.errorTokenAlert();
+            localStorage.removeItem("token") ||
+              sessionStorage.removeItem("token");
+            return false;
+          }
+
           const { sub } = decodeToken;
 
           const { username, name, last_name, email, phone, address, id } = sub;
@@ -540,6 +555,83 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         } catch (error) {
           console.error("Error al eliminar favorito:", error);
+          return false;
+        }
+      },
+
+      forgotPassword: async (email) => {
+        const actions = getActions();
+        if (!email) {
+          actions.errorEmptyFieldsAlert();
+          console.log("Faltan campos");
+          return false;
+        }
+
+        try {
+          const resp = await fetch(
+            `${process.env.BACKEND_URL}forgot-password`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: email,
+              }),
+            }
+          );
+          if (resp.ok) {
+            const data = await resp.json();
+            actions.forgotPasswordAlert();
+            console.log("Email enviado exitosamente", data);
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log("Error al enviar email:", errorData.message);
+            return false;
+          }
+        } catch (error) {
+          console.error("Error al enviar email:", error);
+          return false;
+        }
+      },
+
+      resetPassword: async (password1, password2) => {
+        const actions = getActions();
+        if (!password1 || !password2) {
+          actions.errorEmptyFieldsAlert();
+          console.log("Faltan campos");
+          return false;
+        }
+
+        if (password1 !== password2) {
+          console.log("Las contraseñas no coinciden");
+          actions.errorPasswordAlert();
+          return false;
+        }
+
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}reset-password`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              password: password1,
+            }),
+          });
+
+          if (resp.ok) {
+            const data = await resp.json();
+            console.log("Contraseña cambiada exitosamente", data);
+            return true;
+          } else {
+            const errorData = await resp.json();
+            console.log("Error al cambiar contraseña:", errorData.message);
+            return false;
+          }
+        } catch (error) {
+          console.error("Error al cambiar contraseña:", error);
           return false;
         }
       },
