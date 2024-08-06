@@ -337,6 +337,25 @@ def add_favorite():
 #     events = list(map(lambda event: event.serialize(), events))
 #     return jsonify(events), 200
 
+# @api.route('/favorites', methods=['GET'])
+# @jwt_required()
+# def get_favorites():
+#     user_id = get_jwt_identity().get('id')
+#     user = User.query.get(user_id)
+#     if user is None:
+#         return jsonify({"msg": "User not found"}), 404
+
+#     favorite_events_ids = {fav.event_id for fav in Favoritos.query.filter_by(user_id=user.id).all()}
+#     if not favorite_events_ids:
+#         return jsonify([]), 200
+    
+#     all_events = Event.query.all()
+    
+#     formatted_all_events = get_formatted_events(all_events)
+
+#     favorite_events = [event for event in formatted_all_events if event['id'] in favorite_events_ids]
+
+#     return jsonify(favorite_events), 200
 @api.route('/favorites', methods=['GET'])
 @jwt_required()
 def get_favorites():
@@ -345,17 +364,29 @@ def get_favorites():
     if user is None:
         return jsonify({"msg": "User not found"}), 404
 
-    favorite_events_ids = {fav.event_id for fav in Favoritos.query.filter_by(user_id=user.id).all()}
-    if not favorite_events_ids:
+    favoritos = Favoritos.query.filter_by(user_id=user.id).all()
+    if not favoritos:
         return jsonify([]), 200
     
+    favorite_events_ids = {fav.event_id for fav in favoritos}
     all_events = Event.query.all()
     
     formatted_all_events = get_formatted_events(all_events)
 
-    favorite_events = [event for event in formatted_all_events if event['id'] in favorite_events_ids]
+    # Crear un diccionario para obtener el ID del favorito por event_id
+    favorite_events_dict = {fav.event_id: fav.id for fav in favoritos}
+    
+    # Incluir el ID del favorito y el user_id en la respuesta
+    favorite_events = []
+    for event in formatted_all_events:
+        if event['id'] in favorite_events_ids:
+            event_with_fav_id = event.copy()  # Crear una copia del evento para no modificar el original
+            event_with_fav_id['favorite_id'] = favorite_events_dict[event['id']]
+            event_with_fav_id['user_id'] = user.id  # Incluir el user_id
+            favorite_events.append(event_with_fav_id)
 
     return jsonify(favorite_events), 200
+
 
 #-------------------- RUTA DE ELIMINAR FAVORITO --------------------
 @api.route('/favorite/<int:id>', methods=['DELETE'])

@@ -82,6 +82,20 @@ export const HomeUser = () => {
   };
   const uniqueEvents = filterUniqueEvents(store.events || []);
 
+  const handleFavouriteClick = async (event) => {
+    const favourite = store.favourites.find(
+      (fav) => fav.id === event.id && fav.user_id === store.user.id
+    );
+
+    if (favourite) {
+      await actions.deleteFavourite(favourite.favorite_id);
+      actions.getFavourites();
+    } else {
+      await actions.addFavourite(store.user.id, event.id);
+      actions.getFavourites();
+    }
+  };
+
   return (
     <>
       <NavbarUser />
@@ -201,7 +215,10 @@ export const HomeUser = () => {
                             <div className="prices-fav-icon">
                               {/* Utilizar la función para mostrar los precios con URLs */}
                               {formatPrices(event.price, event.buy_url)}
-                              <button className="btn btn-warning fav-button">
+                              <button
+                                className="btn btn-warning fav-button"
+                                onClick={() => handleFavouriteClick(event)}
+                              >
                                 <img
                                   className="favIcon"
                                   src={favIcon}
