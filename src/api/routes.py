@@ -3,8 +3,8 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Event, TicketsSource, PrecioTickets, Favoritos
-from api.utils import generate_sitemap, APIException, validate_password, standard_date
-from flask_cors import CORS
+from api.utils import generate_sitemap, APIException, validate_password, standard_date, get_formatted_events
+from flask_cors import CORS 
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
 
@@ -187,66 +187,72 @@ def add_event():
 #     events = list(map(lambda event: event.serialize(), events))
 #     return jsonify(events), 200
 
+# @api.route('/events', methods=['GET'])
+# def get_events():
+#     events = Event.query.all()
+#     combined_events = {}
+
+#     def is_substring(str1, str2):
+#         str1 = str1.lower()
+#         str2 = str2.lower()
+#         return str1 in str2 or str2 in str1
+
+#     def find_matching_key(new_key, existing_keys):
+#         for key in existing_keys:
+#             if key[0] == new_key[0]:
+#                 if is_substring(key[1], new_key[1]):
+#                     return key
+#         return None
+
+
+#     for event in events:
+        
+#         key = (event.name, event.date)
+#         match_key= find_matching_key(key, combined_events.keys())
+#         if match_key:
+#             key = match_key
+
+
+#         if key not in combined_events:
+#             combined_events[key] = {
+#                 'id': [event.id],
+#                 'title': event.name,
+#                 'date': event.date,
+#                 'place': event.location,
+#                 'genere': event.genere,
+#                 'image_url': event.image_url,
+#                 'prices': [event.precios[0].price],
+#                 'buy_urls': [event.precios[0].source.web_url],
+#                 'source': [event.precios[0].source.name]
+#             }
+#         else:
+#             combined_events[key]['id'].append(event.id)
+#             combined_events[key]['prices'].append(event.precios[0].price)
+#             combined_events[key]['buy_urls'].append(event.precios[0].source.web_url)
+#             combined_events[key]['source'].append(event.precios[0].source.name)
+
+#     final_events = [
+#         {
+#             'id': ids[0],
+#             'title': details['title'],
+#             'date': details['date'],
+#             'place': details['place'],
+#             'genere': details['genere'],
+#             'image_url': details['image_url'],
+#             'price':details['prices'],
+#             'buy_url': details['buy_urls'],
+#             'source': details['source']
+#         }
+#         for ids, details in [(v['id'], v) for v in combined_events.values()]
+#     ]
+
+#     return jsonify(final_events), 200
+
 @api.route('/events', methods=['GET'])
 def get_events():
     events = Event.query.all()
-    combined_events = {}
-
-    def is_substring(str1, str2):
-        str1 = str1.lower()
-        str2 = str2.lower()
-        return str1 in str2 or str2 in str1
-
-    def find_matching_key(new_key, existing_keys):
-        for key in existing_keys:
-            if key[0] == new_key[0]:
-                if is_substring(key[1], new_key[1]):
-                    return key
-        return None
-
-
-    for event in events:
-        
-        key = (event.name, event.date)
-        match_key= find_matching_key(key, combined_events.keys())
-        if match_key:
-            key = match_key
-
-
-        if key not in combined_events:
-            combined_events[key] = {
-                'id': [event.id],
-                'title': event.name,
-                'date': event.date,
-                'place': event.location,
-                'genere': event.genere,
-                'image_url': event.image_url,
-                'prices': [event.precios[0].price],
-                'buy_urls': [event.precios[0].source.web_url],
-                'source': [event.precios[0].source.name]
-            }
-        else:
-            combined_events[key]['id'].append(event.id)
-            combined_events[key]['prices'].append(event.precios[0].price)
-            combined_events[key]['buy_urls'].append(event.precios[0].source.web_url)
-            combined_events[key]['source'].append(event.precios[0].source.name)
-
-    final_events = [
-        {
-            'id': ids[0],
-            'title': details['title'],
-            'date': details['date'],
-            'place': details['place'],
-            'genere': details['genere'],
-            'image_url': details['image_url'],
-            'price':details['prices'],
-            'buy_url': details['buy_urls'],
-            'source': details['source']
-        }
-        for ids, details in [(v['id'], v) for v in combined_events.values()]
-    ]
-
-    return jsonify(final_events), 200
+    formatted_events = get_formatted_events(events)
+    return jsonify(formatted_events), 200
 
 #-------------------- RUTA DE OBTENER EVENTO POR ID --------------------
 #                       Para la vista de detalle                       
@@ -312,6 +318,44 @@ def add_favorite():
 
 #-------------------- RUTA DE OBTENER FAVORITOS --------------------
 
+# @api.route('/favorites', methods=['GET'])
+# @jwt_required()
+# def get_favorites():
+#     user_id = get_jwt_identity().get('id')
+#     user = User.query.get(user_id)
+#     if user is None:
+#         return jsonify({"msg": "User not found"}), 404
+
+#     favorites = Favoritos.query.filter_by(user_id=user.id).all()
+
+#     if not favorites:
+#         return jsonify([]), 200 
+    
+#     event_id= [favorite.event_id for favorite in favorites]
+
+#     events = Event.query.filter(Event.id.in_(event_id)).all()
+#     events = list(map(lambda event: event.serialize(), events))
+#     return jsonify(events), 200
+
+# @api.route('/favorites', methods=['GET'])
+# @jwt_required()
+# def get_favorites():
+#     user_id = get_jwt_identity().get('id')
+#     user = User.query.get(user_id)
+#     if user is None:
+#         return jsonify({"msg": "User not found"}), 404
+
+#     favorite_events_ids = {fav.event_id for fav in Favoritos.query.filter_by(user_id=user.id).all()}
+#     if not favorite_events_ids:
+#         return jsonify([]), 200
+    
+#     all_events = Event.query.all()
+    
+#     formatted_all_events = get_formatted_events(all_events)
+
+#     favorite_events = [event for event in formatted_all_events if event['id'] in favorite_events_ids]
+
+#     return jsonify(favorite_events), 200
 @api.route('/favorites', methods=['GET'])
 @jwt_required()
 def get_favorites():
@@ -320,13 +364,30 @@ def get_favorites():
     if user is None:
         return jsonify({"msg": "User not found"}), 404
 
-    favorites = Favoritos.query.filter_by(user_id=user.id).all()
-
-    if not favorites:
-        return jsonify([]), 200 
+    favoritos = Favoritos.query.filter_by(user_id=user.id).all()
+    if not favoritos:
+        return jsonify([]), 200
     
-    serialized_favorites = [favorite.serialize() for favorite in favorites]
-    return jsonify(serialized_favorites), 200
+    favorite_events_ids = {fav.event_id for fav in favoritos}
+    all_events = Event.query.all()
+    
+    formatted_all_events = get_formatted_events(all_events)
+
+    # Crear un diccionario para obtener el ID del favorito por event_id
+    favorite_events_dict = {fav.event_id: fav.id for fav in favoritos}
+    
+    # Incluir el ID del favorito y el user_id en la respuesta
+    favorite_events = []
+    for event in formatted_all_events:
+        if event['id'] in favorite_events_ids:
+            event_with_fav_id = event.copy()  # Crear una copia del evento para no modificar el original
+            event_with_fav_id['favorite_id'] = favorite_events_dict[event['id']]
+            event_with_fav_id['user_id'] = user.id  # Incluir el user_id
+            favorite_events.append(event_with_fav_id)
+
+    return jsonify(favorite_events), 200
+
+
 #-------------------- RUTA DE ELIMINAR FAVORITO --------------------
 @api.route('/favorite/<int:id>', methods=['DELETE'])
 @jwt_required()

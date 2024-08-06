@@ -12,6 +12,7 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager,create_access_token,get_jwt_identity, jwt_required
 from flask_mail import Mail, Message
+from flask_cors import CORS
 from datetime import timedelta
 
 # from models import Person
@@ -28,9 +29,10 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_USERNAME'] = 'musichunterweb@gmail.com'
-app.config['MAIL_PASSWORD'] = 'your_password'
+app.config['MAIL_PASSWORD'] = 'fazj yuxy icai wxlf'
 
 mail = Mail(app)
+CORS(app)
 
 jwt = JWTManager(app)
 
@@ -75,7 +77,7 @@ def sitemap():
 
 # any other endpoint will try to serve it like a static file
 
-@app.route('forgot-password', methods=['POST'])
+@app.route('/forgot-password', methods=['POST'])
 def forgot_password():
     email=request.json.get('email')
     user= User.query.filter_by(email=email).first()
@@ -100,7 +102,7 @@ def forgot_password():
     mail.send(msg)
     return jsonify({"msg":"Email sent"}), 200
 
-@app.route('reset-password', methods=['POST'])
+@app.route('/reset-password', methods=['POST'])
 @jwt_required()
 def reset_password():
 

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-
+import React, { useState, useContext } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Navbar } from "../component/navbar";
 import Swal from "sweetalert2";
@@ -8,48 +7,48 @@ import Swal from "sweetalert2";
 export const ResetPassword = () => {
   const { store, actions } = useContext(Context);
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const navigate = useNavigate();
-
-  const toggleViewPassword = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  /*-------useState y función para mantener sesión iniciada------*/
-
   const [rememberMe, setRememberMe] = useState(false);
-
-  const handleRememberMe = (e) => {
-    setRememberMe(e.target.checked);
-  };
-  /*-----------------------------------------------------------------*/
   const [dataContact, setDataContact] = useState({
     password: "",
     confirmPassword: "",
   });
 
-  const handleAddContact = async (event) => {
-    event.preventDefault();
-    const loginSuccess = await actions.login(
-      dataContact.emailAdress,
-      dataContact.password,
-      rememberMe
-    );
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    if (loginSuccess) {
-      navigate("/homeUser");
-    }
-
-    // setDataContact({
-    //   emailAdress: "",
-    //   password: "",
-    // });
+  const toggleViewPassword = () => {
+    setPasswordVisible(!passwordVisible);
   };
+
+  const handleRememberMe = (e) => {
+    setRememberMe(e.target.checked);
+  };
+
   const inputValue = (e) => {
     const { name, value } = e.target;
     setDataContact((prevDataContact) => ({
       ...prevDataContact,
       [name]: value,
     }));
+  };
+
+  const handleAddContact = async (event) => {
+    event.preventDefault();
+    const token = new URLSearchParams(location.search).get("token");
+    console.log(token);
+
+    const resetSuccess = await actions.resetPassword(
+      token,
+      dataContact.password,
+      dataContact.confirmPassword
+    );
+
+    if (resetSuccess) {
+      Swal.fire("Success", "Password has been reset successfully", "success");
+      navigate("/login");
+    } else {
+      Swal.fire("Error", "Failed to reset password", "error");
+    }
   };
 
   return (
@@ -108,32 +107,10 @@ export const ResetPassword = () => {
           </div>
         </div>
 
-        <div className="mb-3 form-check d-flex justify-content-between align-items-center">
-          <div className="d-flex align-items-center">
-            <input
-              type="checkbox"
-              className="form-check-input me-2"
-              id="exampleCheck1"
-              checked={rememberMe}
-              onChange={handleRememberMe}
-            />
-
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Remember me
-            </label>
-          </div>
-        </div>
         <div className="form-buttons d-flex justify-content-between">
-          {/* <Link to="homeUser/:id"> */}
-
-          <button
-            type="submit"
-            className="btn btn-warning"
-            //onClick={() => actions.nombreDeFuncionDelFlux(dataContact)}
-          >
+          <button type="submit" className="btn btn-warning">
             Save
           </button>
-          {/* </Link> */}
           <Link to="/">
             <button type="button" className="btn btn-dark">
               Back home

@@ -63,3 +63,58 @@ def standard_date(fecha_str, formato_salida="%d/%m/%Y"):
             continue
     
     return fecha_str
+
+def get_formatted_events(events):
+    combined_events = {}
+
+    def is_substring(str1, str2):
+        str1 = str1.lower()
+        str2 = str2.lower()
+        return str1 in str2 or str2 in str1
+
+    def find_matching_key(new_key, existing_keys):
+        for key in existing_keys:
+            if key[0] == new_key[0]:
+                if is_substring(key[1], new_key[1]):
+                    return key
+        return None
+
+    for event in events:
+        key = (event.name, event.date)
+        match_key = find_matching_key(key, combined_events.keys())
+        if match_key:
+            key = match_key
+
+        if key not in combined_events:
+            combined_events[key] = {
+                'id': [event.id],
+                'title': event.name,
+                'date': event.date,
+                'place': event.location,
+                'genere': event.genere,
+                'image_url': event.image_url,
+                'prices': [event.precios[0].price],
+                'buy_urls': [event.precios[0].source.web_url],
+                'source': [event.precios[0].source.name]
+            }
+        else:
+            combined_events[key]['id'].append(event.id)
+            combined_events[key]['prices'].append(event.precios[0].price)
+            combined_events[key]['buy_urls'].append(event.precios[0].source.web_url)
+            combined_events[key]['source'].append(event.precios[0].source.name)
+
+    return [
+        {
+            'id': ids[0],
+            'title': details['title'],
+            'date': details['date'],
+            'place': details['place'],
+            'genere': details['genere'],
+            'image_url': details['image_url'],
+            'price': details['prices'],
+            'buy_url': details['buy_urls'],
+            'source': details['source']
+        }
+        for ids, details in [(v['id'], v) for v in combined_events.values()]
+    ]
+
