@@ -28,7 +28,7 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_USERNAME'] = 'musichunterweb@gmail.com'
-app.config['MAIL_PASSWORD'] = 'your_password'
+app.config['MAIL_PASSWORD'] = 'fazj yuxy icai wxlf'
 
 mail = Mail(app)
 
@@ -75,7 +75,7 @@ def sitemap():
 
 # any other endpoint will try to serve it like a static file
 
-@app.route('forgot-password', methods=['POST'])
+@app.route('/forgot-password', methods=['POST'])
 def forgot_password():
     email=request.json.get('email')
     user= User.query.filter_by(email=email).first()
@@ -100,7 +100,7 @@ def forgot_password():
     mail.send(msg)
     return jsonify({"msg":"Email sent"}), 200
 
-@app.route('reset-password', methods=['POST'])
+@app.route('/reset-password', methods=['POST'])
 @jwt_required()
 def reset_password():
 

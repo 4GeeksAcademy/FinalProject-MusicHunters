@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { NavbarUser } from "../component/navbarUser";
@@ -7,6 +7,7 @@ import { ScrollNavigateToTop } from "../component/scrollNavigateToTop";
 
 export const Search = () => {
   const { store, actions } = useContext(Context);
+  const [favorites, setFavorites] = useState(new Set());
 
   useEffect(() => {
     actions.getFavourites();
@@ -60,9 +61,15 @@ export const Search = () => {
     if (favourite) {
       await actions.deleteFavourite(favourite.id);
       actions.getFavourites();
+      setFavorites((prev) => {
+        const newFavorites = new Set(prev);
+        newFavorites.delete(event.id);
+        return newFavorites;
+      });
     } else {
       await actions.addFavourite(store.user.id, event.id);
       actions.getFavourites();
+      setFavorites((prev) => new Set(prev).add(event.id));
     }
   };
 
@@ -73,11 +80,13 @@ export const Search = () => {
         Search your events
       </h1>
       <div className="container">
-        {uniqueEvents.length === 0 ? (
-          <p className="text-center fs-3">There's no events to show</p>
+        {store.searchResults.length === 0 ? (
+          <p className="text-center fs-3 text-no-results">
+            No results found. Try again
+          </p>
         ) : (
           <div className="row">
-            {uniqueEvents.map((event) => (
+            {store.searchResults.map((event) => (
               <div className="col-md-6 mb-4" key={event.id}>
                 <div
                   className="card mx-auto cards-events"
@@ -108,11 +117,13 @@ export const Search = () => {
                             {/* Utilizar la función para mostrar los precios con URLs */}
                             {formatPrices(event.price, event.buy_url)}
                             <button
-                              className="btn btn-warning fav-button"
+                              className={`btn fav-button ${
+                                favorites.has(event.id) ? "fav-active" : ""
+                              }`}
                               onClick={() => handleFavouriteClick(event)}
                             >
                               <img
-                                className="favIcon"
+                                className="favIcon "
                                 src={favIcon}
                                 alt="Fav Icon"
                                 style={{ width: "24px", height: "24px" }}

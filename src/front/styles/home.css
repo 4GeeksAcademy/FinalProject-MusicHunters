@@ -32,7 +32,8 @@ body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
   font-family: "Body", serif;
   background-attachment: fixed;
-  background-size: auto;
+  background-size: cover;
+
   padding-bottom: 10%;
 }
 
@@ -70,9 +71,9 @@ h1 {
   font-size: 4.5rem;
 }
 
-.text-center {
+/* .text-center {
   text-align: center;
-}
+} */
 
 label {
   color: white;
@@ -197,10 +198,14 @@ nav {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1) !important;
 }
 
-.text-error-search {
+/* .text-error-search {
   color: #d34d7a;
-}
+} */
 
+.text-no-results {
+  color: #ced4da;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 10);
+}
 /*----------------Carrusel HOME--------------*/
 
 .carousel-item,
@@ -277,7 +282,28 @@ button.carousel-control-prev {
 }
 
 .fav-button {
+  background-color: #7c7c7c;
+  box-shadow: 1px 1px 1px #000000;
+}
+
+.fav-button:hover {
+  box-shadow: 1px 2px 2px 1px #000000;
   background-color: #d34d7a;
+}
+
+.fav-button:focus {
+  border-color: #d34d7a !important;
+}
+
+.fav-button.fav-active {
+  background-color: #d34d7a;
+  border-color: #d34d7a;
+}
+
+.fav-button.fav-active:hover {
+  box-shadow: 1px 2px 2px 1px #000000;
+  background-color: #7c7c7c;
+  border-color: #000000;
 }
 
 div.prices-fav-icon {

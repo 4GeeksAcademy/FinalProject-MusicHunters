@@ -29,6 +29,7 @@ import { ResetPassword } from "./pages/resetPassword";
 import { EventsFilter } from "./component/eventsFilter";
 import { FilteredEvents } from "./pages/filteredEvents";
 import { NavbarUser } from "./component/navbarUser";
+import { SearchResults } from "./pages/searchResults";
 
 //create your first component
 const Layout = () => {
@@ -58,6 +59,7 @@ const Layout = () => {
                 <Route element={<MyProfile />} path="/userProfile" />
                 <Route element={<EditProfile />} path="/editProfile" />
                 <Route element={<Search />} path="/search" />
+                <Route element={<SearchResults />} path="/searchResults" />
                 <Route element={<FilteredEvents />} path="/filteredEvents" />
                 <Route element={<Favourites />} path="/favourites" />
                 <Route element={<AdminsView />} path="/adminsView" />

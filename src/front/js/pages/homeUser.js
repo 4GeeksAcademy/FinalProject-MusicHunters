@@ -18,6 +18,7 @@ export const HomeUser = () => {
   const navigate = useNavigate();
   const [showFilter, setShowFilter] = useState(false);
   const firstEventRef = useRef(null);
+  const [favorites, setFavorites] = useState(new Set());
   // const handleFilterClick = () => {
   //   setShowFilter(!showFilter);
   //   // if (!showFilter) {
@@ -82,6 +83,25 @@ export const HomeUser = () => {
   };
   const uniqueEvents = filterUniqueEvents(store.events || []);
 
+  const handleFavouriteClick = async (event) => {
+    const favourite = store.favourites.find(
+      (fav) => fav.event_id === event.id && fav.user_id === store.user.id
+    );
+
+    if (favourite) {
+      await actions.deleteFavourite(favourite.id);
+      actions.getFavourites();
+      setFavorites((prev) => {
+        const newFavorites = new Set(prev);
+        newFavorites.delete(event.id);
+        return newFavorites;
+      });
+    } else {
+      await actions.addFavourite(store.user.id, event.id);
+      actions.getFavourites();
+      setFavorites((prev) => new Set(prev).add(event.id));
+    }
+  };
   return (
     <>
       <NavbarUser />
@@ -170,9 +190,8 @@ export const HomeUser = () => {
           <div className="row">
             {filterByGenere.map((event, index) => (
               <div className="col-md-6 mb-5" key={`${event.id}-${index}`}>
-                {/* // Navego a la primera tarjeta */}
+                {/* // Navego a la primera card*/}
                 <div ref={index === 0 ? firstEventRef : null}>
-                  {/* <div className="row g-0 p-2 event-card"> */}
                   <div
                     className="card mx-auto cards-events"
                     style={{ maxWidth: "540px" }}
@@ -199,11 +218,16 @@ export const HomeUser = () => {
                           <p className="card-text">{event.genere}</p>
                           {event.price.length > 0 && event.buy_url.length > 0 && (
                             <div className="prices-fav-icon">
-                              {/* Utilizar la función para mostrar los precios con URLs */}
+                              {/* Función para mostrar los precios con URLs */}
                               {formatPrices(event.price, event.buy_url)}
-                              <button className="btn btn-warning fav-button">
+                              <button
+                                className={`btn fav-button ${
+                                  favorites.has(event.id) ? "fav-active" : ""
+                                }`}
+                              >
                                 <img
                                   className="favIcon"
+                                  onClick={() => handleFavouriteClick(event)}
                                   src={favIcon}
                                   alt="Fav Icon"
                                   style={{ width: "24px", height: "24px" }}

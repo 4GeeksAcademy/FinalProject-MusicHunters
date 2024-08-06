@@ -7,17 +7,36 @@ import { Navbar } from "../component/navbar";
 export const ForgotPassword = () => {
   const { store, actions } = useContext(Context);
 
+  const [emailContact, setEmailContact] = useState("");
+
+  const inputValue = (e) => {
+    const { value } = e.target;
+    setEmailContact((prevemailContact) => ({
+      ...prevemailContact,
+      value,
+    }));
+  };
+
+  const handleAddContact = async (event) => {
+    event.preventDefault();
+    const sendForgotPassword = await actions.forgotPassword(emailContact);
+
+    if (sendForgotPassword == true) {
+      navigate("/");
+    }
+  };
+
   return (
     <>
       <Navbar />
       <h1 className="text-center reset-password-header mb-3">Reset Password</h1>
-      <form className="mx-auto">
+      <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
-            // onChange={inputValue}
+            onChange={inputValue}
             type="email"
             className="form-control"
             id="exampleInputEmail1"
