@@ -85,7 +85,6 @@ export const HomeUser = () => {
 
   const handleFavouriteClick = async (event) => {
     const favourite = store.favourites.find(
-
       (fav) => fav.id === event.id && fav.user_id === store.user.id
     );
 
@@ -107,7 +106,7 @@ export const HomeUser = () => {
   return (
     <>
       <NavbarUser />
-      <div className="container text-center mt-5">
+      <div className="container  mt-5">
         <h1 className="title-music-hunters">Music Hunters Home</h1>
         <h3 className="subtitle mb-5">
           Find the best price for the best music events!
@@ -191,7 +190,7 @@ export const HomeUser = () => {
         <div className="container">
           <div className="row">
             {filterByGenere.map((event, index) => (
-              <div className="col-md-6 mb-5" key={`${event.id}-${index}`}>
+              <div className="col-md-6 mb-4" key={`${event.id}-${index}`}>
                 {/* // Navego a la primera card*/}
                 <div ref={index === 0 ? firstEventRef : null}>
                   <div
@@ -216,23 +215,20 @@ export const HomeUser = () => {
                               {event.date}
                             </small>
                           </p>
-                          <p className="card-text">{event.place}</p>
+                          <p className="card-text mb-1">{event.place}</p>
                           <p className="card-text">{event.genere}</p>
                           {event.price.length > 0 && event.buy_url.length > 0 && (
-                            <div className="prices-fav-icon">
-                              {/* Función para mostrar los precios con URLs */}
+                            <div className="prices-fav-icon mb-auto">
+                              {/* Utilizar la función para mostrar los precios con URLs */}
                               {formatPrices(event.price, event.buy_url)}
                               <button
-
                                 className={`btn fav-button ${
                                   favorites.has(event.id) ? "fav-active" : ""
                                 }`}
                                 onClick={() => handleFavouriteClick(event)}
-
                               >
                                 <img
-                                  className="favIcon"
-                                  
+                                  className="favIcon "
                                   src={favIcon}
                                   alt="Fav Icon"
                                   style={{ width: "24px", height: "24px" }}

@@ -68,6 +68,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+      errorForgotPasswordAlert: () => {
+        Swal.fire({
+          title: "Ouch!",
+          text: "The email is not in our system",
+          icon: "warning",
+          confirmButtonText: "Try again",
+        });
+      },
+
       errorPasswordAlert: () => {
         Swal.fire({
           title: "Ouch!",
@@ -233,6 +242,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (resp.ok) {
             const data = await resp.json();
             console.log("Email enviado exitosamente", data);
+            actions.forgotPasswordAlert();
             return true;
           } else {
             const errorData = await resp.json();
@@ -587,6 +597,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return true;
           } else {
             const errorData = await resp.json();
+            actions.errorForgotPasswordAlert();
             console.log("Error al enviar email:", errorData.message);
             return false;
           }
