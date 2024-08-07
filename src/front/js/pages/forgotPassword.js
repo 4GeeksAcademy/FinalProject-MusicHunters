@@ -7,7 +7,8 @@ import { Navbar } from "../component/navbar";
 export const ForgotPassword = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  const [emailContact, setEmailContact] = useState("");
+  const [emailContact, setEmailContact] = useState({});
+
 
   const inputValue = (e) => {
     const { value } = e.target;
@@ -19,7 +20,9 @@ export const ForgotPassword = () => {
 
   const handleAddContact = async (event) => {
     event.preventDefault();
-    const sendForgotPassword = await actions.forgotPassword(emailContact);
+
+    console.log(emailContact.value);
+    const sendForgotPassword = await actions.forgotPassword(emailContact.value);
 
     if (sendForgotPassword == true) {
       navigate("/");

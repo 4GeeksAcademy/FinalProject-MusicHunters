@@ -58,6 +58,10 @@ export const EditProfile = (props) => {
       const reader = new FileReader();
       reader.onload = () => {
         setImage(reader.result);
+        setDataContact((prevDataContact) => ({
+          ...prevDataContact,
+          photo: reader.result,
+        }));
       };
       reader.readAsDataURL(file);
     }
