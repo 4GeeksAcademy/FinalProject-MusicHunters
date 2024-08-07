@@ -112,6 +112,10 @@ export const Register = (props) => {
                 className={passwordVisible ? "far fa-eye-slash" : "far fa-eye"}
               ></i>
             </button>
+            <div id="passwordHelp" className="form-text">
+              The password must have at least one uppercase letter, one
+              lowercase letter and one number
+            </div>
           </div>
         </div>
         <div className="mb-3">
