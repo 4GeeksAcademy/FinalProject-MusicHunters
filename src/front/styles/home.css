@@ -32,7 +32,7 @@ body {
   background-image: url("https://cleorecs.com/cdn/shop/collections/vinylBoxSetCollectionBG.jpg?v=1713907264");
   font-family: "Body", serif;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: auto;
   padding-bottom: 10%;
 }
 
@@ -80,6 +80,9 @@ label {
 
 /*--------------------CARDS EVENTOS----------------*/
 
+div.fix-row {
+  --bs-gutter-x: none !important;
+}
 .card {
   background-color: #2a9d90e0;
   /* margin-bottom: 50px; */
@@ -92,6 +95,7 @@ label {
   border-radius: 0.25rem;
   font-size: 1rem;
   font-weight: bold;
+  min-height: 16rem;
 }
 
 a.card-prices {
@@ -139,6 +143,10 @@ a.card-price-link:hover {
   font-weight: bolder;
   text-shadow: 2px 1px 2.5px #d34d7a;
 }
+
+/* div.card-body {
+  max-height: 20rem;
+} */
 /*--------------------NAVBAR--------------------*/
 
 nav {
@@ -172,6 +180,7 @@ nav {
 .title-music-hunters {
   font-size: 4.5rem !important;
   margin-bottom: 1rem;
+  text-align: center;
   /* font-weight: bold; */
   font-family: "NavbarBrand";
 }
@@ -282,7 +291,7 @@ button.carousel-control-prev {
 
 .fav-button {
   background-color: #7c7c7c;
-  box-shadow: 1px 1px 1px #000000;
+  box-shadow: 2px 2px 2px #000000;
 }
 
 .fav-button:hover {
@@ -291,12 +300,18 @@ button.carousel-control-prev {
 }
 
 .fav-button:focus {
-  border-color: #d34d7a !important;
+  /* border-color: #d34d7a !important; */
+  box-shadow: 0 0 0 0;
+}
+
+.fav-active:focus {
+  /* border-color: #d34d7a !important; */
+  box-shadow: 0 0 0 0;
 }
 
 .fav-button.fav-active {
   background-color: #d34d7a;
-  border-color: #d34d7a;
+  /* border-color: #d34d7a; */
 }
 
 .fav-button.fav-active:hover {
@@ -308,6 +323,8 @@ button.carousel-control-prev {
 div.prices-fav-icon {
   display: flex;
   justify-content: space-between !important;
+  justify-items: end;
+  align-items: end;
 }
 
 .button-to-scroll {
@@ -338,7 +355,7 @@ div.prices-fav-icon {
   width: 190px;
   height: 254px;
   background-color: #000000a4;
-
+  text-align: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -348,6 +365,7 @@ div.prices-fav-icon {
   margin-left: 2.5rem;
   border-radius: 8px;
   cursor: pointer;
+  transition: background ease-in 0.9s;
 }
 
 .card-music-type::before {
@@ -400,6 +418,7 @@ div.prices-fav-icon {
 .pop-card:hover {
   background-image: url("https://jenesaispop.com/wp-content/uploads/2021/06/billie-eilish-696x464.jpg");
 }
+
 .rock-card:hover {
   background-image: url("https://www.billboard.com/wp-content/uploads/2023/08/freddie-mercury-queen-1985-billboard-1240.jpg?w=393");
 }

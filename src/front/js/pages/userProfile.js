@@ -9,6 +9,10 @@ import { Profile } from "../component/profile";
 export const MyProfile = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
+  useEffect(() => {
+    actions.events();
+    actions.getFavourites();
+  }, []);
 
   return (
     <>

@@ -9,6 +9,7 @@ import { Profile } from "../component/profile";
 export const EditProfile = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
+
   const inputValue = (e) => {
     const { name, value } = e.target;
     setDataContact((prevDataContact) => ({

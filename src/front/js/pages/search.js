@@ -86,7 +86,7 @@ export const Search = () => {
             No results found. Try again
           </p>
         ) : (
-          <div className="row">
+          <div className="row fix-row">
             {store.searchResults.map((event) => (
               <div className="col-md-6 mb-4" key={event.id}>
                 <div
@@ -114,7 +114,7 @@ export const Search = () => {
                         <p className="card-text">{event.place}</p>
                         <p className="card-text">{event.genere}</p>
                         {event.price.length > 0 && event.buy_url.length > 0 && (
-                          <div className="prices-fav-icon">
+                          <div className="prices-fav-icon mb-0">
                             {/* Utilizar la función para mostrar los precios con URLs */}
                             {formatPrices(event.price, event.buy_url)}
                             <button

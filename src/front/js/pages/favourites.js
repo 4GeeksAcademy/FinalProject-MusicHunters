@@ -4,16 +4,63 @@ import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 import { NavbarUser } from "../component/navbarUser";
+import favIcon from "../../img/favourites.png";
 import Swal from "sweetalert2";
 
 export const Favourites = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
+  const [favorites, setFavorites] = useState(new Set());
 
   useEffect(() => {
     actions.getFavourites();
     console.log(store.favourites);
   }, []);
+
+  const handleFavouriteClick = async (event) => {
+    const favourite = store.favourites.find(
+      (fav) => fav.id === event.id && fav.user_id === store.user.id
+    );
+    console.log(favourite);
+
+    if (favourite) {
+      await actions.deleteFavourite(favourite.favorite_id);
+      actions.getFavourites();
+      setFavorites((prev) => {
+        const newFavorites = new Set(prev);
+        newFavorites.delete(event.id);
+        return newFavorites;
+      });
+    } else {
+      await actions.addFavourite(store.user.id, event.id);
+      actions.getFavourites();
+      setFavorites((prev) => new Set(prev).add(event.id));
+    }
+  };
+
+  const formatPrices = (prices, urls) => {
+    if (
+      !Array.isArray(prices) ||
+      !Array.isArray(urls) ||
+      prices.length !== urls.length
+    ) {
+      return null;
+    }
+
+    return prices.map((price, index) => (
+      <React.Fragment key={index}>
+        <a
+          href={urls[index]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="card-price-link"
+        >
+          {price}
+        </a>
+        {index < prices.length - 1 && " "}
+      </React.Fragment>
+    ));
+  };
 
   return (
     <>
@@ -23,17 +70,59 @@ export const Favourites = (props) => {
       {store.favourites === undefined ? (
         <p className="text-center fs-3">There's no favourites to show</p>
       ) : (
-        store.favourites.map((fav) => (
-          <div className="container">
-            <div
-              className="card mb-5 mx-auto cards-events"
-              key={fav.id}
-              style={{ maxWidth: "540px" }}
-            >
-              {fav.id}
+        <div className="row fix-row">
+          {store.favourites.map((event) => (
+            <div className="col-md-6 mb-4" key={event.id}>
+              <div
+                className="card mx-auto cards-events"
+                style={{ maxWidth: "540px" }}
+              >
+                <div className="row g-0 p-2 event-card">
+                  <div className="col-md-4">
+                    <img
+                      src={event.image_url}
+                      className="img-fluid rounded-start"
+                      alt={event.title}
+                    />
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <h3 className="card-events-title">
+                        <strong>{event.title}</strong>
+                      </h3>
+                      <p className="card-text">
+                        <small className="text-body-secondary">
+                          {event.date}
+                        </small>
+                      </p>
+                      <p className="card-text mb-1">{event.place}</p>
+                      <p className="card-text">{event.genere}</p>
+                      {event.price.length > 0 && event.buy_url.length > 0 && (
+                        <div className="prices-fav-icon">
+                          {/* Utilizar la función para mostrar los precios con URLs */}
+                          {formatPrices(event.price, event.buy_url)}
+                          <button
+                            className={`btn fav-button ${
+                              favorites.has(event.id) ? "" : "fav-active"
+                            }`}
+                            onClick={() => handleFavouriteClick(event)}
+                          >
+                            <img
+                              className="favIcon "
+                              src={favIcon}
+                              alt="Fav Icon"
+                              style={{ width: "24px", height: "24px" }}
+                            />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        ))
+          ))}
+        </div>
       )}
     </>
   );
