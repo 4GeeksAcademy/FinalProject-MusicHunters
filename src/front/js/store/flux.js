@@ -68,6 +68,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+      successResetPasswordAlert: () => {
+        Swal.fire({
+          title: "Done",
+          text: "Your password has been changed!",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      },
+
       errorForgotPasswordAlert: () => {
         Swal.fire({
           title: "Ouch!",
@@ -215,82 +224,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         } catch (error) {
           console.error("Error al iniciar sesión:", error);
-          return false;
-        }
-      },
-      forgotPassword: async (email) => {
-        const actions = getActions();
-        if (!email) {
-          actions.errorEmptyFieldsAlert();
-          console.log("Faltan campos");
-          return false;
-        }
-
-        try {
-          const resp = await fetch(
-            `${process.env.BACKEND_URL}forgot-password`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                email: email,
-              }),
-            }
-          );
-          if (resp.ok) {
-            const data = await resp.json();
-            console.log("Email enviado exitosamente", data);
-            actions.forgotPasswordAlert();
-            return true;
-          } else {
-            const errorData = await resp.json();
-            console.log("Error al enviar email:", errorData.message);
-            return false;
-          }
-        } catch (error) {
-          console.error("Error al enviar email:", error);
-          return false;
-        }
-      },
-      resetPassword: async (token, password1, password2) => {
-        const actions = getActions();
-        if (!password1 || !password2) {
-          actions.errorEmptyFieldsAlert();
-          console.log("Faltan campos");
-          return false;
-        }
-
-        if (password1 !== password2) {
-          console.log("Las contraseñas no coinciden");
-          actions.errorPasswordAlert();
-          return false;
-        }
-
-        try {
-          const resp = await fetch(`${process.env.BACKEND_URL}reset-password`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              password: password1,
-            }),
-          });
-
-          if (resp.ok) {
-            const data = await resp.json();
-            console.log("Contraseña cambiada exitosamente", data);
-            return true;
-          } else {
-            const errorData = await resp.json();
-            console.log("Error al cambiar contraseña:", errorData.message);
-            return false;
-          }
-        } catch (error) {
-          console.error("Error al cambiar contraseña:", error);
           return false;
         }
       },
@@ -607,7 +540,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      resetPassword: async (password1, password2) => {
+      resetPassword: async (token, password1, password2) => {
         const actions = getActions();
         if (!password1 || !password2) {
           actions.errorEmptyFieldsAlert();
@@ -615,7 +548,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
 
-        if (password1 !== password2) {
+        if (password1.trim() !== password2.trim()) {
           console.log("Las contraseñas no coinciden");
           actions.errorPasswordAlert();
           return false;
@@ -626,6 +559,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
               password: password1,

@@ -73,11 +73,11 @@ export const Home = () => {
       <div className="container text-center mt-5">
         <h1 className="title-music-hunters">Music Hunters Home</h1>
         <h3 className="subtitle">
-          ¡Encuentra el mejor precio para los mejores eventos musicales!
+          ¡Find the best prices to the best music events!
         </h3>
         <Link to="/register/">
           <button className="btn btn-dark home-button">
-            ¡Crea tu cuenta para acceder ahora!
+            ¡Create your account to access now!
           </button>
         </Link>
       </div>
