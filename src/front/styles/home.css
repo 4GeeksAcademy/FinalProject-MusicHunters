@@ -34,6 +34,7 @@ body {
   background-attachment: fixed;
   background-size: auto;
   padding-bottom: 10%;
+  scrollbar-color: #2a9d90e0 #000000;
 }
 
 /*-------SOLUCIÓN AL PROBLEMA DEL FOOTER----------*/
@@ -235,9 +236,12 @@ nav {
 button.carousel-control-next,
 button.carousel-control-prev {
   color: #d34d7a !important;
-  background-color: #4a4b4b;
+  background-color: #d34d7a;
   border-radius: 0.5rem;
   width: fit-content;
+  height: fit-content;
+  margin-top: 13%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 10);
 }
 
 /* -----------------BOTONES--------------- */
