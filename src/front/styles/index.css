@@ -1,3 +1,11 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+/* @font-face {
+  font-family: "Royalacid";
+  src: url("/public/fonts/royal_acidbath/Royalacid.ttf") format("truetype");
+}
+
+body {
+  font-family: "Royalacid";
+} */
