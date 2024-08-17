@@ -34,7 +34,7 @@ body {
   background-attachment: fixed;
   background-size: auto;
   padding-bottom: 10%;
-  scrollbar-color: #2a9d90e0 #000000;
+  scrollbar-width: none;
 }
 
 /*-------SOLUCIÓN AL PROBLEMA DEL FOOTER----------*/
@@ -194,6 +194,11 @@ nav {
   text-align: center;
 }
 
+.text-favourites {
+  color: #d34d7a;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 10);
+}
+
 .forgot-password,
 .forgot-password:hover {
   text-decoration: none;
@@ -205,6 +210,7 @@ nav {
 .searchHelp {
   color: #d34d7a !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1) !important;
+  font-weight: bold;
 }
 
 /* .text-error-search {
@@ -220,7 +226,7 @@ nav {
 .carousel-item,
 .carousel-item :active {
   height: 25vw;
-  /* box-shadow: 10px 10px 20px #000000; */
+  /* width: 20vw; */
 }
 
 .carousel-item img {
@@ -233,10 +239,14 @@ nav {
   max-height: 50% !important;
 }
 
+div.carousel-indicators {
+  margin-bottom: -2rem !important;
+  color: #2a9d8f !important;
+}
+
 button.carousel-control-next,
 button.carousel-control-prev {
-  color: #d34d7a !important;
-  background-color: #d34d7a;
+  background-color: #2a9d8f;
   border-radius: 0.5rem;
   width: fit-content;
   height: fit-content;
@@ -246,6 +256,10 @@ button.carousel-control-prev {
 
 /* -----------------BOTONES--------------- */
 
+.btn {
+  font-weight: bold;
+}
+
 .btn-dark:hover {
   box-shadow: 1px 1px 1px #d34d7a;
   border-color: #d34d7a;
@@ -253,9 +267,10 @@ button.carousel-control-prev {
 }
 
 .btn-dark {
-  background-color: #264653;
+  background-color: #d34d7a;
   border-color: #000000;
   box-shadow: 1px 1px 5px 0px #000000;
+  color: #000000;
 }
 
 .home-button {
@@ -286,6 +301,7 @@ button.carousel-control-prev {
 
 .show-password {
   background-color: #2a9d8f;
+  border-radius: 0.25rem;
 }
 
 .fa-eye,
@@ -473,8 +489,13 @@ a.footer-color:hover {
 }
 
 /*------------------FORMS----------------*/
-form {
+form:not(.form-search-bar) {
   width: 40vw;
+  background-color: #26465370;
+  backdrop-filter: blur(10px);
+  padding: 15px;
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 1);
 }
 
 .form-text {

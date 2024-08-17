@@ -125,7 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       register: async (username, email, password1, password2) => {
         const actions = getActions();
-        if (!username || !email || !password1 || !password2) {
+        if (!email || !password1 || !password2) {
           actions.errorEmptyFieldsAlert();
           console.log("Faltan campos");
           return false;

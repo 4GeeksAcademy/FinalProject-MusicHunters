@@ -9,7 +9,6 @@ export const ForgotPassword = () => {
   const navigate = useNavigate();
   const [emailContact, setEmailContact] = useState({});
 
-
   const inputValue = (e) => {
     const { value } = e.target;
     setEmailContact((prevemailContact) => ({
@@ -49,10 +48,19 @@ export const ForgotPassword = () => {
             aria-describedby="emailHelp"
             placeholder="example@email.com"
           />
-          <span className="bottom"></span>
-          <span className="right"></span>
-          <span className="top"></span>
-          <span className="left"></span>
+
+          <label htmlFor="exampleInputEmail2" className="form-label mt-3">
+            Repeat email address
+          </label>
+          <input
+            onChange={inputValue}
+            type="email"
+            className="form-control"
+            id="exampleInputEmail2"
+            aria-describedby="emailHelp"
+            placeholder="example@email.com"
+          />
+
           <div className="form-text passwordHelp">
             If there's a user associated with this email you'll receive an email
             to reset your password

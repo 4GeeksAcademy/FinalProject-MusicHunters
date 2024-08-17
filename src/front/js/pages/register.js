@@ -58,7 +58,7 @@ export const Register = (props) => {
       <form className="mx-auto" onSubmit={handleAddContact}>
         <div className="mb-3">
           <label htmlFor="userName" className="form-label">
-            User Name <span className="required-asterisk">*</span>
+            User Name
           </label>
           <input
             onChange={inputValue}

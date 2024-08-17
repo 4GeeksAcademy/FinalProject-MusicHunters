@@ -67,8 +67,10 @@ export const Favourites = (props) => {
       <NavbarUser />
       <h1 className="text-center register-header mb-3">My Favourites</h1>
 
-      {store.favourites === undefined ? (
-        <p className="text-center fs-3">There's no favourites to show</p>
+      {store.favourites === undefined || store.favourites.length === 0 ? (
+        <p className="text-center fs-3 text-favourites">
+          There's no favourites to show
+        </p>
       ) : (
         <div className="row fix-row">
           {store.favourites.map((event) => (
