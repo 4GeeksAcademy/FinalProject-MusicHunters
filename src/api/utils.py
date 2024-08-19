@@ -89,6 +89,7 @@ def get_formatted_events(events):
             combined_events[key] = {
                 'id': [event.id],
                 'title': event.name,
+                'description': event.description,
                 'date': event.date,
                 'place': event.location,
                 'genere': event.genere,
@@ -102,11 +103,14 @@ def get_formatted_events(events):
             combined_events[key]['prices'].append(event.precios[0].price)
             combined_events[key]['buy_urls'].append(event.precios[0].source.web_url)
             combined_events[key]['source'].append(event.precios[0].source.name)
+        
+        
 
     return [
         {
             'id': ids[0],
             'title': details['title'],
+            'description': details['description'],
             'date': details['date'],
             'place': details['place'],
             'genere': details['genere'],

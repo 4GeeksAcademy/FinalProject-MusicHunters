@@ -31,9 +31,9 @@ def register():
         return jsonify({"msg": "Username is required"}), 400
 
     # Verificar si el usuario o el correo ya existen
-    if User.query.filter_by(email=request_body["email"]).first():
+    if  User.query.filter_by(email=request_body["email"]).first():
         return jsonify({"msg": "Email already exists"}), 409
-    if User.query.filter_by(username=request_body["username"]).first():
+    if "username" not in request_body & User.query.filter_by(username=request_body["username"]).first():
         return jsonify({"msg": "Username already exists"}), 409
     
     is_valid, message = validate_password(request_body["password"])
@@ -147,7 +147,7 @@ def add_event():
 
             event.create_new_event(
                 name=item["title"],
-                description="",
+                description= item.get("description",""),
                 date = standard_date(item["date"]),
                 location=item["place"],
                 event_type="concierto",
@@ -178,7 +178,7 @@ def add_event():
 
     except Exception as e:
         print(f"Error: {e}")
-        return jsonify({"msg": "An error occurred while processing the request"}), 500
+        return jsonify({"msg": "An error occurred while processing the request",}), 500
 
 #-------------------- RUTA DE OBTENER EVENTOS --------------------
 # @api.route('/events', methods=['GET'])

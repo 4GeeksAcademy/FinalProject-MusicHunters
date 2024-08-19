@@ -36,6 +36,8 @@ export const ResetPassword = () => {
     event.preventDefault();
     const token = new URLSearchParams(location.search).get("token");
     console.log(token);
+    console.log(dataContact.password);
+    console.log(dataContact.confirmPassword);
 
     const resetSuccess = await actions.resetPassword(
       token,
@@ -44,10 +46,10 @@ export const ResetPassword = () => {
     );
 
     if (resetSuccess) {
-      Swal.fire("Success", "Password has been reset successfully", "success");
+      // Swal.fire("Success", "Password has been reset successfully", "success");
       navigate("/login");
     } else {
-      Swal.fire("Error", "Failed to reset password", "error");
+      // Swal.fire("Error", "Failed to reset password", "error");
     }
   };
 
@@ -55,7 +57,7 @@ export const ResetPassword = () => {
     <>
       <Navbar />
       <h1 className="text-center reset-password-header mb-3">Reset Password</h1>
-      <form className="mx-auto" onSubmit={handleAddContact}>
+      <form className="mx-auto" onSubmit={(event) => handleAddContact(event)}>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
             New Password <span className="required-asterisk">*</span>

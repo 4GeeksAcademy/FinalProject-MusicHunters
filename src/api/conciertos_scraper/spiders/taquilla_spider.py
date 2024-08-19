@@ -4,6 +4,7 @@ from scrapy.selector import Selector
 import json
 import aiohttp
 import asyncio
+import re 
 
 class TaquillaSpider(scrapy.Spider):
     name = 'taquilla'
@@ -52,6 +53,9 @@ class TaquillaSpider(scrapy.Spider):
         additional_info = []
 
         # Extraer más detalles del evento
+        description_section = response.css('div.card-content > div').xpath(".//h2[@id='descripcion']/following-sibling::p").extract()
+        full_description_html = " ".join(description_section)
+        full_description = re.sub(r'<[^>]+>', '', full_description_html)
         date_elements = response.css('meta[itemprop="startDate"]::attr(content)').getall()
         locations = response.css('ul.ent-results-list div.l-subtitle-entity a::text').getall()
         price_elements = response.css('div.ent-results-list-hour-price span::text').getall()
@@ -67,7 +71,8 @@ class TaquillaSpider(scrapy.Spider):
             additional_info.append({
                 'date': date_elem,
                 'location': location,
-                'price': price_elem
+                'price': price_elem,
+                'description': full_description
             })
 
         event_data['additional_info'] = additional_info
@@ -112,6 +117,7 @@ class TaquillaSpider(scrapy.Spider):
             transformed_event = {
                 "title": event["title"],
                 "date": info["date"],
+                "description": info["description"],
                 "place": info["location"].split(",")[1].strip() if "," in info["location"] else info["location"],
                 "price": info["price"],
                 "product_type": "Pop",  # Assuming the product type is "Pop" for all events

@@ -262,7 +262,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
 
-        if (password1 !== password2) {
+        if (password1.trim() !== password2.trim()) {
           console.log("Las contraseñas no coinciden");
           actions.errorPasswordAlert();
           return false;
@@ -318,8 +318,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
         try {
           const decodeToken = jwtDecode(token);
-          const currentTime = Date.now() / 1000; // Tiempo actual en segundos
-          const { exp } = decodeToken; // Accedo al campo 'exp' del token donde se indica el tiempo de vida del token
+          const currentTime = Date.now() / 1000;
+          const { exp } = decodeToken;
 
           if (exp < currentTime) {
             console.log("El token ha expirado");
@@ -565,84 +565,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         } catch (error) {
           console.error("Error al eliminar favorito:", error);
-          return false;
-        }
-      },
-
-      forgotPassword: async (email) => {
-        const actions = getActions();
-        if (!email) {
-          actions.errorEmptyFieldsAlert();
-          console.log("Faltan campos");
-          return false;
-        }
-
-        try {
-          const resp = await fetch(
-            `${process.env.BACKEND_URL}forgot-password`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                email: email,
-              }),
-            }
-          );
-          if (resp.ok) {
-            const data = await resp.json();
-            actions.forgotPasswordAlert();
-            console.log("Email enviado exitosamente", data);
-            return true;
-          } else {
-            const errorData = await resp.json();
-            actions.errorForgotPasswordAlert();
-            console.log("Error al enviar email:", errorData.message);
-            return false;
-          }
-        } catch (error) {
-          console.error("Error al enviar email:", error);
-          return false;
-        }
-      },
-
-      resetPassword: async (password1, password2) => {
-        const actions = getActions();
-        if (!password1 || !password2) {
-          actions.errorEmptyFieldsAlert();
-          console.log("Faltan campos");
-          return false;
-        }
-
-        if (password1 !== password2) {
-          console.log("Las contraseñas no coinciden");
-          actions.errorPasswordAlert();
-          return false;
-        }
-
-        try {
-          const resp = await fetch(`${process.env.BACKEND_URL}reset-password`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              password: password1,
-            }),
-          });
-
-          if (resp.ok) {
-            const data = await resp.json();
-            console.log("Contraseña cambiada exitosamente", data);
-            return true;
-          } else {
-            const errorData = await resp.json();
-            console.log("Error al cambiar contraseña:", errorData.message);
-            return false;
-          }
-        } catch (error) {
-          console.error("Error al cambiar contraseña:", error);
           return false;
         }
       },

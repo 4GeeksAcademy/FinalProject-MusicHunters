@@ -4,5 +4,8 @@
   "workbench.editorAssociations": {
     "*.md": "vscode.markdown.preview.editor",
     "*.ttf": "default"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }
