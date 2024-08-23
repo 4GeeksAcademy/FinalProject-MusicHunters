@@ -37,7 +37,7 @@ class ConciertosSpider(scrapy.Spider):
         typesProduct = product_cards.css('span.product-card__typology::text').getall()
         image_urls = product_cards.css('img::attr(src)').getall()
         image_data_original_urls = product_cards.css('img::attr(data-original)').getall()
-        buy_urls = product_cards.css('a.product-card::attr(href)').getall()
+        buy_urls = product_cards.css('a.product-card::attr(href)').getall
 
         def format_url(url):
             # Agregar "https:" si la URL comienza con "//" (para las fotos)

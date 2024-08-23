@@ -55,7 +55,7 @@ class TaquillaSpider(scrapy.Spider):
         # Extraer más detalles del evento
         description_section = response.css('div.card-content > div').xpath(".//h2[@id='descripcion']/following-sibling::p").extract()
         full_description_html = " ".join(description_section)
-        full_description = re.sub(r'<[^>]+>', '', full_description_html)
+        full_description = re.sub(r'<[^>]+>', '', full_description_html) # TRANSFORMAR HTML A TEXTO
         date_elements = response.css('meta[itemprop="startDate"]::attr(content)').getall()
         locations = response.css('ul.ent-results-list div.l-subtitle-entity a::text').getall()
         price_elements = response.css('div.ent-results-list-hour-price span::text').getall()
