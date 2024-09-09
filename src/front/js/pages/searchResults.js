@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
+///////////////// VISTA EN PRUEBAS, NO OPERATIVA //////////////////
+
 export const SearchResults = () => {
   const { store } = useContext(Context);
 

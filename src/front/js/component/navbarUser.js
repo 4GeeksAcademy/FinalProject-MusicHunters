@@ -14,13 +14,14 @@ export const NavbarUser = () => {
   const handleSearch = (event) => {
     event.preventDefault();
     actions.searchEvents(searchQuery); // Busco eventos
-    navigate("/search");
+    navigate(`/search?query=${encodeURIComponent(searchQuery)}`); // Incluir término de búsqueda en la URL
     console.log(searchQuery);
   };
 
   const logOut = () => {
     localStorage.removeItem("token");
     sessionStorage.removeItem("token");
+    actions.logOutAlert();
     navigate("/");
   };
 

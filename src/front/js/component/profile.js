@@ -21,7 +21,7 @@ export const Profile = () => {
 
   useEffect(() => {
     actions.getUser(store.user.id);
- },[])
+  }, []);
 
   // const [image, setImage] = useState(null); //Para guardar imagen de usuario
 
@@ -39,7 +39,7 @@ export const Profile = () => {
   return (
     <>
       //key={store.user.id}
-      <li className="card p-3 d-flex flex-column align-items-center mx-auto card-user-profile">
+      <li className="card p-5 d-flex flex-column align-items-center mx-auto card-user-profile">
         <input
           type="image"
           src={
@@ -50,34 +50,34 @@ export const Profile = () => {
           className="user-img"
         />
         {/* src del input image="ruta a la img de user en la bbdd?" */}
-        <div className="flex-grow-1 text-center mt-3">
+        <div className="flex-grow-1 text-center mt-3 div-inputs-profile">
           <h3 className="mb-3">
-            <i className="fas fa-thumbtack"></i>
-            <span className="ms-2">
+            <i className="fas fa-thumbtack" style={{ color: "#d34d7a" }}></i>
+            <span className="ms-2 username">
               <strong>
                 {store.user.userName ? store.user.userName : "Username"}
               </strong>
             </span>
           </h3>
-          <p className="mb-2">
+          <p className="mb-3 profile-input">
             <i className="far fa-user" style={{ color: "black" }}></i>
-            <span className="ms-2">
+            <span className="ms-2 profile-input">
               {store.user.name ? store.user.name : "Name"}
             </span>
           </p>
-          <p className="mb-2">
+          <p className="mb-3 profile-input">
             <i className="far fa-user" style={{ color: "black" }}></i>
             <span className="ms-2">
               {store.user.lastName ? store.user.lastName : "Last name"}
             </span>
           </p>
-          <p className="mb-2">
+          <p className="mb-3 profile-input">
             <i className="far fa-paper-plane" style={{ color: "black" }}></i>
             <span className="ms-2">
               {store.user.email ? store.user.email : "Email"}
             </span>
           </p>
-          <p className="mb-2">
+          <p className="mb-3 profile-input">
             <i
               className="fas fa-mobile-alt fa-lg"
               style={{ color: "black" }}
@@ -86,7 +86,7 @@ export const Profile = () => {
               {store.user.phoneNumber ? store.user.phoneNumber : "Phone"}
             </span>
           </p>
-          <p className="mb-2">
+          <p className="mb-3 profile-input">
             <i className="far fa-envelope" style={{ color: "black" }}></i>
             <span className="ms-2">
               {store.user.address ? store.user.address : "Address"}

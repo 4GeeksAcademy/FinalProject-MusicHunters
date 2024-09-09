@@ -56,7 +56,7 @@ const Layout = () => {
                 <Route element={<MyProfile />} path="/userProfile" />
                 <Route element={<EditProfile />} path="/editProfile" />
                 <Route element={<Search />} path="/search" />
-                <Route element={<SearchResults />} path="/searchResults" />
+                {/* <Route element={<SearchResults />} path="/searchResults" /> */}
                 <Route element={<FilteredEvents />} path="/filteredEvents" />
                 <Route element={<Favourites />} path="/favourites" />
                 <Route element={<AdminsView />} path="/adminsView" />

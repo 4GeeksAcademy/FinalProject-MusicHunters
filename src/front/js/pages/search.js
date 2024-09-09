@@ -1,63 +1,58 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { NavbarUser } from "../component/navbarUser";
 import favIcon from "../../img/favourites.png";
 import { ScrollNavigateToTop } from "../component/scrollNavigateToTop";
+import Modal from "../component/modal"; // Importa el componente Modal
 
 export const Search = () => {
   const { store, actions } = useContext(Context);
   const [favorites, setFavorites] = useState(new Set());
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchQuery = queryParams.get("query") || "";
 
   useEffect(() => {
     actions.getFavourites();
   }, []);
 
-  // Función para formatear los precios con sus URLs correspondientes
-  const formatPrices = (prices, urls) => {
-    if (
-      !Array.isArray(prices) ||
-      !Array.isArray(urls) ||
-      prices.length !== urls.length
-    ) {
-      return null;
-    }
+  // Filtrar eventos según el término de búsqueda
+  const filteredEvents = store.events.filter(
+    (event) =>
+      event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.genere.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.place.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-    return prices.map((price, index) => (
-      <React.Fragment key={index}>
-        <a
-          href={urls[index]}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="card-price-link"
-        >
-          {price}
-        </a>
-        {index < prices.length - 1 && " "}
-      </React.Fragment>
-    ));
+  const uniqueEvents = filteredEvents.filter(
+    (event, index, self) =>
+      index ===
+      self.findIndex(
+        (e) =>
+          e.title === event.title &&
+          e.date === event.date &&
+          e.place === event.place
+      )
+  );
+
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+    setIsModalOpen(true);
   };
 
-  const filterUniqueEvents = (events) => {
-    const seenEvents = new Set();
-
-    return events.filter((event) => {
-      const identifier = `${event.title}-${event.date}-${event.place}`;
-      if (seenEvents.has(identifier)) {
-        return false; // Evento repetido, omitir
-      } else {
-        seenEvents.add(identifier);
-        return true; // Evento nuevo, añadir
-      }
-    });
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
   };
-  const uniqueEvents = filterUniqueEvents(store.events || []);
 
   const handleFavouriteClick = async (event) => {
     const favourite = store.favourites.find(
       (fav) => fav.id === event.id && fav.user_id === store.user.id
     );
-    console.log(favourite);
 
     if (favourite) {
       await actions.deleteFavourite(favourite.favorite_id);
@@ -78,20 +73,21 @@ export const Search = () => {
     <>
       <NavbarUser />
       <h1 className="text-center reset-password-header mb-5">
-        Search your events
+        Results for {searchQuery}
       </h1>
       <div className="container">
-        {store.searchResults.length === 0 ? (
+        {uniqueEvents.length === 0 ? (
           <p className="text-center fs-3 text-no-results">
             No results found. Try again
           </p>
         ) : (
           <div className="row fix-row">
-            {store.searchResults.map((event) => (
+            {uniqueEvents.map((event) => (
               <div className="col-md-6 mb-4" key={event.id}>
                 <div
                   className="card mx-auto cards-events"
                   style={{ maxWidth: "540px" }}
+                  onClick={() => handleEventClick(event)}
                 >
                   <div className="row g-0 p-2 event-card">
                     <div className="col-md-4">
@@ -115,16 +111,33 @@ export const Search = () => {
                         <p className="card-text">{event.genere}</p>
                         {event.price.length > 0 && event.buy_url.length > 0 && (
                           <div className="prices-fav-icon mb-0">
-                            {/* Utilizar la función para mostrar los precios con URLs */}
-                            {formatPrices(event.price, event.buy_url)}
+                            {event.price.map((price, index) => (
+                              <a
+                                key={index}
+                                href={event.buy_url[index]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="card-price-link"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                From {price}
+                              </a>
+                            ))}
                             <button
                               className={`btn fav-button ${
-                                favorites.has(event.id) ? "fav-active" : ""
+                                store.favourites.some(
+                                  (fav) => fav.id === event.id
+                                )
+                                  ? "fav-active"
+                                  : ""
                               }`}
-                              onClick={() => handleFavouriteClick(event)}
+                              onClick={(e) => {
+                                e.stopPropagation(); // Prevenir el cierre del modal cuando se hace clic en el botón de favoritos
+                                handleFavouriteClick(event);
+                              }}
                             >
                               <img
-                                className="favIcon "
+                                className="favIcon"
                                 src={favIcon}
                                 alt="Fav Icon"
                                 style={{ width: "24px", height: "24px" }}
@@ -140,34 +153,6 @@ export const Search = () => {
             ))}
           </div>
         )}
-        {/* PAGINACIÓN
-          <nav aria-label="Page navigation example">
-          <ul className="pagination justify-content-center">
-            <li className="page-item disabled">
-              <a className="page-link">Previous</a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                Next
-              </a>
-            </li>
-          </ul>
-        </nav> */}
         <div className="form-buttons d-flex justify-content-between">
           <Link to={"/favourites"}>
             <button type="button" className="btn btn-warning">
@@ -183,6 +168,22 @@ export const Search = () => {
         </div>
       </div>
       <ScrollNavigateToTop />
+
+      {/* El Modal */}
+      {selectedEvent && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          title={selectedEvent.title}
+          imageUrl={selectedEvent.image_url}
+          date={selectedEvent.date}
+          place={selectedEvent.place}
+          genre={selectedEvent.genere}
+          prices={selectedEvent.price}
+          buyUrls={selectedEvent.buy_url}
+          description={selectedEvent.description}
+        />
+      )}
     </>
   );
 };

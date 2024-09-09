@@ -123,6 +123,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+      logOutAlert: () => {
+        Swal.fire({
+          title: "Log out done!",
+          text: "See you soon!",
+          icon: "info",
+          confirmButtonText: "OK",
+        });
+      },
+
       register: async (username, email, password1, password2) => {
         const actions = getActions();
         if (!email || !password1 || !password2) {

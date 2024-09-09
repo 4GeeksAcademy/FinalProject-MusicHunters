@@ -5,19 +5,38 @@ import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 import { NavbarUser } from "../component/navbarUser";
 import favIcon from "../../img/favourites.png";
+import Modal from "../component/modal";
 import Swal from "sweetalert2";
 
 export const Favourites = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
   const [favorites, setFavorites] = useState(new Set());
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     actions.getFavourites();
     console.log(store.favourites);
   }, []);
 
-  const handleFavouriteClick = async (event) => {
+  useEffect(() => {
+    setFavorites(new Set(store.favourites.map((fav) => fav.id)));
+  }, [store.favourites]);
+
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+  };
+
+  const handleFavouriteClick = async (event, e) => {
+    e.stopPropagation(); // Prevenir la propagación del clic en el botón de favoritos
+
     const favourite = store.favourites.find(
       (fav) => fav.id === event.id && fav.user_id === store.user.id
     );
@@ -54,8 +73,9 @@ export const Favourites = (props) => {
           target="_blank"
           rel="noopener noreferrer"
           className="card-price-link"
+          onClick={(e) => e.stopPropagation()} // Prevenir la propagación del clic en los precios
         >
-          {price}
+          From {price}
         </a>
         {index < prices.length - 1 && " "}
       </React.Fragment>
@@ -78,6 +98,7 @@ export const Favourites = (props) => {
               <div
                 className="card mx-auto cards-events"
                 style={{ maxWidth: "540px" }}
+                onClick={() => handleEventClick(event)} // Agregar manejador de clic para mostrar el modal
               >
                 <div className="row g-0 p-2 event-card">
                   <div className="col-md-4">
@@ -101,13 +122,12 @@ export const Favourites = (props) => {
                       <p className="card-text">{event.genere}</p>
                       {event.price.length > 0 && event.buy_url.length > 0 && (
                         <div className="prices-fav-icon">
-                          {/* Utilizar la función para mostrar los precios con URLs */}
                           {formatPrices(event.price, event.buy_url)}
                           <button
                             className={`btn fav-button ${
-                              favorites.has(event.id) ? "" : "fav-active"
+                              favorites.has(event.id) ? "fav-active" : ""
                             }`}
-                            onClick={() => handleFavouriteClick(event)}
+                            onClick={(e) => handleFavouriteClick(event, e)}
                           >
                             <img
                               className="favIcon "
@@ -126,6 +146,26 @@ export const Favourites = (props) => {
           ))}
         </div>
       )}
+
+      {/* Usar el componente Modal */}
+      {selectedEvent && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          title={selectedEvent.title}
+          imageUrl={selectedEvent.image_url}
+          date={selectedEvent.date}
+          place={selectedEvent.place}
+          genre={selectedEvent.genere}
+          prices={selectedEvent.price}
+          buyUrls={selectedEvent.buy_url}
+          description={selectedEvent.description}
+        />
+      )}
     </>
   );
+};
+
+Favourites.propTypes = {
+  // Puedes definir propTypes si es necesario
 };

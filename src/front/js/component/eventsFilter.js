@@ -158,7 +158,10 @@ export const EventsFilter = () => {
                           </p>
                           <p className="card-text">{event.place}</p>
                           <p className="card-text">{event.genere}</p>
-                          {event.price.length > 0 && (
+                          <p className="card-text">
+                            {Math.min(...event.price)}
+                          </p>
+                          {/* {event.price.length > 0 && (
                             <div className="prices-fav-icon">
                               <a
                                 className="card-prices"
@@ -166,7 +169,7 @@ export const EventsFilter = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                {event.price[0]}
+                                {Math.min(...event.price)}
                               </a>
                               <button className="btn btn-warning fav-button">
                                 <img
@@ -177,7 +180,15 @@ export const EventsFilter = () => {
                                 />
                               </button>
                             </div>
-                          )}
+                          )} */}
+                          <button className="btn btn-warning fav-button">
+                            <img
+                              className="favIcon"
+                              src={favIcon}
+                              alt="Fav Icon"
+                              style={{ width: "24px", height: "24px" }}
+                            />
+                          </button>
                         </div>
                       </div>
                     </div>

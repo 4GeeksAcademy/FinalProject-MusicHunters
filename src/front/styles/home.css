@@ -5,6 +5,7 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+
 @font-face {
   font-family: "NavbarBrand";
   src: url("/public/fonts/royal_acidbath/CFAnarchy-Regular.ttf")
@@ -64,11 +65,22 @@ h1 {
 .register-header,
 .login-header,
 .reset-password-header {
-  margin-bottom: 5rem !important;
+  margin-bottom: 3rem !important;
   color: #d34d7a;
   /* font-weight: 700; */
   text-shadow: 3px 6px 2px rgba(0, 0, 0, 10);
   font-size: 4.5rem;
+}
+
+.filtered-events-title {
+  color: #d34d7a;
+  text-shadow: 3px 6px 2px rgba(0, 0, 0, 10);
+  font-size: 4.5rem;
+  margin-bottom: 5rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* .text-center {
@@ -85,10 +97,13 @@ div.fix-row {
   --bs-gutter-x: none !important;
 }
 .card {
-  background-color: #2a9d90e0;
+  background-color: #2a9d90c7;
+  backdrop-filter: blur(10px);
   /* margin-bottom: 50px; */
   box-shadow: 10px 10px 20px #000000;
   /* min-height: max-content !important; */
+  cursor: pointer;
+  /* max-height: 200px; */
 }
 
 .cards-events {
@@ -97,6 +112,12 @@ div.fix-row {
   font-size: 1rem;
   font-weight: bold;
   min-height: 16rem;
+}
+
+.img-fluid {
+  width: 174px !important;
+  height: 233px !important;
+  border-radius: 0.25rem;
 }
 
 a.card-prices {
@@ -174,6 +195,17 @@ nav {
 
 .navbar-light a {
   text-decoration: none;
+}
+
+.link-price {
+  text-decoration: none;
+  color: #d34d7a;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.link-price:hover {
+  text-decoration: wavy;
+  color: #e67a22;
 }
 
 /*-----------------TÍTULOS/SUBTÍTULOS---------------*/
@@ -374,18 +406,21 @@ div.prices-fav-icon {
   position: relative;
   width: 190px;
   height: 254px;
-  background-color: #000000a4;
+  /* background-color: #000000a4; */
+  background-image: url("https://media.istockphoto.com/id/680888484/es/foto/muro-de-ladrillos-negro.jpg?s=612x612&w=0&k=20&c=TTePAKv4I7ukxiyyFVeTBz5yAkw5e7Q8gVRKqkGo8t0=");
+  /* background-size: auto; */
   text-align: center;
+  text-shadow: 2px 1px 1px rgba(0, 0, 0, 1);
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
   padding: 12px;
   gap: 12px;
   margin-left: 2.5rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: background ease-in 0.9s;
+  transition: background ease-in 0.5s;
 }
 
 .card-music-type::before {
@@ -408,7 +443,7 @@ div.prices-fav-icon {
   z-index: -1;
   position: absolute;
   inset: 0;
-  background: linear-gradient(-45deg, #d34d7a 0%, #2a9d8f 100%);
+  background: linear-gradient(-45deg, #d4245f 0%, #03ffe2 100%);
   transform: translate3d(0, 0, 0) scale(0.95);
   filter: blur(20px);
 }
@@ -416,7 +451,7 @@ div.prices-fav-icon {
 .heading-music-type {
   color: #d34d7a;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 20px !important;
   text-transform: capitalize;
 }
 
@@ -437,31 +472,40 @@ div.prices-fav-icon {
 
 .pop-card:hover {
   background-image: url("https://jenesaispop.com/wp-content/uploads/2021/06/billie-eilish-696x464.jpg");
+  justify-content: end;
 }
 
 .rock-card:hover {
-  background-image: url("https://www.billboard.com/wp-content/uploads/2023/08/freddie-mercury-queen-1985-billboard-1240.jpg?w=393");
+  background-image: url("https://www.lafactoriadelshow.com/pujaes/avatars/fitxes/4996_xth.jpg?669a8df8");
+  justify-content: end;
 }
 .latino-card:hover {
   background-image: url("https://www.colombiamania.com/AA_IMAGENES/musica/juanes/juanes_final.jpg");
+  justify-content: end;
 }
 .flamenco-card:hover {
   background-image: url("https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2018/07/04/15307214393164.jpg");
+  justify-content: end;
 }
 .rap-card:hover {
   background-image: url("https://dynamicmedia.livenationinternational.com/Media/g/r/s/fd60e188-86ab-437b-b4e1-d33b5ac52b66.jpg");
+  justify-content: end;
 }
 .indie-card:hover {
   background-image: url("https://www.zonadeobras.com/wp-content/uploads/2022/12/bien-cuadrada-360x360.jpg");
+  justify-content: end;
 }
 .dance-card:hover {
   background-image: url("https://globalylive.com/wp-content/uploads/2024/03/guetta_snippet-1.jpg");
+  justify-content: end;
 }
 .trap-card:hover {
   background-image: url("https://imagenes.iberoeconomia.es/wp-content/uploads/2021/12/06223642/16228101907390.jpg");
+  justify-content: end;
 }
 .reggaeton-card:hover {
   background-image: url("https://cloudfront-eu-central-1.images.arcpublishing.com/prisaradiolos40/2PAVIIM7WRNHZMGTGRMKLQO6HQ.jpg");
+  justify-content: end;
 }
 
 .card-music-type:hover > .heading-music-type {
@@ -565,10 +609,116 @@ input.user-img {
 }
 
 .card-user-profile {
-  background-color: #2a9d90ef;
+  background-color: #264653b2;
   filter: blur(50%);
-  max-width: 40vh;
+  max-width: 60vh;
 }
+
+p.profile-input {
+  background-color: #03ffe283 !important;
+  border-radius: 0.25rem;
+  padding: 5px;
+  width: 100%;
+  box-shadow: 1px 1px 5px 1px #000;
+  backdrop-filter: blur(10px);
+}
+
+.div-inputs-profile {
+  width: 100%;
+}
+
+.username,
+.fa-thumbtack {
+  color: #d34d7a;
+  text-shadow: 2px 2px 2px #000;
+}
+
+/*-----------------------------------*/
+
+/*---------------Modal---------------*/
+
+/* Estilo del fondo del modal que cubre toda la pantalla */
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  overflow: auto; /* Asegura que el fondo no se corte si el modal es muy alto */
+}
+
+/* Estilo del contenedor del modal */
+.modal-dialog {
+  margin: 50px auto; /* Espacio superior e inferior con auto-centramiento */
+  max-width: 800px; /* Ancho máximo del modal */
+}
+
+.modal-header {
+  border-bottom: black;
+}
+
+.modal-title {
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  color: #ced4da;
+}
+/* Estilo del contenido del modal */
+.modal-content {
+  border-radius: 8px;
+  box-shadow: 0px 0px 12px 4px #000;
+  background-color: #a02c53a4;
+  backdrop-filter: blur(10px);
+}
+
+select {
+  padding: 1px;
+  background-color: #b6acaccb;
+  border-radius: 0.25rem;
+}
+
+/* Cuerpo del modal con diseño flex */
+.modal-body {
+  display: flex;
+  padding: 20px; /* Espaciado interno */
+}
+
+/* Imagen del modal */
+.modal-body img {
+  width: 100%;
+  border-radius: 8px;
+  max-width: 300px; /* Ajusta según el tamaño deseado */
+  margin-right: 20px; /* Espacio entre imagen y texto */
+  box-shadow: 0px 0px 7px 2px #000;
+}
+
+/* Detalles del modal */
+.modal-details {
+  flex: 1;
+  margin-left: 2%;
+  box-shadow: 0px 0px 7px 2px #000;
+  padding: 2%;
+  background-color: #d34d7a96;
+  border-radius: 0.25rem;
+  color: #000;
+}
+
+.modal-details > p {
+  text-shadow: 1px 1px 1px #696161a2;
+  font-weight: bold;
+}
+
+/* Pie del modal */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+  border-top: none;
+}
+
+/*-----------------------------------*/
 
 .file-input-container {
   display: flex;
@@ -696,3 +846,55 @@ div:where(.swal2-icon).swal2-error [class^="swal2-x-mark-line"] {
 div:where(.swal2-icon).swal2-error {
   border-color: #d34d7a;
 }
+
+/*·······················PRUEBA PROFILE·······················*/
+
+/* .parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  width: 40vw;
+  background-color: #26465370;
+  backdrop-filter: blur(10px);
+  padding: 15px;
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 1);
+  align-items: center;
+  width: 45vw;
+  height: 30vw;
+  margin: auto;
+}
+
+.div1 {
+  grid-row: span 3 / span 3;
+  justify-self: center;
+}
+
+.user-img {
+  size: initial;
+}
+
+.div2 {
+  grid-column: span 2 / span 2;
+}
+
+.div3 {
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+.div4 {
+  grid-column-start: 3;
+  grid-row-start: 2;
+}
+
+.div5 {
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+.div6 {
+  grid-column-start: 3;
+  grid-row-start: 3;
+} */

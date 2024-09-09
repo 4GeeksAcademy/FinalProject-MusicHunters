@@ -26,14 +26,7 @@ export const HomeUser = () => {
   //   // }
   // };
   const handleGenereClick = (genere) => {
-    setSelectedGenere(genere);
-    setTimeout(() => {
-      // Si hay eventos filtrados, desplazarse al primero
-      if (firstEventRef.current) {
-        firstEventRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 0);
-    // handleFilterClick();
+    navigate("/filteredEvents", { state: { genere } });
   };
 
   // Estado para el género seleccionado
@@ -62,7 +55,7 @@ export const HomeUser = () => {
           rel="noopener noreferrer"
           className="card-price-link"
         >
-          {price}
+          From {price}
         </a>
         {index < prices.length - 1 && " "}
       </React.Fragment>

@@ -17,7 +17,7 @@ export const MyProfile = (props) => {
   return (
     <>
       <NavbarUser />
-      <h1 className="text-center register-header mb-3">My Profile</h1>
+      <h1 className="text-center register-header mb-2">My Profile</h1>
       <Profile />
     </>
   );
